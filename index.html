@@ -132,16 +132,19 @@
         }
 
         .cta {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             background: #256eff;
             color: #ffffff !important;
             padding: 1rem 2rem;
-            border-radius: 1000px;
             text-decoration: none;
             font-weight: 600;
             transition: ease 0.3s all;
-            opacity: 1;
+            opacity: 0;
             transform: translateY(20px);
+            position: relative;
+            overflow: hidden;
         }
 
         .cta p {
@@ -149,6 +152,47 @@
             font-weight: 400;
             font-size: 1rem;
             color: #ffffff !important;
+            margin: 0;
+        }
+
+        .cta .arrow {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+            color: #ffffff !important;
+        }
+
+        .cta .arrow-container {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .cta .arrow-1 {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: transform 0.3s ease;
+            color: #ffffff !important;
+        }
+
+        .cta .arrow-2 {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-160%);
+            transition: transform 0.3s ease;
+            color: #ffffff !important;
+        }
+
+        .cta:hover .arrow-1 {
+            transform: translateX(60%);
+        }
+
+        .cta:hover .arrow-2 {
+            transform: translateX(-50%);
         }
 
         .cta:hover {
@@ -202,7 +246,17 @@
             <div class="hero-content">
                 <h1>Howdy, I'm <span class="highlight">Rossi</span></h1>
                 <p class="subtitle">CEO/Founder of <a href="https://pushrefresh.com" target="_blank">Push Refresh</a>, where we craft exquisite web and app experiences with a personal touch. Let's innovate, create, and refresh your digital world!</p>
-                <a href="https://pushrefresh.com/work" class="cta"><p>View Our Work</p></a>
+                <a href="https://pushrefresh.com/work" class="cta">
+                    <p>View Our Work</p>
+                    <div class="arrow-container">
+                        <svg class="arrow arrow-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <svg class="arrow arrow-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </a>
             </div>
         </section>
     </div>
