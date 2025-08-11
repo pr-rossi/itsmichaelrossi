@@ -128,11 +128,31 @@
             opacity: 0;
             transform: translateY(20px);
             cursor: pointer;
-            transition: transform 0.2s ease;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .avatar:hover {
-            transform: translateY(20px) scale(1.05);
+            transform: translateY(20px) scale(1.1);
+            box-shadow: 0 0 30px rgba(37, 110, 255, 0.6);
+            filter: brightness(1.1);
+        }
+
+        .avatar::after {
+            content: "👁️";
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 20px;
+            opacity: 0;
+            transform: scale(0) rotate(-10deg);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .avatar:hover::after {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
         }
 
         .modal {
