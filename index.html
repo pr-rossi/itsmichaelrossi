@@ -90,10 +90,6 @@
         a:hover {
             color: #ffffff;
         }
-        
-        a:visited {
-            color: #256eff !important;
-        }
 
         .hero {
             min-height: 90vh;
@@ -106,11 +102,19 @@
             max-width: 600px;
         }
 
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
         h1 {
             font-family: 'Editor\'s Note', serif;
             font-size: 4rem;
             margin-bottom: 1.5rem;
-            font-weight: 400;
             line-height: 1.2;
             opacity: 0;
             transform: translateY(20px);
@@ -244,6 +248,7 @@
 
         <section class="hero">
             <div class="hero-content">
+                <img src="/images/rossi.jpeg" alt="Rossi" class="avatar">
                 <h1>Howdy, I'm <span class="highlight">Rossi</span></h1>
                 <p class="subtitle">CEO/Founder of <a href="https://pushrefresh.com" target="_blank">Push Refresh</a>, where we craft exquisite web and app experiences with a personal touch. Let's innovate, create, and refresh your digital world!</p>
                 <a href="https://pushrefresh.com/work" class="cta">
@@ -264,14 +269,14 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Animate elements on page load
-            gsap.to('h1', {
+            gsap.to('.avatar', {
                 opacity: 1,
                 y: 0,
                 duration: 1,
                 ease: 'power3.out'
             });
 
-            gsap.to('.subtitle', {
+            gsap.to('h1', {
                 opacity: 1,
                 y: 0,
                 duration: 1,
@@ -279,11 +284,19 @@
                 ease: 'power3.out'
             });
 
-            gsap.to('.cta', {
+            gsap.to('.subtitle', {
                 opacity: 1,
                 y: 0,
                 duration: 1,
                 delay: 0.4,
+                ease: 'power3.out'
+            });
+
+            gsap.to('.cta', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                delay: 0.6,
                 ease: 'power3.out'
             });
 
