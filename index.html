@@ -593,12 +593,16 @@
                         ease: 'power2.out'
                     });
 
-                // After 5 seconds, completely remove the glow
+                // After 5 seconds, slowly fade out the glow over 5 seconds
                 setTimeout(() => {
                     gsap.to('.avatar', {
-                        boxShadow: 'none',
-                        duration: 0.5,
-                        ease: 'power2.out'
+                        boxShadow: '0 0 0px rgba(37, 110, 255, 0)',
+                        duration: 5,
+                        ease: 'power2.out',
+                        onComplete: function() {
+                            // Reset to allow hover states to work properly
+                            gsap.set('.avatar', { clearProps: 'boxShadow' });
+                        }
                     });
                 }, 5000);
             }
