@@ -568,6 +568,31 @@
                 duration: 1,
                 delay: 1
             });
+
+            // Avatar attention animation after 5 seconds
+            setTimeout(() => {
+                gsap.timeline()
+                    .to('.avatar', {
+                        scale: 1.05,
+                        duration: 0.6,
+                        ease: 'power2.out'
+                    })
+                    .to('.avatar', {
+                        scale: 1,
+                        duration: 0.6,
+                        ease: 'power2.in'
+                    })
+                    .to('.avatar', {
+                        boxShadow: '0 0 40px rgba(37, 110, 255, 0.8)',
+                        duration: 0.4,
+                        ease: 'power2.out'
+                    })
+                    .to('.avatar', {
+                        boxShadow: '0 0 30px rgba(37, 110, 255, 0.6)',
+                        duration: 0.4,
+                        ease: 'power2.in'
+                    });
+            }, 5000);
         });
     </script>
 </body>
