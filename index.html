@@ -59,7 +59,11 @@
             background: #121517;
             color: #fafafa;
             line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
         }
+
+
 
         .container {
             max-width: 1200px;
@@ -569,8 +573,9 @@
                 delay: 1
             });
 
-            // Avatar attention animation after 5 seconds
-            setTimeout(() => {
+            // Avatar attention animation - glows for 5 seconds, then repeats every minute
+            function triggerAvatarGlow() {
+                // Start the attention animation
                 gsap.timeline()
                     .to('.avatar', {
                         scale: 1.05,
@@ -586,13 +591,23 @@
                         boxShadow: '0 0 40px rgba(37, 110, 255, 0.8)',
                         duration: 0.4,
                         ease: 'power2.out'
-                    })
-                    .to('.avatar', {
-                        boxShadow: '0 0 30px rgba(37, 110, 255, 0.6)',
-                        duration: 0.4,
-                        ease: 'power2.in'
                     });
-            }, 5000);
+
+                // After 5 seconds, completely remove the glow
+                setTimeout(() => {
+                    gsap.to('.avatar', {
+                        boxShadow: 'none',
+                        duration: 0.5,
+                        ease: 'power2.out'
+                    });
+                }, 5000);
+            }
+
+            // Initial trigger after 5 seconds
+            setTimeout(triggerAvatarGlow, 5000);
+
+            // Repeat every minute (60 seconds)
+            setInterval(triggerAvatarGlow, 60000);
         });
     </script>
 </body>
