@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Portfolio · Michael Rossi</title>
+    <link rel="icon" type="image/svg+xml" href="/images/favicon-light.svg" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon-dark.svg" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon-light.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: 'Editor\'s Note';
+            src: url('/font/Editor\'sNote-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Editor\'s Note';
+            src: url('/font/Editor\'sNote-Light.ttf') format('truetype');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Graphik';
+            src: url('/font/GraphikRegular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Graphik';
+            src: url('/font/GraphikMedium.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        :root {
+            --color-bg: #ffffff;
+            --color-text: #000000;
+            --color-text-secondary: #555555;
+            --color-text-muted: #888888;
+            --color-border: rgba(0, 0, 0, 0.1);
+            --font-serif: 'Editor\'s Note', Georgia, serif;
+            --font-sans: 'Graphik', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .portfolio-listing {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .portfolio-listing.loaded {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 5rem 2rem 8rem;
+        }
+
+        .header-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--color-border);
+            gap: 1rem;
+        }
+
+        .confidential-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+        }
+
+        .resume-link {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s ease;
+        }
+
+        .resume-link:hover {
+            color: var(--color-text);
+        }
+
+        .resume-link svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .page-title {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .page-description {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 4rem;
+            max-width: 500px;
+        }
+
+        .project-list {
+            list-style: none;
+        }
+
+        .project-item {
+            border-top: 1px solid var(--color-border);
+        }
+
+        .project-link {
+            display: block;
+            padding: 2rem 0;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .project-link:hover {
+            padding-left: 1rem;
+        }
+
+        .project-link:hover .project-title {
+            color: var(--color-text-secondary);
+        }
+
+        .project-link:hover .project-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-title {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            font-weight: 400;
+            transition: color 0.2s ease;
+        }
+
+        .project-arrow {
+            font-size: 1.25rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.2s ease;
+            color: var(--color-text-muted);
+        }
+
+        .project-meta {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        .project-meta span {
+            margin-right: 1.5rem;
+        }
+
+        .project-meta span:last-child {
+            margin-right: 0;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 3rem 1.5rem 5rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .project-title {
+                font-size: 1.35rem;
+            }
+
+            .project-meta {
+                font-size: 0.8rem;
+            }
+
+            .project-meta span {
+                display: block;
+                margin-right: 0;
+                margin-bottom: 0.25rem;
+            }
+
+            .project-arrow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="portfolio-listing">
+        <div class="container">
+            <div class="header-bar">
+                <div class="confidential-label">Viewing the portfolio for Michael Rossi</div>
+                <a href="/p/Rossi-Resume-2026.pdf" class="resume-link" download>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download Resume
+                </a>
+            </div>
+            <h1 class="page-title">Selected Work</h1>
+            <p class="page-description">A collection of case studies from recent projects. These are shared privately—please don't distribute.</p>
+            <ul class="project-list" id="project-list">
+                <!-- Projects loaded dynamically -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            async function fetchProjects() {
+                try {
+                    const response = await fetch('/p/projects.json');
+                    if (!response.ok) throw new Error('Failed to load');
+                    return await response.json();
+                } catch (error) {
+                    console.error('Error loading projects:', error);
+                    return null;
+                }
+            }
+
+            function renderProjects(projects) {
+                const list = document.getElementById('project-list');
+                if (!list || !projects) return;
+
+                const projectArray = Object.values(projects);
+                
+                const html = projectArray.map(project => `
+                    <li class="project-item">
+                        <a href="/p/${project.slug}/" class="project-link">
+                            <div class="project-header">
+                                <h2 class="project-title">${escapeHtml(project.title)}</h2>
+                                <span class="project-arrow">→</span>
+                            </div>
+                            <div class="project-meta">
+                                <span>${escapeHtml(project.client)}</span>
+                                <span>${escapeHtml(project.role)}</span>
+                                <span>${escapeHtml(project.timeframe)}</span>
+                            </div>
+                        </a>
+                    </li>
+                `).join('');
+
+                list.innerHTML = html;
+            }
+
+            function escapeHtml(text) {
+                if (!text) return '';
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            async function init() {
+                const projects = await fetchProjects();
+                if (projects) {
+                    renderProjects(projects);
+                }
+                document.querySelector('.portfolio-listing').classList.add('loaded');
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+        })();
+    </script>
+</body>
+</html>
+

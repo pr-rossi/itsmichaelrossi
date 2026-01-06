@@ -1,0 +1,181 @@
+{
+  "nutrient-website": {
+    "slug": "nutrient-website",
+    "title": "Nutrient Website",
+    "client": "Nutrient",
+    "role": "UX/UI Design and Front-End Development",
+    "tech": "React, Astro",
+    "timeframe": "2023 – 2024",
+    "context": "Nutrient is a document processing and SDK platform used by developers and enterprise teams. The website needed to clearly communicate complex technical capabilities, support multiple product offerings, and scale as the platform evolved. The goal was to create a product-led website that balanced clarity, performance, and technical depth.",
+    "responsibilities": [
+      "Led UX/UI design for the entire website experience",
+      "Designed and implemented the site using React and Astro",
+      "Partnered with product and marketing to align messaging with product capabilities",
+      "Ensured performance, accessibility, and maintainability in the build"
+    ],
+    "problem": "The website needed to explain a technically sophisticated product without overwhelming users. Existing content struggled to clearly differentiate offerings and guide users toward relevant information. The challenge was designing a structure that worked for both technical and non-technical audiences while remaining flexible as the product expanded.",
+    "decisions": [
+      "Designed the site with a product-first information architecture rather than a marketing-first approach",
+      "Made clarity the primary constraint, surfacing complexity only when it added value",
+      "Built reusable layout and content patterns to support ongoing iteration",
+      "Chose Astro to optimize performance while integrating React where interactivity was required",
+      "Treated accessibility and page performance as non-negotiable design constraints"
+    ],
+    "outcome": "Delivered a fast, product-led website that clearly communicates Nutrient's offerings and provides a scalable foundation for future growth.",
+    "images": [
+      {
+        "src": "/p/images/nutrient-1.svg",
+        "alt": "Homepage"
+      },
+      {
+        "src": "/p/images/nutrient-2.svg",
+        "alt": "Product or solution page"
+      },
+      {
+        "src": "/p/images/nutrient-3.svg",
+        "alt": "Technical or documentation-adjacent page"
+      }
+    ]
+  },
+  "tiaa-design-system": {
+    "slug": "tiaa-design-system",
+    "title": "TIAA Design System",
+    "client": "TIAA",
+    "role": "Design System Lead",
+    "timeframe": "2023 – 2024",
+    "context": "TIAA operates across multiple web and mobile products serving diverse user groups. The design system initiative aimed to unify design standards, improve consistency, and support scalable product development.",
+    "responsibilities": [
+      "Led the design system initiative across web and mobile products",
+      "Managed and mentored designers contributing to the system",
+      "Partnered with engineering and product leadership on governance and adoption"
+    ],
+    "problem": "Inconsistent patterns and duplicated effort across teams slowed development and reduced experience quality. The challenge was creating a system that balanced flexibility with governance.",
+    "decisions": [
+      "Defined clear component ownership and contribution models",
+      "Established documentation standards to support adoption",
+      "Designed components to scale across multiple product teams without fragmenting ownership",
+      "Prioritized long-term maintainability over short-term convenience"
+    ],
+    "outcome": "Delivered a scalable design system that improved consistency, reduced duplication, and enabled more efficient product development across teams.",
+    "images": [
+      {
+        "src": "/p/images/tiaa-1.svg",
+        "alt": "Component library overview"
+      },
+      {
+        "src": "/p/images/tiaa-2.svg",
+        "alt": "System documentation"
+      },
+      {
+        "src": "/p/images/tiaa-3.svg",
+        "alt": "Example implementations across products"
+      }
+    ]
+  },
+  "unitedhealth-transportation": {
+    "slug": "unitedhealth-transportation",
+    "title": "Transportation Benefits Experience",
+    "client": "UnitedHealth Group",
+    "role": "UX/UI Design",
+    "timeframe": "2022 – 2023",
+    "context": "This work focused on the transportation benefits feature within the UnitedHealth Group member experience, allowing eligible users to schedule transportation for medical appointments. The experience needed to support accessibility, clarity, and trust.",
+    "responsibilities": [
+      "Led UX/UI design for transportation scheduling workflows",
+      "Designed user flows for eligibility, booking, and confirmation",
+      "Collaborated with cross-functional teams in a regulated healthcare environment"
+    ],
+    "problem": "Users needed to schedule transportation reliably and with confidence, often under time-sensitive or stressful conditions. Existing flows lacked clarity and required unnecessary steps.",
+    "decisions": [
+      "Simplified scheduling flows to reduce user effort",
+      "Emphasized clarity and confirmation at each step",
+      "Designed with accessibility requirements and edge cases in mind",
+      "Reduced cognitive load by limiting choices at critical decision points"
+    ],
+    "outcome": "Delivered a clearer, more accessible transportation scheduling experience that improved usability and user confidence.",
+    "images": [
+      {
+        "src": "/p/images/uhg-1.svg",
+        "alt": "Scheduling flow"
+      },
+      {
+        "src": "/p/images/uhg-2.svg",
+        "alt": "Confirmation or status screen"
+      },
+      {
+        "src": "/p/images/uhg-3.svg",
+        "alt": "Mobile-specific experience"
+      }
+    ]
+  },
+  "lowes-pro-supply": {
+    "slug": "lowes-pro-supply",
+    "title": "Lowe's Pro Supply Application",
+    "client": "Lowe's Pro Supply",
+    "role": "UX/UI Design",
+    "timeframe": "2022 – 2023",
+    "context": "Lowe's Pro Supply supports professional contractors managing inventory, ordering, and fulfillment. The application serves users operating in fast-paced, operational environments where efficiency and clarity are critical.",
+    "responsibilities": [
+      "Led UX/UI design for core application workflows",
+      "Designed interfaces for professional, task-focused users",
+      "Collaborated with product and engineering teams to align on feasibility and scope"
+    ],
+    "problem": "Existing workflows required excessive navigation and context switching, slowing down common tasks. The challenge was simplifying complex operational flows while preserving flexibility for professional users with varied needs.",
+    "decisions": [
+      "Reduced navigation depth by consolidating related actions into focused views",
+      "Intentionally prioritized speed and scannability over visual detail to support repeat usage",
+      "Designed interfaces optimized for repeat workflows rather than first-time discovery",
+      "Focused on consistency across workflows to reduce training and cognitive overhead"
+    ],
+    "outcome": "Improved workflow efficiency and predictability for professional users, enabling faster task completion across common operational flows.",
+    "images": [
+      {
+        "src": "/p/images/lowes-1.svg",
+        "alt": "Core workflow screen"
+      },
+      {
+        "src": "/p/images/lowes-2.svg",
+        "alt": "Inventory or ordering interface"
+      },
+      {
+        "src": "/p/images/lowes-3.svg",
+        "alt": "High-density data view"
+      }
+    ]
+  },
+  "synquery-product": {
+    "slug": "synquery-product",
+    "title": "Synquery Product and Website",
+    "client": "Synquery",
+    "role": "UX/UI Design, Website Design and Development",
+    "timeframe": "2024",
+    "context": "Synquery is an expert network platform designed to connect organizations with specialized expertise. The work included defining the product experience as well as designing and developing the public-facing website.",
+    "responsibilities": [
+      "Led product UX/UI design for the core platform",
+      "Designed and developed the marketing website",
+      "Worked directly with founders on product definition and positioning",
+      "Balanced speed, clarity, and scalability in early-stage decisions"
+    ],
+    "problem": "As an early-stage product, Synquery needed a clear and credible experience without overbuilding. The challenge was defining strong foundations that could evolve as the product matured.",
+    "decisions": [
+      "Focused on core workflows rather than edge-case functionality",
+      "Designed flexible patterns that could scale without rework",
+      "Aligned product and website design to present a cohesive narrative",
+      "Prioritized clarity over feature density in early releases"
+    ],
+    "outcome": "Delivered a cohesive product and web experience that established clear foundations while allowing for rapid iteration as the platform evolved.",
+    "images": [
+      {
+        "src": "/p/images/synquery-1.svg",
+        "alt": "Core product interface"
+      },
+      {
+        "src": "/p/images/synquery-2.svg",
+        "alt": "Key workflow screen"
+      },
+      {
+        "src": "/p/images/synquery-3.svg",
+        "alt": "Website homepage"
+      }
+    ]
+  }
+}

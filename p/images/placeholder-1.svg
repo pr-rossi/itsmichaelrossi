@@ -1,0 +1,38 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#F5F5F5"/>
+  <rect x="60" y="60" width="1080" height="680" rx="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  
+  <!-- Header bar -->
+  <rect x="60" y="60" width="1080" height="56" rx="8" fill="#FAFAFA"/>
+  <circle cx="96" cy="88" r="12" fill="#E0E0E0"/>
+  <rect x="124" y="82" width="120" height="12" rx="2" fill="#E0E0E0"/>
+  <rect x="920" y="82" width="80" height="12" rx="2" fill="#E0E0E0"/>
+  <rect x="1020" y="82" width="80" height="12" rx="2" fill="#E0E0E0"/>
+  
+  <!-- Sidebar -->
+  <rect x="60" y="116" width="240" height="624" fill="#FAFAFA"/>
+  <rect x="84" y="140" width="192" height="12" rx="2" fill="#E0E0E0"/>
+  <rect x="84" y="168" width="160" height="10" rx="2" fill="#EEEEEE"/>
+  <rect x="84" y="194" width="180" height="10" rx="2" fill="#EEEEEE"/>
+  <rect x="84" y="220" width="140" height="10" rx="2" fill="#EEEEEE"/>
+  <rect x="84" y="260" width="192" height="12" rx="2" fill="#E0E0E0"/>
+  <rect x="84" y="288" width="170" height="10" rx="2" fill="#EEEEEE"/>
+  <rect x="84" y="314" width="150" height="10" rx="2" fill="#EEEEEE"/>
+  
+  <!-- Main content area -->
+  <rect x="324" y="140" width="280" height="180" rx="6" fill="#E8E8E8"/>
+  <rect x="628" y="140" width="280" height="180" rx="6" fill="#E8E8E8"/>
+  <rect x="932" y="140" width="184" height="180" rx="6" fill="#E8E8E8"/>
+  
+  <rect x="324" y="344" width="792" height="120" rx="6" fill="#F0F0F0"/>
+  <rect x="348" y="368" width="200" height="14" rx="2" fill="#D0D0D0"/>
+  <rect x="348" y="394" width="600" height="10" rx="2" fill="#E0E0E0"/>
+  <rect x="348" y="416" width="500" height="10" rx="2" fill="#E0E0E0"/>
+  
+  <rect x="324" y="488" width="384" height="200" rx="6" fill="#E8E8E8"/>
+  <rect x="732" y="488" width="384" height="200" rx="6" fill="#E8E8E8"/>
+  
+  <!-- Placeholder text -->
+  <text x="600" y="750" font-family="system-ui, sans-serif" font-size="14" fill="#999999" text-anchor="middle">Dashboard Overview — Replace with actual screenshot</text>
+</svg>
+

@@ -1,0 +1,49 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#F5F5F5"/>
+  
+  <!-- Modal/Command Palette overlay -->
+  <rect width="1200" height="800" fill="#000000" fill-opacity="0.4"/>
+  
+  <!-- Command palette -->
+  <rect x="300" y="150" width="600" height="500" rx="12" fill="#FFFFFF" filter="drop-shadow(0 25px 50px rgba(0,0,0,0.25))"/>
+  
+  <!-- Search input -->
+  <rect x="324" y="174" width="552" height="48" rx="6" fill="#F5F5F5"/>
+  <circle cx="352" cy="198" r="10" stroke="#AAAAAA" stroke-width="2" fill="none"/>
+  <line x1="359" y1="205" x2="366" y2="212" stroke="#AAAAAA" stroke-width="2" stroke-linecap="round"/>
+  <rect x="380" y="192" width="200" height="12" rx="2" fill="#CCCCCC"/>
+  
+  <!-- Divider -->
+  <line x1="324" y1="238" x2="876" y2="238" stroke="#EEEEEE" stroke-width="1"/>
+  
+  <!-- Results -->
+  <rect x="324" y="254" width="552" height="48" rx="4" fill="#F0F7FF"/>
+  <rect x="340" y="270" width="180" height="12" rx="2" fill="#333333"/>
+  <rect x="340" y="288" width="120" height="8" rx="2" fill="#999999"/>
+  
+  <rect x="324" y="314" width="552" height="48" rx="4" fill="#FFFFFF"/>
+  <rect x="340" y="330" width="160" height="12" rx="2" fill="#333333"/>
+  <rect x="340" y="348" width="140" height="8" rx="2" fill="#999999"/>
+  
+  <rect x="324" y="374" width="552" height="48" rx="4" fill="#FFFFFF"/>
+  <rect x="340" y="390" width="200" height="12" rx="2" fill="#333333"/>
+  <rect x="340" y="408" width="100" height="8" rx="2" fill="#999999"/>
+  
+  <rect x="324" y="434" width="552" height="48" rx="4" fill="#FFFFFF"/>
+  <rect x="340" y="450" width="140" height="12" rx="2" fill="#333333"/>
+  <rect x="340" y="468" width="160" height="8" rx="2" fill="#999999"/>
+  
+  <rect x="324" y="494" width="552" height="48" rx="4" fill="#FFFFFF"/>
+  <rect x="340" y="510" width="180" height="12" rx="2" fill="#333333"/>
+  <rect x="340" y="528" width="110" height="8" rx="2" fill="#999999"/>
+  
+  <!-- Footer hint -->
+  <rect x="324" y="558" width="552" height="40" fill="#FAFAFA" rx="0 0 12 12"/>
+  <rect x="340" y="572" width="60" height="10" rx="2" fill="#DDDDDD"/>
+  <rect x="420" y="572" width="80" height="10" rx="2" fill="#DDDDDD"/>
+  <rect x="520" y="572" width="50" height="10" rx="2" fill="#DDDDDD"/>
+  
+  <!-- Placeholder text -->
+  <text x="600" y="750" font-family="system-ui, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle">Command Palette — Replace with actual screenshot</text>
+</svg>
+

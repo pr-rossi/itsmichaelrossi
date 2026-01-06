@@ -1,0 +1,36 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#F8F8F8"/>
+  <rect x="40" y="40" width="1120" height="720" rx="4" fill="#FFFFFF" stroke="#E5E5E5"/>
+  <rect x="40" y="40" width="1120" height="60" fill="#1A1A1A"/>
+  <rect x="70" y="58" width="100" height="24" rx="2" fill="#FFFFFF"/>
+  <rect x="70" y="130" width="160" height="20" rx="2" fill="#333333"/>
+  <rect x="70" y="170" width="350" height="560" rx="4" fill="#FAFAFA" stroke="#E5E5E5"/>
+  <rect x="90" y="190" width="100" height="14" rx="2" fill="#888888"/>
+  <rect x="90" y="220" width="310" height="44" rx="4" fill="#FFFFFF" stroke="#E0E0E0"/>
+  <rect x="110" y="236" width="160" height="12" rx="2" fill="#CCCCCC"/>
+  <rect x="90" y="280" width="310" height="44" rx="4" fill="#FFFFFF" stroke="#E0E0E0"/>
+  <rect x="90" y="340" width="310" height="44" rx="4" fill="#FFFFFF" stroke="#E0E0E0"/>
+  <rect x="90" y="400" width="310" height="44" rx="4" fill="#FFFFFF" stroke="#E0E0E0"/>
+  <rect x="90" y="460" width="100" height="14" rx="2" fill="#888888"/>
+  <rect x="90" y="490" width="148" height="44" rx="4" fill="#FFFFFF" stroke="#E0E0E0"/>
+  <rect x="252" y="490" width="148" height="44" rx="4" fill="#FFFFFF" stroke="#E0E0E0"/>
+  <rect x="90" y="560" width="310" height="80" rx="4" fill="#FFFFFF" stroke="#E0E0E0"/>
+  <rect x="240" y="670" width="160" height="40" rx="4" fill="#1A1A1A"/>
+  <rect x="450" y="170" width="680" height="560" rx="4" fill="#FAFAFA" stroke="#E5E5E5"/>
+  <rect x="470" y="190" width="120" height="14" rx="2" fill="#888888"/>
+  <rect x="470" y="220" width="640" height="48" rx="0" fill="#F0F0F0"/>
+  <rect x="490" y="236" width="60" height="16" rx="2" fill="#AAAAAA"/>
+  <rect x="600" y="236" width="80" height="16" rx="2" fill="#AAAAAA"/>
+  <rect x="730" y="236" width="60" height="16" rx="2" fill="#AAAAAA"/>
+  <rect x="840" y="236" width="80" height="16" rx="2" fill="#AAAAAA"/>
+  <rect x="970" y="236" width="60" height="16" rx="2" fill="#AAAAAA"/>
+  <rect x="470" y="280" width="640" height="50" fill="#FFFFFF" stroke="#EEEEEE"/>
+  <rect x="470" y="340" width="640" height="50" fill="#FFFFFF" stroke="#EEEEEE"/>
+  <rect x="470" y="400" width="640" height="50" fill="#FFFFFF" stroke="#EEEEEE"/>
+  <rect x="470" y="460" width="640" height="50" fill="#FFFFFF" stroke="#EEEEEE"/>
+  <rect x="470" y="520" width="640" height="50" fill="#FFFFFF" stroke="#EEEEEE"/>
+  <rect x="470" y="580" width="640" height="50" fill="#FFFFFF" stroke="#EEEEEE"/>
+  <rect x="470" y="640" width="640" height="50" fill="#FFFFFF" stroke="#EEEEEE"/>
+  <text x="600" y="760" font-family="system-ui, sans-serif" font-size="13" fill="#AAAAAA" text-anchor="middle">Ordering interface</text>
+</svg>
+

@@ -1,0 +1,330 @@
+/* Case Study Styles - Matches main site typography */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Editor\'s Note';
+    src: url('/font/Editor\'sNote-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Editor\'s Note';
+    src: url('/font/Editor\'sNote-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Editor\'s Note';
+    src: url('/font/Editor\'sNote-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Graphik';
+    src: url('/font/GraphikRegular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Graphik';
+    src: url('/font/GraphikMedium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Graphik';
+    src: url('/font/GraphikLight.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+:root {
+    --color-bg: #ffffff;
+    --color-text: #000000;
+    --color-text-secondary: #555555;
+    --color-text-muted: #888888;
+    --color-border: rgba(0, 0, 0, 0.12);
+    --color-border-strong: rgba(0, 0, 0, 0.25);
+    --font-serif: 'Editor\'s Note', Georgia, serif;
+    --font-sans: 'Graphik', system-ui, -apple-system, sans-serif;
+    --max-width: 720px;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 5rem;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Loading State */
+.case-study {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.case-study.loaded {
+    opacity: 1;
+}
+
+/* Container */
+.case-study-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-md);
+    padding-bottom: 8rem;
+}
+
+/* Back Link */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border);
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: var(--color-text);
+}
+
+.back-link svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Confidential Label */
+.confidential-label {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* Header */
+.case-study-header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.project-title {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: var(--spacing-md);
+    letter-spacing: -0.02em;
+}
+
+.project-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--color-border);
+}
+
+.meta-item {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.meta-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    min-width: 80px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.meta-value {
+    font-size: 0.95rem;
+    color: var(--color-text);
+}
+
+/* Sections */
+.case-study-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text);
+}
+
+.section-content {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+}
+
+.section-content p {
+    margin-bottom: var(--spacing-sm);
+}
+
+.section-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Lists */
+.section-list {
+    list-style: none;
+    padding: 0;
+}
+
+.section-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+}
+
+.section-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.65rem;
+    width: 6px;
+    height: 6px;
+    background: var(--color-text);
+    border-radius: 50%;
+}
+
+.section-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* Images */
+.case-study-images {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--color-border);
+}
+
+.images-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text);
+}
+
+.image-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.image-item {
+    width: 100%;
+}
+
+.image-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--color-border);
+    background: #fafafa;
+}
+
+.image-caption {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: var(--spacing-xs);
+    font-style: italic;
+}
+
+/* Error State */
+.error-message {
+    text-align: center;
+    padding: var(--spacing-xl);
+}
+
+.error-message h1 {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.error-message p {
+    color: var(--color-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .case-study-container {
+        padding: var(--spacing-lg) var(--spacing-sm);
+        padding-bottom: 5rem;
+    }
+
+    .project-title {
+        font-size: 2.25rem;
+    }
+
+    .section-title {
+        font-size: 1.25rem;
+    }
+
+    .section-content,
+    .section-list li {
+        font-size: 1rem;
+    }
+
+    .meta-item {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .meta-label {
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-title {
+        font-size: 1.85rem;
+    }
+
+    .confidential-label {
+        font-size: 0.65rem;
+    }
+}
+
