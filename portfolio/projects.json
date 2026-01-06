@@ -95,16 +95,16 @@
     "outcome": "Delivered a clearer, more accessible transportation scheduling experience that improved usability and user confidence.",
     "images": [
       {
-        "src": "/portfolio/images/uhg-1.svg",
-        "alt": "Scheduling flow"
+        "src": "/portfolio/images/uhc-notifications.jpg",
+        "alt": "System-Level Communication"
       },
       {
-        "src": "/portfolio/images/uhg-2.svg",
-        "alt": "Confirmation or status screen"
+        "src": "/portfolio/images/uhc-scheduling-flow.jpg",
+        "alt": "End-to-End Scheduling Flow"
       },
       {
-        "src": "/portfolio/images/uhg-3.svg",
-        "alt": "Mobile-specific experience"
+        "src": "/portfolio/images/uhc-ride-history.jpg",
+        "alt": "Ride Lifecycle States"
       }
     ]
   },

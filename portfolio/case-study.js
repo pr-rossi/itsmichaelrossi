@@ -128,6 +128,74 @@
         
         // Update page title
         document.title = `${project.title} · Michael Rossi`;
+        
+        // Initialize lightbox
+        initLightbox();
+    }
+
+    // Lightbox functionality
+    function initLightbox() {
+        // Create lightbox element if it doesn't exist
+        if (!document.querySelector('.lightbox')) {
+            const lightbox = document.createElement('div');
+            lightbox.className = 'lightbox';
+            lightbox.innerHTML = `
+                <button class="lightbox-close" aria-label="Close">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+                <div class="lightbox-content">
+                    <img src="" alt="">
+                    <div class="lightbox-caption"></div>
+                </div>
+            `;
+            document.body.appendChild(lightbox);
+            
+            // Close on backdrop click
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox || e.target.closest('.lightbox-close')) {
+                    closeLightbox();
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                }
+            });
+        }
+        
+        // Add click handlers to images
+        document.querySelectorAll('.image-item img').forEach(img => {
+            img.addEventListener('click', () => {
+                openLightbox(img.src, img.alt);
+            });
+        });
+    }
+
+    function openLightbox(src, alt) {
+        const lightbox = document.querySelector('.lightbox');
+        const img = lightbox.querySelector('.lightbox-content img');
+        const caption = lightbox.querySelector('.lightbox-caption');
+        
+        img.src = src;
+        img.alt = alt;
+        caption.textContent = alt || '';
+        caption.style.display = alt ? 'block' : 'none';
+        
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        const lightbox = document.querySelector('.lightbox');
+        if (lightbox) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
     }
 
     // Render error state
