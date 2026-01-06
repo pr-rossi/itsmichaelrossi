@@ -130,16 +130,16 @@
     "outcome": "Improved workflow efficiency and predictability for professional users, enabling faster task completion across common operational flows.",
     "images": [
       {
-        "src": "/portfolio/images/lowes-1.svg",
-        "alt": "Core workflow screen"
+        "src": "/portfolio/images/lowes-access-onboarding.jpg",
+        "alt": "Access and Onboarding"
       },
       {
-        "src": "/portfolio/images/lowes-2.svg",
-        "alt": "Inventory or ordering interface"
+        "src": "/portfolio/images/lowes-dashboard-account.jpg",
+        "alt": "Pro Tools and Lists"
       },
       {
-        "src": "/portfolio/images/lowes-3.svg",
-        "alt": "High-density data view"
+        "src": "/portfolio/images/lowes-search.jpg",
+        "alt": "Discovery and Search"
       }
     ]
   },
@@ -149,6 +149,7 @@
     "client": "Synquery",
     "role": "UX/UI Design, Website Design and Development",
     "timeframe": "2024",
+    "url": "https://synquery.ai/",
     "context": "Synquery is an expert network platform designed to connect organizations with specialized expertise. The work included defining the product experience as well as designing and developing the public-facing website.",
     "responsibilities": [
       "Led product UX/UI design for the core platform",
@@ -166,16 +167,12 @@
     "outcome": "Delivered a cohesive product and web experience that established clear foundations while allowing for rapid iteration as the platform evolved.",
     "images": [
       {
-        "src": "/portfolio/images/synquery-1.svg",
-        "alt": "Core product interface"
+        "src": "/portfolio/images/synquery-app.jpg",
+        "alt": "Core Product Experience"
       },
       {
-        "src": "/portfolio/images/synquery-2.svg",
-        "alt": "Key workflow screen"
-      },
-      {
-        "src": "/portfolio/images/synquery-3.svg",
-        "alt": "Website homepage"
+        "src": "/portfolio/images/synquery-website.jpg",
+        "alt": "Website and Positioning"
       }
     ]
   }
