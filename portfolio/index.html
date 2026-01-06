@@ -231,7 +231,7 @@
         <div class="container">
             <div class="header-bar">
                 <div class="confidential-label">Viewing the portfolio for Michael Rossi</div>
-                <a href="/p/Rossi-Resume-2026.pdf" class="resume-link" download>
+                <a href="/portfolio/Rossi-Resume-2026.pdf" class="resume-link" download>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                         <polyline points="7 10 12 15 17 10"/>
@@ -254,7 +254,7 @@
 
             async function fetchProjects() {
                 try {
-                    const response = await fetch('/p/projects.json');
+                    const response = await fetch('/portfolio/projects.json');
                     if (!response.ok) throw new Error('Failed to load');
                     return await response.json();
                 } catch (error) {
@@ -271,7 +271,7 @@
                 
                 const html = projectArray.map(project => `
                     <li class="project-item">
-                        <a href="/p/${project.slug}/" class="project-link">
+                        <a href="/portfolio/${project.slug}/" class="project-link">
                             <div class="project-header">
                                 <h2 class="project-title">${escapeHtml(project.title)}</h2>
                                 <span class="project-arrow">→</span>

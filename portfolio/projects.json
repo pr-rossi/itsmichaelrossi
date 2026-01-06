@@ -6,6 +6,7 @@
     "role": "UX/UI Design and Front-End Development",
     "tech": "React, Astro",
     "timeframe": "2023 – 2024",
+    "url": "https://nutrient.io/",
     "context": "Nutrient is a document processing and SDK platform used by developers and enterprise teams. The website needed to clearly communicate complex technical capabilities, support multiple product offerings, and scale as the platform evolved. The goal was to create a product-led website that balanced clarity, performance, and technical depth.",
     "responsibilities": [
       "Led UX/UI design for the entire website experience",
@@ -24,16 +25,16 @@
     "outcome": "Delivered a fast, product-led website that clearly communicates Nutrient's offerings and provides a scalable foundation for future growth.",
     "images": [
       {
-        "src": "/p/images/nutrient-1.svg",
-        "alt": "Homepage"
+        "src": "/portfolio/images/NutrientHomePage.jpg",
+        "alt": "Product-led home experience with clear positioning"
       },
       {
-        "src": "/p/images/nutrient-2.svg",
-        "alt": "Product or solution page"
+        "src": "/portfolio/images/product-navigation.jpg",
+        "alt": "Product-level navigation designed to scale across offerings"
       },
       {
-        "src": "/p/images/nutrient-3.svg",
-        "alt": "Technical or documentation-adjacent page"
+        "src": "/portfolio/images/SDKProductShowcase.jpg",
+        "alt": "Clear design for technical audiences"
       }
     ]
   },
@@ -59,16 +60,16 @@
     "outcome": "Delivered a scalable design system that improved consistency, reduced duplication, and enabled more efficient product development across teams.",
     "images": [
       {
-        "src": "/p/images/tiaa-1.svg",
-        "alt": "Component library overview"
+        "src": "/portfolio/images/tiaa-design-system-1.jpg",
+        "alt": "Component states and interaction patterns"
       },
       {
-        "src": "/p/images/tiaa-2.svg",
-        "alt": "System documentation"
+        "src": "/portfolio/images/tiaa-design-system-2.jpg",
+        "alt": "Component variants across themes and contexts"
       },
       {
-        "src": "/p/images/tiaa-3.svg",
-        "alt": "Example implementations across products"
+        "src": "/portfolio/images/tiaa-design-system-3.jpg",
+        "alt": "Design system documentation and governance structure"
       }
     ]
   },
@@ -94,15 +95,15 @@
     "outcome": "Delivered a clearer, more accessible transportation scheduling experience that improved usability and user confidence.",
     "images": [
       {
-        "src": "/p/images/uhg-1.svg",
+        "src": "/portfolio/images/uhg-1.svg",
         "alt": "Scheduling flow"
       },
       {
-        "src": "/p/images/uhg-2.svg",
+        "src": "/portfolio/images/uhg-2.svg",
         "alt": "Confirmation or status screen"
       },
       {
-        "src": "/p/images/uhg-3.svg",
+        "src": "/portfolio/images/uhg-3.svg",
         "alt": "Mobile-specific experience"
       }
     ]
@@ -129,15 +130,15 @@
     "outcome": "Improved workflow efficiency and predictability for professional users, enabling faster task completion across common operational flows.",
     "images": [
       {
-        "src": "/p/images/lowes-1.svg",
+        "src": "/portfolio/images/lowes-1.svg",
         "alt": "Core workflow screen"
       },
       {
-        "src": "/p/images/lowes-2.svg",
+        "src": "/portfolio/images/lowes-2.svg",
         "alt": "Inventory or ordering interface"
       },
       {
-        "src": "/p/images/lowes-3.svg",
+        "src": "/portfolio/images/lowes-3.svg",
         "alt": "High-density data view"
       }
     ]
@@ -165,15 +166,15 @@
     "outcome": "Delivered a cohesive product and web experience that established clear foundations while allowing for rapid iteration as the platform evolved.",
     "images": [
       {
-        "src": "/p/images/synquery-1.svg",
+        "src": "/portfolio/images/synquery-1.svg",
         "alt": "Core product interface"
       },
       {
-        "src": "/p/images/synquery-2.svg",
+        "src": "/portfolio/images/synquery-2.svg",
         "alt": "Key workflow screen"
       },
       {
-        "src": "/p/images/synquery-3.svg",
+        "src": "/portfolio/images/synquery-3.svg",
         "alt": "Website homepage"
       }
     ]

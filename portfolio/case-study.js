@@ -11,7 +11,7 @@
         const path = window.location.pathname;
         const segments = path.split('/').filter(Boolean);
         // Expected format: /p/{slug}/ or /p/{slug}
-        if (segments.length >= 2 && segments[0] === 'p') {
+        if (segments.length >= 2 && segments[0] === 'portfolio') {
             return segments[1];
         }
         return null;
@@ -20,7 +20,7 @@
     // Fetch the projects data
     async function fetchProjects() {
         try {
-            const response = await fetch('/p/projects.json');
+            const response = await fetch('/portfolio/projects.json');
             if (!response.ok) {
                 throw new Error('Failed to load projects');
             }
@@ -37,7 +37,7 @@
         if (!container) return;
 
         const html = `
-            <a href="/p/" class="back-link">
+            <a href="/portfolio/" class="back-link">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M19 12H5M12 19l-7-7 7-7"/>
                 </svg>
@@ -65,6 +65,12 @@
                         <span class="meta-label">Timeline</span>
                         <span class="meta-value">${escapeHtml(project.timeframe)}</span>
                     </div>
+                    ${project.url ? `
+                    <div class="meta-item">
+                        <span class="meta-label">Website</span>
+                        <span class="meta-value"><a href="${escapeHtml(project.url)}" target="_blank" rel="noopener noreferrer" class="meta-link">${escapeHtml(project.url.replace(/^https?:\/\//, ''))}</a></span>
+                    </div>
+                    ` : ''}
                 </div>
             </header>
 
@@ -110,7 +116,7 @@
                         ${project.images.map(img => `
                             <figure class="image-item">
                                 <img src="${escapeHtml(img.src)}" alt="${escapeHtml(img.alt)}" loading="lazy">
-                                ${img.caption ? `<figcaption class="image-caption">${escapeHtml(img.caption)}</figcaption>` : ''}
+                                ${img.alt ? `<figcaption class="image-caption">${escapeHtml(img.alt)}</figcaption>` : ''}
                             </figure>
                         `).join('')}
                     </div>
