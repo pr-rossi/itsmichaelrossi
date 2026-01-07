@@ -7,7 +7,7 @@
     "tech": "React, Astro",
     "timeframe": "2023 – 2024",
     "url": "https://nutrient.io/",
-    "context": "Nutrient is a document processing and SDK platform used by developers and enterprise teams. The website needed to clearly communicate complex technical capabilities, support multiple product offerings, and scale as the platform evolved. The goal was to create a product-led website that balanced clarity, performance, and technical depth.",
+    "context": "Nutrient is a document processing and SDK platform used by developers and enterprise teams. The project involved consolidating five separate product websites and brands into a single unified platform. The website needed to clearly communicate complex technical capabilities, support multiple product offerings, and scale as the platform evolved. The goal was to create a product-led website that balanced clarity, performance, and technical depth.",
     "responsibilities": [
       "Led UX/UI design for the entire website experience",
       "Designed and implemented the site using React and Astro",
