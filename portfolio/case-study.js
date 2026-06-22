@@ -31,10 +31,59 @@
         }
     }
 
+    // Build a single figure block
+    function figure(img) {
+        if (!img) return '';
+        return `
+            <figure class="cs-figure">
+                <img src="${escapeHtml(img.src)}" alt="${escapeHtml(img.alt)}" loading="lazy">
+                ${img.alt ? `<figcaption class="image-caption">${escapeHtml(img.alt)}</figcaption>` : ''}
+            </figure>
+        `;
+    }
+
+    // Build a numbered, two-column content section
+    function section(num, title, body, extraClass) {
+        return `
+            <section class="case-study-section ${extraClass || ''}">
+                <div class="section-num">${num}</div>
+                <div class="section-main">
+                    <h2 class="section-title">${escapeHtml(title)}</h2>
+                    ${body}
+                </div>
+            </section>
+        `;
+    }
+
+    function paragraph(text) {
+        return `<div class="section-content"><p>${escapeHtml(text)}</p></div>`;
+    }
+
+    function list(items) {
+        return `<ul class="section-list">${items.map(i => `<li>${escapeHtml(i)}</li>`).join('')}</ul>`;
+    }
+
     // Render the case study content
     function renderCaseStudy(project) {
         const container = document.getElementById('case-study-content');
         if (!container) return;
+
+        // First image becomes the hero; remaining images interleave through the story.
+        const images = Array.isArray(project.images) ? project.images : [];
+        const hero = images[0];
+        const inline = images.slice(1);
+
+        const metaItems = [
+            { label: 'Role', value: escapeHtml(project.role) },
+            { label: 'Timeline', value: escapeHtml(project.timeframe) },
+        ];
+        if (project.tech) metaItems.push({ label: 'Tech', value: escapeHtml(project.tech) });
+        if (project.url) {
+            metaItems.push({
+                label: 'Website',
+                value: `<a href="${escapeHtml(project.url)}" target="_blank" rel="noopener noreferrer" class="meta-link">${escapeHtml(project.url.replace(/^https?:\/\//, ''))}</a>`,
+            });
+        }
 
         const html = `
             <a href="/portfolio/" class="back-link">
@@ -43,92 +92,48 @@
                 </svg>
                 All Projects
             </a>
-            
+
             <header class="case-study-header">
+                <div class="cs-eyebrow">${escapeHtml(project.client)}</div>
                 <h1 class="project-title">${escapeHtml(project.title)}</h1>
                 <div class="project-meta">
-                    <div class="meta-item">
-                        <span class="meta-label">Client</span>
-                        <span class="meta-value">${escapeHtml(project.client)}</span>
-                    </div>
-                    <div class="meta-item">
-                        <span class="meta-label">Role</span>
-                        <span class="meta-value">${escapeHtml(project.role)}</span>
-                    </div>
-                    ${project.tech ? `
-                    <div class="meta-item">
-                        <span class="meta-label">Tech</span>
-                        <span class="meta-value">${escapeHtml(project.tech)}</span>
-                    </div>
-                    ` : ''}
-                    <div class="meta-item">
-                        <span class="meta-label">Timeline</span>
-                        <span class="meta-value">${escapeHtml(project.timeframe)}</span>
-                    </div>
-                    ${project.url ? `
-                    <div class="meta-item">
-                        <span class="meta-label">Website</span>
-                        <span class="meta-value"><a href="${escapeHtml(project.url)}" target="_blank" rel="noopener noreferrer" class="meta-link">${escapeHtml(project.url.replace(/^https?:\/\//, ''))}</a></span>
-                    </div>
-                    ` : ''}
+                    ${metaItems.map(m => `
+                        <div class="meta-item">
+                            <span class="meta-label">${m.label}</span>
+                            <span class="meta-value">${m.value}</span>
+                        </div>
+                    `).join('')}
                 </div>
             </header>
 
-            <section class="case-study-section">
-                <h2 class="section-title">Context</h2>
-                <div class="section-content">
-                    <p>${escapeHtml(project.context)}</p>
-                </div>
-            </section>
+            ${hero ? `<div class="cs-hero"><img src="${escapeHtml(hero.src)}" alt="${escapeHtml(hero.alt)}"></div>` : ''}
 
-            <section class="case-study-section">
-                <h2 class="section-title">My Role</h2>
-                <ul class="section-list">
-                    ${project.responsibilities.map(r => `<li>${escapeHtml(r)}</li>`).join('')}
-                </ul>
-            </section>
+            <div class="case-study-body">
+                ${section('01', 'Context', paragraph(project.context))}
+                ${section('02', 'My Role', list(project.responsibilities))}
+                ${inline[0] ? figure(inline[0]) : ''}
+                ${section('03', 'The Problem', paragraph(project.problem))}
+                ${section('04', 'Key Decisions', list(project.decisions))}
+                ${inline.slice(1).map(figure).join('')}
+                ${section('05', 'Outcome', paragraph(project.outcome), 'section-outcome')}
+            </div>
 
-            <section class="case-study-section">
-                <h2 class="section-title">The Problem</h2>
-                <div class="section-content">
-                    <p>${escapeHtml(project.problem)}</p>
-                </div>
-            </section>
-
-            <section class="case-study-section">
-                <h2 class="section-title">Key Decisions</h2>
-                <ul class="section-list">
-                    ${project.decisions.map(d => `<li>${escapeHtml(d)}</li>`).join('')}
-                </ul>
-            </section>
-
-            <section class="case-study-section">
-                <h2 class="section-title">Outcome</h2>
-                <div class="section-content">
-                    <p>${escapeHtml(project.outcome)}</p>
-                </div>
-            </section>
-
-            ${project.images && project.images.length > 0 ? `
-                <section class="case-study-images">
-                    <h2 class="images-title">Visuals</h2>
-                    <div class="image-grid">
-                        ${project.images.map(img => `
-                            <figure class="image-item">
-                                <img src="${escapeHtml(img.src)}" alt="${escapeHtml(img.alt)}" loading="lazy">
-                                ${img.alt ? `<figcaption class="image-caption">${escapeHtml(img.alt)}</figcaption>` : ''}
-                            </figure>
-                        `).join('')}
-                    </div>
-                </section>
-            ` : ''}
+            <footer class="cs-footer">
+                <span class="cs-footer-label">Selected Work · Michael Rossi</span>
+                <a href="/portfolio/" class="cs-footer-link">
+                    All projects
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </footer>
         `;
 
         container.innerHTML = html;
-        
+
         // Update page title
         document.title = `${project.title} · Michael Rossi`;
-        
+
         // Initialize lightbox
         initLightbox();
     }
@@ -169,7 +174,7 @@
         }
         
         // Add click handlers to images
-        document.querySelectorAll('.image-item img').forEach(img => {
+        document.querySelectorAll('.cs-hero img, .cs-figure img').forEach(img => {
             img.addEventListener('click', () => {
                 openLightbox(img.src, img.alt);
             });

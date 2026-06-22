@@ -45,10 +45,11 @@
 
         :root {
             --color-bg: #ffffff;
+            --color-surface: #f6f5f3;
             --color-text: #000000;
-            --color-text-secondary: #555555;
+            --color-text-secondary: #444444;
             --color-text-muted: #888888;
-            --color-border: rgba(0, 0, 0, 0.1);
+            --color-border: rgba(0, 0, 0, 0.12);
             --font-serif: 'Editor\'s Note', Georgia, serif;
             --font-sans: 'Graphik', system-ui, -apple-system, sans-serif;
         }
@@ -119,46 +120,73 @@
 
         .page-title {
             font-family: var(--font-serif);
-            font-size: 3.5rem;
+            font-size: clamp(2.75rem, 6vw, 4.5rem);
             font-weight: 400;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
             letter-spacing: -0.02em;
+            line-height: 1.05;
         }
 
         .page-description {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--color-text-secondary);
-            margin-bottom: 4rem;
-            max-width: 500px;
+            margin-bottom: 5rem;
+            max-width: 540px;
         }
 
-        .project-list {
+        /* Project grid */
+        .project-grid {
             list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem 2.5rem;
         }
 
-        .project-item {
-            border-top: 1px solid var(--color-border);
+        /* First project spans full width as the feature */
+        .project-item.is-featured {
+            grid-column: 1 / -1;
         }
 
         .project-link {
             display: block;
-            padding: 2rem 0;
             text-decoration: none;
             color: inherit;
-            transition: all 0.2s ease;
         }
 
-        .project-link:hover {
-            padding-left: 1rem;
+        .project-thumb {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            background: var(--color-surface, #f6f5f3);
+            border: 1px solid var(--color-border);
+            margin-bottom: 1.25rem;
         }
 
-        .project-link:hover .project-title {
-            color: var(--color-text-secondary);
+        .is-featured .project-thumb {
+            aspect-ratio: 16 / 8;
         }
 
-        .project-link:hover .project-arrow {
-            opacity: 1;
-            transform: translateX(0);
+        .project-thumb img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+        }
+
+        .project-link:hover .project-thumb img {
+            transform: scale(1.03);
+        }
+
+        .project-index {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--color-text-muted);
+            margin-bottom: 0.5rem;
         }
 
         .project-header {
@@ -166,58 +194,67 @@
             justify-content: space-between;
             align-items: baseline;
             gap: 1rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
         }
 
         .project-title {
             font-family: var(--font-serif);
-            font-size: 1.75rem;
+            font-size: 1.85rem;
             font-weight: 400;
+            line-height: 1.15;
             transition: color 0.2s ease;
+        }
+
+        .is-featured .project-title {
+            font-size: 2.5rem;
         }
 
         .project-arrow {
             font-size: 1.25rem;
             opacity: 0;
-            transform: translateX(-10px);
-            transition: all 0.2s ease;
+            transform: translateX(-8px);
+            transition: all 0.25s ease;
             color: var(--color-text-muted);
+            flex-shrink: 0;
+        }
+
+        .project-link:hover .project-arrow {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .project-meta {
             font-size: 0.9rem;
             color: var(--color-text-muted);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 1.25rem;
         }
 
-        .project-meta span {
-            margin-right: 1.5rem;
-        }
-
-        .project-meta span:last-child {
-            margin-right: 0;
-        }
-
-        @media (max-width: 600px) {
+        @media (max-width: 680px) {
             .container {
                 padding: 3rem 1.5rem 5rem;
             }
 
-            .page-title {
-                font-size: 2.5rem;
+            .project-grid {
+                grid-template-columns: 1fr;
+                gap: 3.5rem;
             }
 
-            .project-title {
-                font-size: 1.35rem;
+            .project-item.is-featured {
+                grid-column: auto;
+            }
+
+            .is-featured .project-thumb {
+                aspect-ratio: 16 / 10;
+            }
+
+            .is-featured .project-title {
+                font-size: 1.85rem;
             }
 
             .project-meta {
                 font-size: 0.8rem;
-            }
-
-            .project-meta span {
-                display: block;
-                margin-right: 0;
-                margin-bottom: 0.25rem;
             }
 
             .project-arrow {
@@ -241,8 +278,8 @@
                 </a>
             </div>
             <h1 class="page-title">Selected Work</h1>
-            <p class="page-description">A few recent projects. Less presentation, more production. Shared privately.</p>
-            <ul class="project-list" id="project-list">
+            <p class="page-description">A few recent projects. Kept simple on purpose.</p>
+            <ul class="project-grid" id="project-list">
                 <!-- Projects loaded dynamically -->
             </ul>
         </div>
@@ -268,22 +305,31 @@
                 if (!list || !projects) return;
 
                 const projectArray = Object.values(projects);
-                
-                const html = projectArray.map(project => `
-                    <li class="project-item">
+
+                const html = projectArray.map((project, i) => {
+                    const cover = project.images && project.images[0];
+                    const featured = i === 0 ? 'is-featured' : '';
+                    const num = String(i + 1).padStart(2, '0');
+                    return `
+                    <li class="project-item ${featured}">
                         <a href="/portfolio/${project.slug}/" class="project-link">
+                            ${cover ? `
+                            <div class="project-thumb">
+                                <img src="${escapeHtml(cover.src)}" alt="${escapeHtml(cover.alt || project.title)}" loading="lazy">
+                            </div>` : ''}
+                            <div class="project-index">${num} · ${escapeHtml(project.client)}</div>
                             <div class="project-header">
                                 <h2 class="project-title">${escapeHtml(project.title)}</h2>
                                 <span class="project-arrow">→</span>
                             </div>
                             <div class="project-meta">
-                                <span>${escapeHtml(project.client)}</span>
                                 <span>${escapeHtml(project.role)}</span>
                                 <span>${escapeHtml(project.timeframe)}</span>
                             </div>
                         </a>
                     </li>
-                `).join('');
+                `;
+                }).join('');
 
                 list.innerHTML = html;
             }

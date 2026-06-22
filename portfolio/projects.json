@@ -1,43 +1,4 @@
 {
-  "nutrient-website": {
-    "slug": "nutrient-website",
-    "title": "Nutrient Website",
-    "client": "Nutrient",
-    "role": "UX/UI Design and Front-End Development",
-    "tech": "React, Astro",
-    "timeframe": "2023 – 2024",
-    "url": "https://nutrient.io/",
-    "context": "Nutrient is a document processing and SDK platform used by developers and enterprise teams. The project involved consolidating five separate product websites and brands into a single unified platform. The website needed to clearly communicate complex technical capabilities, support multiple product offerings, and scale as the platform evolved. The goal was to create a product-led website that balanced clarity, performance, and technical depth.",
-    "responsibilities": [
-      "Led UX/UI design for the entire website experience",
-      "Designed and implemented the site using React and Astro",
-      "Partnered with product and marketing to align messaging with product capabilities",
-      "Ensured performance, accessibility, and maintainability in the build"
-    ],
-    "problem": "The website needed to explain a technically sophisticated product without overwhelming users. Existing content struggled to clearly differentiate offerings and guide users toward relevant information. The challenge was designing a structure that worked for both technical and non-technical audiences while remaining flexible as the product expanded.",
-    "decisions": [
-      "Designed the site with a product-first information architecture rather than a marketing-first approach",
-      "Made clarity the primary constraint, surfacing complexity only when it added value",
-      "Built reusable layout and content patterns to support ongoing iteration",
-      "Chose Astro to optimize performance while integrating React where interactivity was required",
-      "Treated accessibility and page performance as non-negotiable design constraints"
-    ],
-    "outcome": "Delivered a fast, product-led website that clearly communicates Nutrient's offerings and provides a scalable foundation for future growth.",
-    "images": [
-      {
-        "src": "/portfolio/images/NutrientHomePage.jpg",
-        "alt": "Product-led home experience with clear positioning"
-      },
-      {
-        "src": "/portfolio/images/product-navigation.jpg",
-        "alt": "Product-level navigation designed to scale across offerings"
-      },
-      {
-        "src": "/portfolio/images/SDKProductShowcase.jpg",
-        "alt": "Clear design for technical audiences"
-      }
-    ]
-  },
   "tiaa-design-system": {
     "slug": "tiaa-design-system",
     "title": "TIAA Design System",
@@ -105,6 +66,45 @@
       {
         "src": "/portfolio/images/uhc-ride-history.jpg",
         "alt": "Ride Lifecycle States"
+      }
+    ]
+  },
+  "nutrient-website": {
+    "slug": "nutrient-website",
+    "title": "Nutrient Website",
+    "client": "Nutrient",
+    "role": "UX/UI Design and Front-End Development",
+    "tech": "React, Astro",
+    "timeframe": "2023 – 2024",
+    "url": "https://nutrient.io/",
+    "context": "Nutrient is a document processing and SDK platform used by developers and enterprise teams. The project involved consolidating five separate product websites and brands into a single unified platform. The website needed to clearly communicate complex technical capabilities, support multiple product offerings, and scale as the platform evolved. The goal was to create a product-led website that balanced clarity, performance, and technical depth.",
+    "responsibilities": [
+      "Led UX/UI design for the entire website experience",
+      "Designed and implemented the site using React and Astro",
+      "Partnered with product and marketing to align messaging with product capabilities",
+      "Ensured performance, accessibility, and maintainability in the build"
+    ],
+    "problem": "The website needed to explain a technically sophisticated product without overwhelming users. Existing content struggled to clearly differentiate offerings and guide users toward relevant information. The challenge was designing a structure that worked for both technical and non-technical audiences while remaining flexible as the product expanded.",
+    "decisions": [
+      "Designed the site with a product-first information architecture rather than a marketing-first approach",
+      "Made clarity the primary constraint, surfacing complexity only when it added value",
+      "Built reusable layout and content patterns to support ongoing iteration",
+      "Chose Astro to optimize performance while integrating React where interactivity was required",
+      "Treated accessibility and page performance as non-negotiable design constraints"
+    ],
+    "outcome": "Delivered a fast, product-led website that clearly communicates Nutrient's offerings and provides a scalable foundation for future growth.",
+    "images": [
+      {
+        "src": "/portfolio/images/NutrientHomePage.jpg",
+        "alt": "Product-led home experience with clear positioning"
+      },
+      {
+        "src": "/portfolio/images/product-navigation.jpg",
+        "alt": "Product-level navigation designed to scale across offerings"
+      },
+      {
+        "src": "/portfolio/images/SDKProductShowcase.jpg",
+        "alt": "Clear design for technical audiences"
       }
     ]
   },
