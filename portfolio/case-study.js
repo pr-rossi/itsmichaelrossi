@@ -1,268 +1,308 @@
 /**
- * Case Study Renderer
- * Loads project data from projects.json and renders the case study page
+ * case-study.js — Renders a single case study from projects.json.
+ *
+ * The URL slug (…/portfolio/<slug>/) selects the project. All content is
+ * edited in projects.json — this file only lays it out. Sections render only
+ * when their data exists, so shorter projects stay clean.
  */
-
-(function() {
+(function () {
     'use strict';
 
-    // Get the project slug from the current URL path
+    function esc(text) {
+        if (text == null) return '';
+        var div = document.createElement('div');
+        div.textContent = String(text);
+        return div.innerHTML;
+    }
+
     function getSlugFromPath() {
-        const path = window.location.pathname;
-        const segments = path.split('/').filter(Boolean);
-        // Expected format: /p/{slug}/ or /p/{slug}
+        var segments = window.location.pathname.split('/').filter(Boolean);
         if (segments.length >= 2 && segments[0] === 'portfolio') {
             return segments[1];
         }
         return null;
     }
 
-    // Fetch the projects data
     async function fetchProjects() {
         try {
-            const response = await fetch('/portfolio/projects.json');
-            if (!response.ok) {
-                throw new Error('Failed to load projects');
-            }
-            return await response.json();
-        } catch (error) {
-            console.error('Error loading projects:', error);
+            var res = await fetch('/portfolio/projects.json');
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return await res.json();
+        } catch (err) {
+            console.error('Error loading projects:', err);
             return null;
         }
     }
 
-    // Build a single figure block
+    /* ---------- Content builders ---------- */
+
     function figure(img) {
         if (!img) return '';
-        return `
-            <figure class="cs-figure">
-                <img src="${escapeHtml(img.src)}" alt="${escapeHtml(img.alt)}" loading="lazy">
-                ${img.alt ? `<figcaption class="image-caption">${escapeHtml(img.alt)}</figcaption>` : ''}
-            </figure>
-        `;
+        var webp = img.src.replace(/\.jpe?g$/i, '.webp');
+        var caption = img.caption || img.alt || '';
+        var alt = img.alt || '';
+        var label = alt ? 'Enlarge image: ' + alt : 'Enlarge image';
+        return '' +
+            '<figure class="cs-figure">' +
+            '<button type="button" class="cs-zoom" aria-label="' + esc(label) + '" data-full="' + esc(img.src) + '" data-caption="' + esc(caption) + '">' +
+            '<picture>' +
+            '<source type="image/webp" srcset="' + esc(webp) + '">' +
+            '<img src="' + esc(img.src) + '" alt="' + esc(img.alt || '') + '" loading="lazy" decoding="async">' +
+            '</picture>' +
+            '</button>' +
+            (caption ? '<figcaption class="image-caption">' + esc(caption) + '</figcaption>' : '') +
+            '</figure>';
     }
 
-    // Build a numbered, two-column content section
+    function heroFigure(img) {
+        if (!img) return '';
+        var webp = img.src.replace(/\.jpe?g$/i, '.webp');
+        var alt = img.alt || '';
+        var caption = img.caption || img.alt || '';
+        var label = alt ? 'Enlarge image: ' + alt : 'Enlarge image';
+        return '' +
+            '<div class="cs-hero">' +
+            '<button type="button" class="cs-zoom" aria-label="' + esc(label) + '" data-full="' + esc(img.src) + '" data-caption="' + esc(caption) + '">' +
+            '<picture>' +
+            '<source type="image/webp" srcset="' + esc(webp) + '">' +
+            '<img src="' + esc(img.src) + '" alt="' + esc(img.alt || '') + '" loading="eager" decoding="async">' +
+            '</picture>' +
+            '</button>' +
+            '</div>';
+    }
+
     function section(num, title, body, extraClass) {
-        return `
-            <section class="case-study-section ${extraClass || ''}">
-                <div class="section-num">${num}</div>
-                <div class="section-main">
-                    <h2 class="section-title">${escapeHtml(title)}</h2>
-                    ${body}
-                </div>
-            </section>
-        `;
+        return '' +
+            '<section class="case-study-section ' + (extraClass || '') + '">' +
+            '<div class="section-num" aria-hidden="true">' + num + '</div>' +
+            '<div class="section-main">' +
+            '<h2 class="section-title">' + esc(title) + '</h2>' +
+            body +
+            '</div>' +
+            '</section>';
     }
 
-    function paragraph(text) {
-        return `<div class="section-content"><p>${escapeHtml(text)}</p></div>`;
+    function paragraphs(text) {
+        var parts = String(text || '').split(/\n\n+/);
+        return '<div class="section-content">' + parts.map(function (p) {
+            return '<p>' + esc(p) + '</p>';
+        }).join('') + '</div>';
     }
 
     function list(items) {
-        return `<ul class="section-list">${items.map(i => `<li>${escapeHtml(i)}</li>`).join('')}</ul>`;
+        if (!items || !items.length) return '';
+        return '<ul class="section-list">' + items.map(function (i) {
+            return '<li>' + esc(i) + '</li>';
+        }).join('') + '</ul>';
     }
 
-    // Render the case study content
-    function renderCaseStudy(project) {
-        const container = document.getElementById('case-study-content');
+    function metaItem(label, valueHtml) {
+        return '<div class="meta-item"><span class="meta-label">' + esc(label) + '</span><span class="meta-value">' + valueHtml + '</span></div>';
+    }
+
+    /* ---------- Prev / next ---------- */
+
+    function pagination(projects, slug) {
+        var ordered = Object.keys(projects)
+            .map(function (k) { return projects[k]; })
+            .sort(function (a, b) { return (a.order || 99) - (b.order || 99); });
+        var idx = ordered.findIndex(function (p) { return p.slug === slug; });
+        var prev = idx > 0 ? ordered[idx - 1] : null;
+        var next = idx >= 0 && idx < ordered.length - 1 ? ordered[idx + 1] : null;
+
+        var prevHtml = prev
+            ? '<a class="cs-page cs-page--prev" href="/portfolio/' + esc(prev.slug) + '/" data-event="casestudy_open" data-event-label="' + esc(prev.slug) + '"><span class="cs-page__label">Previous</span><span class="cs-page__title">' + esc(prev.title) + '</span></a>'
+            : '<span class="cs-page cs-page--empty"></span>';
+        var nextHtml = next
+            ? '<a class="cs-page cs-page--next" href="/portfolio/' + esc(next.slug) + '/" data-event="casestudy_open" data-event-label="' + esc(next.slug) + '"><span class="cs-page__label">Next</span><span class="cs-page__title">' + esc(next.title) + '</span></a>'
+            : '<span class="cs-page cs-page--empty"></span>';
+
+        return '' +
+            '<nav class="cs-pagination" aria-label="Case study navigation">' +
+            prevHtml +
+            '<a class="cs-page cs-page--all" href="/portfolio/#work">All work</a>' +
+            nextHtml +
+            '</nav>';
+    }
+
+    /* ---------- Main render ---------- */
+
+    function renderCaseStudy(project, projects) {
+        var container = document.getElementById('case-study-content');
         if (!container) return;
 
-        // First image becomes the hero; remaining images interleave through the story.
-        const images = Array.isArray(project.images) ? project.images : [];
-        const hero = images[0];
-        const inline = images.slice(1);
+        var images = Array.isArray(project.images) ? project.images : [];
+        var hero = images[0];
+        var inline = images.slice(1);
+        var f = 0; // inline figure cursor
+        var nextFig = function () { return inline[f] ? figure(inline[f++]) : ''; };
 
-        const metaItems = [
-            { label: 'Role', value: escapeHtml(project.role) },
-            { label: 'Timeline', value: escapeHtml(project.timeframe) },
-        ];
-        if (project.tech) metaItems.push({ label: 'Tech', value: escapeHtml(project.tech) });
+        var meta = '';
+        meta += metaItem('Role', esc(project.role));
+        if (project.industry) meta += metaItem('Industry', esc(project.industry));
+        meta += metaItem('Timeline', esc(project.timeframe));
+        if (project.tech) meta += metaItem('Tech', esc(project.tech));
         if (project.url) {
-            metaItems.push({
-                label: 'Website',
-                value: `<a href="${escapeHtml(project.url)}" target="_blank" rel="noopener noreferrer" class="meta-link">${escapeHtml(project.url.replace(/^https?:\/\//, ''))}</a>`,
-            });
+            meta += metaItem('Website',
+                '<a href="' + esc(project.url) + '" target="_blank" rel="noopener noreferrer" class="meta-link" data-event="external_project_link" data-event-label="' + esc(project.slug) + '">' +
+                esc(project.url.replace(/^https?:\/\//, '').replace(/\/$/, '')) +
+                '</a>');
         }
 
-        const html = `
-            <a href="/portfolio/" class="back-link">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 12H5M12 19l-7-7 7-7"/>
-                </svg>
-                All Projects
-            </a>
+        // Contiguous numbering: only counts sections that actually render.
+        var n = 0;
+        var num = function () { return String(++n).padStart(2, '0'); };
 
-            <header class="case-study-header">
-                <div class="cs-eyebrow">${escapeHtml(project.client)}</div>
-                <h1 class="project-title">${escapeHtml(project.title)}</h1>
-                <div class="project-meta">
-                    ${metaItems.map(m => `
-                        <div class="meta-item">
-                            <span class="meta-label">${m.label}</span>
-                            <span class="meta-value">${m.value}</span>
-                        </div>
-                    `).join('')}
-                </div>
-            </header>
+        var body = '';
+        if (project.context) body += section(num(), 'Context', paragraphs(project.context));
+        if (project.problem) body += section(num(), 'The problem', paragraphs(project.problem));
+        body += nextFig();
+        if (project.responsibilities) body += section(num(), 'My role', list(project.responsibilities));
+        if (project.approach) body += section(num(), 'Approach', list(project.approach));
+        body += nextFig();
+        if (project.decisions) body += section(num(), 'Key decisions', list(project.decisions));
+        body += nextFig();
+        if (project.designSystem) body += section(num(), 'Systems & patterns', list(project.designSystem));
+        // any remaining figures before the outcome
+        while (inline[f]) { body += nextFig(); }
+        if (project.outcome) body += section(num(), 'Outcome', paragraphs(project.outcome), 'section-outcome');
+        if (project.reflection) body += section(num(), 'Reflection', paragraphs(project.reflection), 'section-reflection');
 
-            ${hero ? `<div class="cs-hero"><img src="${escapeHtml(hero.src)}" alt="${escapeHtml(hero.alt)}"></div>` : ''}
+        container.innerHTML = '' +
+            '<a href="/portfolio/#work" class="back-link">' +
+            '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>' +
+            'All work' +
+            '</a>' +
+            '<header class="case-study-header">' +
+            '<p class="cs-eyebrow">' + esc(project.client) + '</p>' +
+            '<h1 class="project-title">' + esc(project.title) + '</h1>' +
+            (project.summary ? '<p class="cs-summary">' + esc(project.summary) + '</p>' : '') +
+            '<div class="project-meta">' + meta + '</div>' +
+            '</header>' +
+            heroFigure(hero) +
+            '<div class="case-study-body">' + body + '</div>' +
+            pagination(projects, project.slug);
 
-            <div class="case-study-body">
-                ${section('01', 'Context', paragraph(project.context))}
-                ${section('02', 'My Role', list(project.responsibilities))}
-                ${inline[0] ? figure(inline[0]) : ''}
-                ${section('03', 'The Problem', paragraph(project.problem))}
-                ${section('04', 'Key Decisions', list(project.decisions))}
-                ${inline.slice(1).map(figure).join('')}
-                ${section('05', 'Outcome', paragraph(project.outcome), 'section-outcome')}
-            </div>
-
-            <footer class="cs-footer">
-                <span class="cs-footer-label">Selected Work · Michael Rossi</span>
-                <a href="/portfolio/" class="cs-footer-link">
-                    All projects
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </a>
-            </footer>
-        `;
-
-        container.innerHTML = html;
-
-        // Update page title
-        document.title = `${project.title} · Michael Rossi`;
-
-        // Initialize lightbox
+        document.title = project.title + ' — Michael Rossi';
         initLightbox();
     }
 
-    // Lightbox functionality
-    function initLightbox() {
-        // Create lightbox element if it doesn't exist
-        if (!document.querySelector('.lightbox')) {
-            const lightbox = document.createElement('div');
-            lightbox.className = 'lightbox';
-            lightbox.innerHTML = `
-                <button class="lightbox-close" aria-label="Close">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
-                <div class="lightbox-content">
-                    <img src="" alt="">
-                    <div class="lightbox-caption"></div>
-                </div>
-            `;
-            document.body.appendChild(lightbox);
-            
-            // Close on backdrop click
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox || e.target.closest('.lightbox-close')) {
-                    closeLightbox();
-                }
-            });
-            
-            // Close on Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    closeLightbox();
-                }
-            });
-        }
-        
-        // Add click handlers to images
-        document.querySelectorAll('.cs-hero img, .cs-figure img').forEach(img => {
-            img.addEventListener('click', () => {
-                openLightbox(img.src, img.alt);
-            });
+    /* ---------- Accessible lightbox ---------- */
+
+    var lastFocused = null;
+    var inertEls = [];
+
+    function ensureLightbox() {
+        var lb = document.querySelector('.lightbox');
+        if (lb) return lb;
+        lb = document.createElement('div');
+        lb.className = 'lightbox';
+        lb.setAttribute('role', 'dialog');
+        lb.setAttribute('aria-modal', 'true');
+        lb.setAttribute('aria-label', 'Enlarged image');
+        lb.hidden = true;
+        lb.innerHTML =
+            '<button class="lightbox-close" type="button" aria-label="Close image">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>' +
+            '</button>' +
+            '<div class="lightbox-content"><img src="" alt=""><p class="lightbox-caption"></p></div>';
+        document.body.appendChild(lb);
+
+        lb.addEventListener('click', function (e) {
+            if (e.target === lb || e.target.closest('.lightbox-close')) closeLightbox();
         });
+        document.addEventListener('keydown', function (e) {
+            if (lb.hidden) return;
+            if (e.key === 'Escape') { closeLightbox(); }
+            if (e.key === 'Tab') { e.preventDefault(); lb.querySelector('.lightbox-close').focus(); }
+        });
+        return lb;
     }
 
-    function openLightbox(src, alt) {
-        const lightbox = document.querySelector('.lightbox');
-        const img = lightbox.querySelector('.lightbox-content img');
-        const caption = lightbox.querySelector('.lightbox-caption');
-        
-        img.src = src;
-        img.alt = alt;
-        caption.textContent = alt || '';
-        caption.style.display = alt ? 'block' : 'none';
-        
-        lightbox.classList.add('active');
+    function openLightbox(trigger) {
+        var lb = ensureLightbox();
+        var img = lb.querySelector('.lightbox-content img');
+        var cap = lb.querySelector('.lightbox-caption');
+        var full = trigger.getAttribute('data-full');
+        var caption = trigger.getAttribute('data-caption') || '';
+        var innerImg = trigger.querySelector('img');
+
+        lastFocused = trigger;
+        img.src = full;
+        img.alt = innerImg ? innerImg.alt : '';
+        cap.textContent = caption;
+        cap.style.display = caption ? 'block' : 'none';
+
+        // Make everything except the lightbox inert so screen-reader users
+        // can't reach background controls (complements aria-modal).
+        inertEls = Array.prototype.filter.call(document.body.children, function (el) {
+            return el !== lb && !el.classList.contains('skip-link');
+        });
+        inertEls.forEach(function (el) { el.setAttribute('inert', ''); });
+
+        lb.hidden = false;
+        // force reflow so the transition runs
+        void lb.offsetWidth;
+        lb.classList.add('active');
         document.body.style.overflow = 'hidden';
+        lb.querySelector('.lightbox-close').focus();
     }
 
     function closeLightbox() {
-        const lightbox = document.querySelector('.lightbox');
-        if (lightbox) {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+        var lb = document.querySelector('.lightbox');
+        if (!lb || lb.hidden) return;
+        lb.classList.remove('active');
+        document.body.style.overflow = '';
+        var done = function () {
+            lb.hidden = true;
+            lb.removeEventListener('transitionend', done);
+            inertEls.forEach(function (el) { el.removeAttribute('inert'); });
+            inertEls = [];
+            if (lastFocused && document.contains(lastFocused)) lastFocused.focus();
+        };
+        // fall back if no transitionend (reduced motion)
+        lb.addEventListener('transitionend', done);
+        setTimeout(done, 350);
     }
 
-    // Render error state
-    function renderError(message) {
-        const container = document.getElementById('case-study-content');
-        if (!container) return;
-
-        container.innerHTML = `
-            <div class="error-message">
-                <h1>Project Not Found</h1>
-                <p>${escapeHtml(message)}</p>
-            </div>
-        `;
-    }
-
-    // Simple HTML escape function
-    function escapeHtml(text) {
-        if (!text) return '';
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-
-    // Initialize
-    async function init() {
-        const slug = getSlugFromPath();
-        
-        if (!slug) {
-            renderError('No project specified.');
-            document.querySelector('.case-study').classList.add('loaded');
-            return;
-        }
-
-        const projects = await fetchProjects();
-        
-        if (!projects) {
-            renderError('Unable to load project data.');
-            document.querySelector('.case-study').classList.add('loaded');
-            return;
-        }
-
-        const project = projects[slug];
-        
-        if (!project) {
-            renderError('This project does not exist or has been removed.');
-            document.querySelector('.case-study').classList.add('loaded');
-            return;
-        }
-
-        renderCaseStudy(project);
-        
-        // Fade in
-        requestAnimationFrame(() => {
-            document.querySelector('.case-study').classList.add('loaded');
+    function initLightbox() {
+        ensureLightbox();
+        document.querySelectorAll('.cs-zoom').forEach(function (btn) {
+            btn.addEventListener('click', function () { openLightbox(btn); });
         });
     }
 
-    // Run when DOM is ready
+    /* ---------- Error state ---------- */
+
+    function renderError(message) {
+        var container = document.getElementById('case-study-content');
+        if (!container) return;
+        container.innerHTML =
+            '<a href="/portfolio/#work" class="back-link">' +
+            '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>All work</a>' +
+            '<div class="error-message"><h1>Project not found</h1><p>' + esc(message) + '</p></div>';
+    }
+
+    /* ---------- Init ---------- */
+
+    async function init() {
+        var loaded = function () { document.querySelector('.case-study').classList.add('loaded'); };
+        var slug = getSlugFromPath();
+        if (!slug) { renderError('No project specified.'); loaded(); return; }
+
+        var projects = await fetchProjects();
+        if (!projects) { renderError('Unable to load project data.'); loaded(); return; }
+
+        var project = projects[slug];
+        if (!project) { renderError('This project does not exist or has been moved.'); loaded(); return; }
+
+        renderCaseStudy(project, projects);
+        requestAnimationFrame(loaded);
+    }
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
     }
 })();
-

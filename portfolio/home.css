@@ -1,0 +1,468 @@
+/* ==========================================================================
+   home.css — Homepage sections (loaded after site.css)
+   Sections: hero, credibility, selected work, how I work, experience,
+   about preview, closing CTA.
+   ========================================================================== */
+
+main {
+    display: block;
+}
+
+.section {
+    padding-top: var(--space-2xl);
+}
+
+.section__head {
+    max-width: var(--max-width);
+    margin: 0 auto var(--space-lg);
+    padding: 0 2rem;
+}
+
+.section__title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin-top: 0.75rem;
+    max-width: 20ch;
+}
+
+.section__intro {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    max-width: 60ch;
+    margin-top: 1rem;
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: clamp(3.5rem, 8vw, 6.5rem) 2rem clamp(2.5rem, 5vw, 4rem);
+}
+
+.hero__eyebrow {
+    margin-bottom: 1.5rem;
+}
+
+.hero__headline {
+    font-family: var(--font-serif);
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    max-width: 16ch;
+}
+
+.hero__supporting {
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    max-width: 54ch;
+    margin-top: 1.75rem;
+}
+
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.25rem;
+    margin-top: 2.5rem;
+}
+
+.hero__tertiary {
+    color: var(--color-text-muted);
+    border-bottom: 1px solid transparent;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.hero__tertiary:hover {
+    color: var(--color-text);
+    border-bottom-color: var(--color-border-strong);
+}
+
+/* ==========================================================================
+   Credibility bar
+   ========================================================================== */
+.credibility {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.credibility__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.75rem;
+}
+
+.credibility__item {
+    min-width: 0;
+}
+
+.credibility__num {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.5vw, 2.9rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.credibility__label {
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+    text-wrap: balance;
+}
+
+/* ==========================================================================
+   Selected work
+   ========================================================================== */
+.work__grid {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem 2.5rem;
+}
+
+.work__item.is-featured {
+    grid-column: 1 / -1;
+}
+
+.card-link {
+    display: block;
+    color: inherit;
+}
+
+.card-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    margin-bottom: 1.25rem;
+}
+
+.is-featured .card-thumb {
+    aspect-ratio: 16 / 8;
+}
+
+.card-thumb img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.card-link:hover .card-thumb img {
+    transform: scale(1.03);
+}
+
+.card-index {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.6rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: baseline;
+}
+
+.card-index .dot {
+    color: var(--color-border-strong);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.card-title {
+    font-family: var(--font-serif);
+    font-size: 1.7rem;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    transition: color 0.2s ease;
+}
+
+.is-featured .card-title {
+    font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+    max-width: 20ch;
+}
+
+.card-arrow {
+    font-size: 1.25rem;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+}
+
+.card-link:hover .card-arrow,
+.card-link:focus-visible .card-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.card-summary {
+    font-size: 1.02rem;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+    max-width: 52ch;
+    margin-bottom: 1rem;
+}
+
+.is-featured .card-summary {
+    font-size: 1.15rem;
+    max-width: 60ch;
+}
+
+.card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.1rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+}
+
+.card-meta .role {
+    color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   How I work
+   ========================================================================== */
+.approach__grid {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-lg);
+}
+
+.approach__item h3 {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+}
+
+.approach__num {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+}
+
+.approach__item p {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 34ch;
+}
+
+/* ==========================================================================
+   Experience / client credibility
+   ========================================================================== */
+.experience__grid {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem 2rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-lg);
+}
+
+.experience__group h3 {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+}
+
+.experience__group ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.experience__group li {
+    font-size: 1.05rem;
+    color: var(--color-text);
+}
+
+.experience__note {
+    max-width: var(--max-width);
+    margin: 1.75rem auto 0;
+    padding: 0 2rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    max-width: 72ch;
+}
+
+/* ==========================================================================
+   About preview
+   ========================================================================== */
+.about-preview {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: var(--space-lg);
+    align-items: start;
+}
+
+.about-preview__portrait {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    filter: grayscale(100%);
+}
+
+.about-preview__body p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.1rem;
+    max-width: 58ch;
+}
+
+.about-preview__body p strong {
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+.about-preview__cta {
+    margin-top: 1.5rem;
+}
+
+/* Closing CTA band styles live in site.css (shared with the About page). */
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 860px) {
+    .approach__grid,
+    .experience__grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .about-preview {
+        grid-template-columns: 200px 1fr;
+    }
+
+    /* 4-across credibility gets cramped here; drop to a 2x2 with breathing room */
+    .credibility__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem 2.5rem;
+    }
+}
+
+@media (max-width: 680px) {
+    .section {
+        padding-top: var(--space-xl);
+    }
+
+    .section__head,
+    .hero,
+    .credibility,
+    .work__grid,
+    .approach__grid,
+    .experience__grid,
+    .experience__note,
+    .about-preview,
+    .closing__inner,
+    .section__intro {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    .work__grid {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+    }
+
+    .work__item.is-featured {
+        grid-column: auto;
+    }
+
+    .is-featured .card-thumb {
+        aspect-ratio: 16 / 10;
+    }
+
+    .is-featured .card-title {
+        font-size: 1.7rem;
+    }
+
+    .card-arrow {
+        display: none;
+    }
+
+    .approach__grid,
+    .experience__grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .about-preview {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+
+    .about-preview__portrait {
+        max-width: 180px;
+    }
+
+    .hero__actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.85rem;
+    }
+
+    .hero__actions .btn {
+        width: 100%;
+    }
+
+    .hero__tertiary {
+        align-self: center;
+        margin-top: 0.25rem;
+    }
+}

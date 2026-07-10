@@ -1,0 +1,210 @@
+/* ==========================================================================
+   about.css — About page (loaded after site.css)
+   ========================================================================== */
+
+.about-hero {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: clamp(3rem, 7vw, 5.5rem) 2rem var(--space-xl);
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+}
+
+.about-hero__eyebrow {
+    margin-bottom: 1.25rem;
+}
+
+.about-hero__title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    max-width: 15ch;
+}
+
+.about-hero__lede {
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    max-width: 46ch;
+    margin-top: 1.5rem;
+}
+
+.about-hero__portrait {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    filter: grayscale(100%);
+}
+
+/* Prose sections */
+.about-section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-xl) 2rem 0;
+    display: grid;
+    grid-template-columns: 14rem 1fr;
+    gap: var(--space-md);
+}
+
+.about-section__label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding-top: 0.4rem;
+}
+
+.about-section__body {
+    max-width: 62ch;
+}
+
+.about-section__body h2 {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-md);
+}
+
+.about-section__body p {
+    font-size: 1.15rem;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.1rem;
+}
+
+.about-section__body p:last-child {
+    margin-bottom: 0;
+}
+
+.about-section__body p strong {
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+.about-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.about-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    font-size: 1.1rem;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+}
+
+.about-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7rem;
+    width: 8px;
+    height: 1px;
+    background: var(--color-text);
+}
+
+/* Expertise grid */
+.expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg) var(--space-md);
+    margin-top: 0.5rem;
+}
+
+.expertise-group h3 {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.9rem;
+}
+
+.expertise-group ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.expertise-group li {
+    font-size: 1.05rem;
+    color: var(--color-text);
+}
+
+.tech-line {
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border);
+}
+
+.tech-line h3 {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.9rem;
+}
+
+.certs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+.cert {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid var(--color-border-strong);
+    border-radius: 3px;
+    font-size: 0.9rem;
+    color: var(--color-text);
+}
+
+@media (max-width: 760px) {
+    .about-hero {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+        align-items: start;
+    }
+    .about-hero__portrait {
+        max-width: 260px;
+        aspect-ratio: 1 / 1;
+        order: -1;
+    }
+    .about-section {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    .about-section__label {
+        padding-top: 0;
+    }
+    .expertise-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .about-hero,
+    .about-section {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+}

@@ -1,87 +1,9 @@
-/* Case Study Styles - Matches main site typography */
+/* ==========================================================================
+   case-study.css — Case study layout (loaded AFTER site.css)
+   Fonts, color tokens, reset, nav, footer and buttons come from site.css.
+   ========================================================================== */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-@font-face {
-    font-family: 'Editor\'s Note';
-    src: url('/font/Editor\'sNote-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Editor\'s Note';
-    src: url('/font/Editor\'sNote-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Editor\'s Note';
-    src: url('/font/Editor\'sNote-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Graphik';
-    src: url('/font/GraphikRegular.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Graphik';
-    src: url('/font/GraphikMedium.otf') format('opentype');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Graphik';
-    src: url('/font/GraphikLight.otf') format('opentype');
-    font-weight: 300;
-    font-style: normal;
-}
-
-:root {
-    --color-bg: #ffffff;
-    --color-surface: #f6f5f3;
-    --color-text: #000000;
-    --color-text-secondary: #444444;
-    --color-text-muted: #8a8a85;
-    --color-border: rgba(0, 0, 0, 0.12);
-    --color-border-strong: rgba(0, 0, 0, 0.25);
-    --font-serif: 'Editor\'s Note', Georgia, serif;
-    --font-sans: 'Graphik', system-ui, -apple-system, sans-serif;
-    --max-width: 1100px;
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 2rem;
-    --spacing-lg: 3rem;
-    --spacing-xl: 5rem;
-    --spacing-2xl: 8rem;
-}
-
-html {
-    font-size: 16px;
-}
-
-body {
-    font-family: var(--font-sans);
-    font-weight: 400;
-    background: var(--color-bg);
-    color: var(--color-text);
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* Loading State */
+/* Loading state (content is rendered by case-study.js) */
 .case-study {
     opacity: 0;
     transition: opacity 0.5s ease;
@@ -91,25 +13,23 @@ body {
     opacity: 1;
 }
 
-/* Container */
 .case-study-container {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: var(--spacing-lg) var(--spacing-md) var(--spacing-2xl);
+    padding: var(--space-lg) var(--space-md) var(--space-2xl);
 }
 
-/* Back Link */
+/* Back link */
 .back-link {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-family: var(--font-sans);
-    font-size: 0.8rem;
+    min-height: 44px;
+    font-size: 0.85rem;
     font-weight: 500;
     letter-spacing: 0.02em;
     color: var(--color-text-muted);
-    text-decoration: none;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--space-lg);
     transition: gap 0.2s ease, color 0.2s ease;
 }
 
@@ -125,42 +45,49 @@ body {
 
 /* Header */
 .case-study-header {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--space-lg);
 }
 
 .cs-eyebrow {
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--color-text-muted);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--space-md);
 }
 
 .project-title {
     font-family: var(--font-serif);
-    font-size: clamp(2.75rem, 6vw, 4.5rem);
+    font-size: clamp(2.5rem, 5.5vw, 4.25rem);
     font-weight: 400;
     line-height: 1.08;
     letter-spacing: -0.02em;
-    max-width: 16ch;
+    max-width: 18ch;
 }
 
-/* Meta bar — horizontal, editorial */
+.cs-summary {
+    font-size: clamp(1.15rem, 1.7vw, 1.4rem);
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+    max-width: 52ch;
+    margin-top: 1.5rem;
+}
+
+/* Meta bar */
 .project-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-md) var(--spacing-xl);
-    margin-top: var(--spacing-lg);
-    padding-top: var(--spacing-md);
+    gap: var(--space-md) var(--space-xl);
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
     border-top: 1px solid var(--color-border);
 }
 
 .meta-item {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.4rem;
 }
 
 .meta-label {
@@ -173,39 +100,45 @@ body {
 
 .meta-value {
     font-size: 0.95rem;
-    font-weight: 400;
     color: var(--color-text);
-    max-width: 28ch;
+    max-width: 30ch;
 }
 
 .meta-link {
     color: var(--color-text);
-    text-decoration: none;
     border-bottom: 1px solid var(--color-border-strong);
     transition: border-color 0.2s ease, opacity 0.2s ease;
 }
 
 .meta-link:hover {
-    opacity: 0.6;
+    opacity: 0.65;
 }
 
-/* Hero image */
-.cs-hero {
-    margin: var(--spacing-xl) 0 var(--spacing-2xl);
-}
-
-.cs-hero img {
-    width: 100%;
-    height: auto;
+/* Zoomable image button (used for hero + inline figures) */
+.cs-zoom {
     display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
     border: 1px solid var(--color-border);
     background: var(--color-surface);
     cursor: zoom-in;
     transition: opacity 0.2s ease;
 }
 
-.cs-hero img:hover {
+.cs-zoom:hover {
     opacity: 0.94;
+}
+
+.cs-zoom img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Hero image */
+.cs-hero {
+    margin: var(--space-xl) 0 var(--space-2xl);
 }
 
 /* Body */
@@ -217,12 +150,11 @@ body {
 .case-study-section {
     display: grid;
     grid-template-columns: 5rem 1fr;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-2xl);
+    gap: var(--space-md);
+    margin-bottom: var(--space-2xl);
 }
 
 .section-num {
-    font-family: var(--font-sans);
     font-size: 0.8rem;
     font-weight: 500;
     color: var(--color-text-muted);
@@ -231,7 +163,7 @@ body {
 }
 
 .section-main {
-    max-width: 60ch;
+    max-width: 62ch;
 }
 
 .section-title {
@@ -239,7 +171,7 @@ body {
     font-size: 1.85rem;
     font-weight: 400;
     line-height: 1.2;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--space-md);
     color: var(--color-text);
     letter-spacing: -0.01em;
 }
@@ -251,7 +183,7 @@ body {
 }
 
 .section-content p {
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--space-sm);
 }
 
 .section-content p:last-child {
@@ -278,7 +210,7 @@ body {
     position: absolute;
     left: 0;
     top: 0.72rem;
-    width: 7px;
+    width: 8px;
     height: 1px;
     background: var(--color-text);
 }
@@ -291,17 +223,17 @@ body {
 .case-study-section.section-outcome {
     grid-template-columns: 1fr;
     background: var(--color-surface);
-    padding: var(--spacing-xl) var(--spacing-lg);
-    margin-bottom: var(--spacing-2xl);
+    padding: var(--space-xl) var(--space-lg);
+    margin-bottom: var(--space-2xl);
 }
 
 .section-outcome .section-num {
     padding-top: 0;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--space-sm);
 }
 
 .section-outcome .section-main {
-    max-width: 42ch;
+    max-width: 46ch;
 }
 
 .section-outcome .section-title {
@@ -311,76 +243,109 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--color-text-muted);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--space-md);
 }
 
 .section-outcome .section-content {
     font-family: var(--font-serif);
-    font-size: clamp(1.6rem, 3.2vw, 2.25rem);
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
     line-height: 1.3;
     color: var(--color-text);
     letter-spacing: -0.01em;
 }
 
-/* Inline / interleaved figures */
+/* Reflection — quieter closing note */
+.section-reflection .section-content {
+    font-size: 1.15rem;
+    color: var(--color-text-secondary);
+    font-style: normal;
+}
+
+/* Inline figures */
 .cs-figure {
-    margin: 0 0 var(--spacing-2xl);
-}
-
-.cs-figure img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    cursor: zoom-in;
-    transition: opacity 0.2s ease;
-}
-
-.cs-figure img:hover {
-    opacity: 0.94;
+    margin: 0 0 var(--space-2xl);
 }
 
 .image-caption {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
     color: var(--color-text-muted);
-    margin-top: var(--spacing-sm);
-    max-width: 60ch;
+    margin-top: var(--space-sm);
+    max-width: 62ch;
 }
 
-/* Footer / next */
-.cs-footer {
-    margin-top: var(--spacing-2xl);
-    padding-top: var(--spacing-lg);
+/* Prev / next pagination */
+.cs-pagination {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-lg);
     border-top: 1px solid var(--color-border);
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: var(--space-md);
     align-items: center;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
 }
 
-.cs-footer-label {
+.cs-page {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-height: 44px;
+    justify-content: center;
+}
+
+.cs-page--next {
+    text-align: right;
+}
+
+.cs-page--all {
+    align-self: center;
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--color-text-muted);
+    white-space: nowrap;
 }
 
-.cs-footer-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
+.cs-page--all:hover {
     color: var(--color-text);
-    text-decoration: none;
-    transition: gap 0.2s ease;
 }
 
-.cs-footer-link:hover {
-    gap: 0.85rem;
+.cs-page__label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+}
+
+.cs-page__title {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    line-height: 1.2;
+    color: var(--color-text);
+    transition: opacity 0.2s ease;
+}
+
+.cs-page--prev:hover .cs-page__title,
+.cs-page--next:hover .cs-page__title {
+    opacity: 0.6;
+}
+
+/* Error state */
+.error-message {
+    padding: var(--space-xl) 0;
+}
+
+.error-message h1 {
+    font-family: var(--font-serif);
+    font-size: 2.25rem;
+    font-weight: 400;
+    margin-bottom: var(--space-sm);
+}
+
+.error-message p {
+    color: var(--color-text-secondary);
 }
 
 /* Lightbox */
@@ -394,19 +359,21 @@ body {
     justify-content: center;
     padding: 2rem;
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.3s ease;
     cursor: zoom-out;
+}
+
+.lightbox[hidden] {
+    display: none;
 }
 
 .lightbox.active {
     opacity: 1;
-    visibility: visible;
 }
 
 .lightbox-content {
-    max-width: 90vw;
-    max-height: 85vh;
+    max-width: 92vw;
+    max-height: 88vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -416,30 +383,32 @@ body {
     max-width: 100%;
     max-height: 80vh;
     object-fit: contain;
-    border-radius: 2px;
     box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
 }
 
 .lightbox-caption {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.85);
     font-size: 0.9rem;
+    line-height: 1.5;
     margin-top: 1rem;
     text-align: center;
-    max-width: 600px;
+    max-width: 640px;
 }
 
 .lightbox-close {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    width: 40px;
-    height: 40px;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
     background: transparent;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.85);
     cursor: pointer;
     transition: color 0.2s ease;
-    padding: 0;
 }
 
 .lightbox-close:hover {
@@ -451,36 +420,20 @@ body {
     height: 24px;
 }
 
-/* Error State */
-.error-message {
-    text-align: center;
-    padding: var(--spacing-xl);
-}
-
-.error-message h1 {
-    font-family: var(--font-serif);
-    font-size: 2rem;
-    margin-bottom: var(--spacing-sm);
-}
-
-.error-message p {
-    color: var(--color-text-secondary);
-}
-
 /* Responsive */
 @media (max-width: 768px) {
     .case-study-container {
-        padding: var(--spacing-md) var(--spacing-sm) var(--spacing-xl);
+        padding: var(--space-md) var(--space-sm) var(--space-xl);
     }
 
     .cs-hero {
-        margin: var(--spacing-lg) 0 var(--spacing-xl);
+        margin: var(--space-lg) 0 var(--space-xl);
     }
 
     .case-study-section {
         grid-template-columns: 1fr;
-        gap: var(--spacing-sm);
-        margin-bottom: var(--spacing-xl);
+        gap: var(--space-sm);
+        margin-bottom: var(--space-xl);
     }
 
     .section-num {
@@ -488,7 +441,7 @@ body {
     }
 
     .cs-figure {
-        margin-bottom: var(--spacing-xl);
+        margin-bottom: var(--space-xl);
     }
 
     .section-content,
@@ -497,6 +450,20 @@ body {
     }
 
     .case-study-section.section-outcome {
-        padding: var(--spacing-lg) var(--spacing-md);
+        padding: var(--space-lg) var(--space-md);
+    }
+
+    .cs-pagination {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+        text-align: left;
+    }
+
+    .cs-page--next {
+        text-align: left;
+    }
+
+    .cs-page--all {
+        order: 3;
     }
 }

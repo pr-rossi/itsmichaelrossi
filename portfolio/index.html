@@ -1,361 +1,239 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Private by design: shared by direct link only, not indexed. -->
     <meta name="robots" content="noindex, nofollow">
-    <title>Portfolio · Michael Rossi</title>
+
+    <!-- ===== EDIT: page metadata (used for browser tab + shared-link previews) ===== -->
+    <title>Michael Rossi — Principal Product Design Leader</title>
+    <meta name="description" content="Principal Product Design Leader specializing in enterprise UX, product strategy, design systems, and front-end execution across healthcare, fintech, SaaS, and consumer products.">
+    <meta name="author" content="Michael Rossi">
+
+    <!-- Open Graph / Twitter (for when the link is shared in Slack, email, LinkedIn, etc.) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Michael Rossi — Principal Product Design Leader">
+    <meta property="og:description" content="Enterprise UX, product strategy, design systems, and front-end execution across healthcare, fintech, SaaS, and consumer products.">
+    <meta property="og:image" content="/images/open_graph_image.jpg">
+    <meta property="og:url" content="https://itsmichaelrossi.com/portfolio/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Michael Rossi — Principal Product Design Leader">
+    <meta name="twitter:description" content="Enterprise UX, product strategy, design systems, and front-end execution across healthcare, fintech, SaaS, and consumer products.">
+    <meta name="twitter:image" content="/images/open_graph_image.jpg">
+
     <link rel="icon" type="image/svg+xml" href="/images/favicon-light.svg" media="(prefers-color-scheme: light)">
     <link rel="icon" type="image/svg+xml" href="/images/favicon-dark.svg" media="(prefers-color-scheme: dark)">
     <link rel="icon" type="image/svg+xml" href="/images/favicon-light.svg">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        @font-face {
-            font-family: 'Editor\'s Note';
-            src: url('/font/Editor\'sNote-Regular.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
+    <!-- Preload the fonts used above the fold to cut first-paint flash -->
+    <link rel="preload" href="/font/Editor'sNote-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/font/GraphikRegular.woff2" as="font" type="font/woff2" crossorigin>
 
-        @font-face {
-            font-family: 'Editor\'s Note';
-            src: url('/font/Editor\'sNote-Light.ttf') format('truetype');
-            font-weight: 300;
-            font-style: normal;
-        }
+    <link rel="stylesheet" href="/portfolio/site.css">
+    <link rel="stylesheet" href="/portfolio/home.css">
 
-        @font-face {
-            font-family: 'Graphik';
-            src: url('/font/GraphikRegular.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'Graphik';
-            src: url('/font/GraphikMedium.otf') format('opentype');
-            font-weight: 500;
-            font-style: normal;
-        }
-
-        :root {
-            --color-bg: #ffffff;
-            --color-surface: #f6f5f3;
-            --color-text: #000000;
-            --color-text-secondary: #444444;
-            --color-text-muted: #888888;
-            --color-border: rgba(0, 0, 0, 0.12);
-            --font-serif: 'Editor\'s Note', Georgia, serif;
-            --font-sans: 'Graphik', system-ui, -apple-system, sans-serif;
-        }
-
-        body {
-            font-family: var(--font-sans);
-            background: var(--color-bg);
-            color: var(--color-text);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .portfolio-listing {
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .portfolio-listing.loaded {
-            opacity: 1;
-        }
-
-        .container {
-            max-width: 1024px;
-            margin: 0 auto;
-            padding: 5rem 2rem 8rem;
-        }
-
-        .header-bar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 3rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--color-border);
-            gap: 1rem;
-        }
-
-        .confidential-label {
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--color-text-muted);
-        }
-
-        .resume-link {
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--color-text-muted);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            transition: color 0.2s ease;
-        }
-
-        .resume-link:hover {
-            color: var(--color-text);
-        }
-
-        .resume-link svg {
-            width: 14px;
-            height: 14px;
-        }
-
-        .page-title {
-            font-family: var(--font-serif);
-            font-size: clamp(2.75rem, 6vw, 4.5rem);
-            font-weight: 400;
-            margin-bottom: 1.25rem;
-            letter-spacing: -0.02em;
-            line-height: 1.05;
-        }
-
-        .page-description {
-            font-size: 1.2rem;
-            color: var(--color-text-secondary);
-            margin-bottom: 5rem;
-            max-width: 540px;
-        }
-
-        /* Project grid */
-        .project-grid {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 4rem 2.5rem;
-        }
-
-        /* First project spans full width as the feature */
-        .project-item.is-featured {
-            grid-column: 1 / -1;
-        }
-
-        .project-link {
-            display: block;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .project-thumb {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 10;
-            overflow: hidden;
-            background: var(--color-surface, #f6f5f3);
-            border: 1px solid var(--color-border);
-            margin-bottom: 1.25rem;
-        }
-
-        .is-featured .project-thumb {
-            aspect-ratio: 16 / 8;
-        }
-
-        .project-thumb img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top center;
-            transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
-        }
-
-        .project-link:hover .project-thumb img {
-            transform: scale(1.03);
-        }
-
-        .project-index {
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            color: var(--color-text-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 1rem;
-            margin-bottom: 0.6rem;
-        }
-
-        .project-title {
-            font-family: var(--font-serif);
-            font-size: 1.85rem;
-            font-weight: 400;
-            line-height: 1.15;
-            transition: color 0.2s ease;
-        }
-
-        .is-featured .project-title {
-            font-size: 2.5rem;
-        }
-
-        .project-arrow {
-            font-size: 1.25rem;
-            opacity: 0;
-            transform: translateX(-8px);
-            transition: all 0.25s ease;
-            color: var(--color-text-muted);
-            flex-shrink: 0;
-        }
-
-        .project-link:hover .project-arrow {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .project-meta {
-            font-size: 0.9rem;
-            color: var(--color-text-muted);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem 1.25rem;
-        }
-
-        @media (max-width: 680px) {
-            .container {
-                padding: 3rem 1.5rem 5rem;
-            }
-
-            .project-grid {
-                grid-template-columns: 1fr;
-                gap: 3.5rem;
-            }
-
-            .project-item.is-featured {
-                grid-column: auto;
-            }
-
-            .is-featured .project-thumb {
-                aspect-ratio: 16 / 10;
-            }
-
-            .is-featured .project-title {
-                font-size: 1.85rem;
-            }
-
-            .project-meta {
-                font-size: 0.8rem;
-            }
-
-            .project-arrow {
-                display: none;
-            }
-        }
-    </style>
+    <!-- Swap the no-js flag as early as possible so reveal animations are safe -->
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
 </head>
 <body>
-    <div class="portfolio-listing">
-        <div class="container">
-            <div class="header-bar">
-                <div class="confidential-label">Viewing the portfolio for Michael Rossi</div>
-                <a href="/portfolio/Rossi-Resume-2026.pdf" class="resume-link" download>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                        <polyline points="7 10 12 15 17 10"/>
-                        <line x1="12" y1="15" x2="12" y2="3"/>
-                    </svg>
-                    Download Resume
-                </a>
-            </div>
-            <h1 class="page-title">Selected Work</h1>
-            <p class="page-description">A few recent projects. Kept simple on purpose.</p>
-            <ul class="project-grid" id="project-list">
-                <!-- Projects loaded dynamically -->
-            </ul>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- ===== Navigation ===== -->
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a href="/portfolio/" class="wordmark" aria-label="Michael Rossi — home">Michael Rossi</a>
+            <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+                <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+            </button>
+            <nav id="primary-nav" class="site-nav" aria-label="Primary">
+                <ul class="nav-links">
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="/portfolio/about/">About</a></li>
+                    <li><a href="/portfolio/Rossi-Resume-2026.pdf" class="nav-cta" download data-event="resume_download" data-event-label="nav">Resume</a></li>
+                    <li><a href="mailto:rossi@pushrefresh.com?subject=Hello%20Michael" data-event="contact_click" data-event-label="nav">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-    </div>
+    </header>
 
-    <script>
-        (function() {
-            'use strict';
+    <main id="main">
+        <!-- ===== EDIT: HERO ===== -->
+        <section class="hero" aria-labelledby="hero-headline">
+            <p class="eyebrow hero__eyebrow reveal">Principal Product Design Leader</p>
+            <h1 class="hero__headline reveal" id="hero-headline">I turn complex products into intuitive experiences.</h1>
+            <p class="hero__supporting reveal">I lead product strategy, UX, design systems, and front-end execution for enterprise software across healthcare, fintech, SaaS, and consumer products.</p>
+            <div class="hero__actions reveal">
+                <a href="#work" class="btn btn--primary">
+                    View selected work
+                    <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="/portfolio/Rossi-Resume-2026.pdf" class="btn btn--secondary" download data-event="resume_download" data-event-label="hero">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download resume
+                </a>
+                <a href="mailto:rossi@pushrefresh.com?subject=Hello%20Michael" class="hero__tertiary" data-event="contact_click" data-event-label="hero">Get in touch</a>
+            </div>
+        </section>
 
-            async function fetchProjects() {
-                try {
-                    const response = await fetch('/portfolio/projects.json');
-                    if (!response.ok) throw new Error('Failed to load');
-                    return await response.json();
-                } catch (error) {
-                    console.error('Error loading projects:', error);
-                    return null;
-                }
-            }
+        <!-- ===== EDIT: CREDIBILITY BAR ===== -->
+        <section class="credibility" aria-label="Career highlights">
+            <div class="credibility__grid">
+                <div class="credibility__item">
+                    <div class="credibility__num">12+</div>
+                    <div class="credibility__label">Years leading product design</div>
+                </div>
+                <div class="credibility__item">
+                    <div class="credibility__num">100+</div>
+                    <div class="credibility__label">Digital products delivered</div>
+                </div>
+                <div class="credibility__item">
+                    <div class="credibility__num">15+</div>
+                    <div class="credibility__label">Long-term clients</div>
+                </div>
+                <div class="credibility__item">
+                    <div class="credibility__num">Fortune 500</div>
+                    <div class="credibility__label">Enterprise experience</div>
+                </div>
+            </div>
+        </section>
 
-            function renderProjects(projects) {
-                const list = document.getElementById('project-list');
-                if (!list || !projects) return;
+        <!-- ===== SELECTED WORK (cards render from projects.json — edit content there) ===== -->
+        <section class="section" id="work" aria-labelledby="work-title">
+            <div class="section__head">
+                <p class="eyebrow">Selected work</p>
+                <h2 class="section__title" id="work-title">Complex products, made clear.</h2>
+                <p class="section__intro">A few projects that show how I work across strategy, systems, and implementation. Each one links to a deeper case study.</p>
+            </div>
+            <ul class="work__grid" id="project-list">
+                <!-- Populated by home.js from projects.json. Falls back to a link below if scripts are off. -->
+            </ul>
+            <noscript>
+                <p style="max-width:1100px;margin:0 auto;padding:0 2rem;color:#3f3f3f;">
+                    Project case studies require JavaScript. You can still
+                    <a href="/portfolio/tiaa-design-system/" style="text-decoration:underline;">view them individually</a>
+                    or <a href="/portfolio/Rossi-Resume-2026.pdf" style="text-decoration:underline;">download my resume</a>.
+                </p>
+            </noscript>
+        </section>
 
-                const projectArray = Object.values(projects);
+        <!-- ===== EDIT: HOW I WORK ===== -->
+        <section class="section" aria-labelledby="approach-title">
+            <div class="section__head">
+                <p class="eyebrow">How I work</p>
+                <h2 class="section__title" id="approach-title">Strategy through shipped product.</h2>
+                <p class="section__intro">I work across product strategy, research, interaction design, visual systems, and implementation. That range lets me help teams move from an unclear problem to a scalable product without losing intent between design and engineering.</p>
+            </div>
+            <div class="approach__grid">
+                <div class="approach__item">
+                    <span class="approach__num" aria-hidden="true">01</span>
+                    <h3>Simplify complexity</h3>
+                    <p>Turn complicated workflows, requirements, and business constraints into product experiences people can actually understand.</p>
+                </div>
+                <div class="approach__item">
+                    <span class="approach__num" aria-hidden="true">02</span>
+                    <h3>Build systems</h3>
+                    <p>Create reusable patterns, components, and standards that improve consistency and help teams move faster.</p>
+                </div>
+                <div class="approach__item">
+                    <span class="approach__num" aria-hidden="true">03</span>
+                    <h3>Bridge design and engineering</h3>
+                    <p>Design with implementation in mind, and contribute directly to production when it improves speed or quality.</p>
+                </div>
+            </div>
+        </section>
 
-                const html = projectArray.map((project, i) => {
-                    const cover = project.images && project.images[0];
-                    const featured = i === 0 ? 'is-featured' : '';
-                    const num = String(i + 1).padStart(2, '0');
-                    return `
-                    <li class="project-item ${featured}">
-                        <a href="/portfolio/${project.slug}/" class="project-link">
-                            ${cover ? `
-                            <div class="project-thumb">
-                                <img src="${escapeHtml(cover.src)}" alt="${escapeHtml(cover.alt || project.title)}" loading="lazy">
-                            </div>` : ''}
-                            <div class="project-index">${num} · ${escapeHtml(project.client)}</div>
-                            <div class="project-header">
-                                <h2 class="project-title">${escapeHtml(project.title)}</h2>
-                                <span class="project-arrow">→</span>
-                            </div>
-                            <div class="project-meta">
-                                <span>${escapeHtml(project.role)}</span>
-                                <span>${escapeHtml(project.timeframe)}</span>
-                            </div>
-                        </a>
-                    </li>
-                `;
-                }).join('');
+        <!-- ===== EDIT: EXPERIENCE / CLIENTS ===== -->
+        <section class="section" aria-labelledby="experience-title">
+            <div class="section__head">
+                <p class="eyebrow">Experience</p>
+                <h2 class="section__title" id="experience-title">Across enterprise and high-growth teams.</h2>
+            </div>
+            <div class="experience__grid">
+                <div class="experience__group">
+                    <h3>Companies</h3>
+                    <ul>
+                        <li>TIAA</li>
+                        <li>UnitedHealth Group</li>
+                        <li>Hubilo</li>
+                        <li>Bottle Rocket</li>
+                    </ul>
+                </div>
+                <div class="experience__group">
+                    <h3>Consulting — Push Refresh</h3>
+                    <ul>
+                        <li>SmithRx</li>
+                        <li>Nutrient</li>
+                        <li>GLG</li>
+                        <li>Renew Home</li>
+                        <li>Smidt Foundation</li>
+                    </ul>
+                </div>
+                <div class="experience__group">
+                    <h3>Brands led at Bottle Rocket</h3>
+                    <ul>
+                        <li>Coca-Cola Freestyle</li>
+                        <li>Southwest Airlines</li>
+                        <li>7-Eleven</li>
+                        <li>Michaels</li>
+                        <li>Visible</li>
+                        <li>GoodLeap</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="experience__note">Company names reflect direct employment. Consulting clients were engaged through Push Refresh, the product design consultancy I founded. Brand work was delivered as lead or senior designer at Bottle Rocket.</p>
+        </section>
 
-                list.innerHTML = html;
-            }
+        <!-- ===== EDIT: ABOUT PREVIEW ===== -->
+        <section class="section" aria-labelledby="about-title">
+            <div class="section__head">
+                <p class="eyebrow">About</p>
+                <h2 class="section__title" id="about-title">Designer and front-end builder.</h2>
+            </div>
+            <div class="about-preview">
+                <img class="about-preview__portrait" src="/images/rossi.jpeg" width="1080" height="1080" alt="Michael Rossi" loading="lazy">
+                <div class="about-preview__body">
+                    <p>I'm a product designer and front-end builder based in <strong>Dallas, Texas</strong>. Over the past 12+ years, I've worked across enterprise organizations, product teams, and my own consultancy, leading complex products from early strategy through production.</p>
+                    <p>My work is strongest where product complexity, systems thinking, and execution overlap. I'm comfortable facilitating with executives, digging into workflows with users, building scalable design systems, and working directly with engineers to ship the final experience.</p>
+                    <div class="about-preview__cta">
+                        <a href="/portfolio/about/" class="btn--link">More about me</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            function escapeHtml(text) {
-                if (!text) return '';
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
-            }
+        <!-- ===== EDIT: CLOSING CTA ===== -->
+        <section class="closing" aria-labelledby="closing-title">
+        <div class="closing__inner">
+            <h2 class="closing__title" id="closing-title">Have a complex product problem?</h2>
+            <p class="closing__copy">I'm currently exploring Staff and Principal Product Design opportunities where I can help shape product direction, scale systems, and work closely with design, product, and engineering.</p>
+            <div class="closing__actions">
+                <a href="mailto:rossi@pushrefresh.com?subject=Hello%20Michael" class="btn btn--primary" data-event="contact_click" data-event-label="closing">Get in touch</a>
+                <a href="/portfolio/Rossi-Resume-2026.pdf" class="btn btn--secondary" download data-event="resume_download" data-event-label="closing">Download resume</a>
+            </div>
+        </div>
+        </section>
+    </main>
 
-            async function init() {
-                const projects = await fetchProjects();
-                if (projects) {
-                    renderProjects(projects);
-                }
-                document.querySelector('.portfolio-listing').classList.add('loaded');
-            }
+    <!-- ===== Footer ===== -->
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <p class="site-footer__brand">Michael Rossi <span>— Principal Product Design Leader</span></p>
+            <nav class="site-footer__nav" aria-label="Footer">
+                <a href="#work">Work</a>
+                <a href="/portfolio/about/">About</a>
+                <a href="/portfolio/Rossi-Resume-2026.pdf" download data-event="resume_download" data-event-label="footer">Resume</a>
+                <a href="mailto:rossi@pushrefresh.com?subject=Hello%20Michael" data-event="contact_click" data-event-label="footer">Contact</a>
+            </nav>
+            <div class="site-footer__meta">
+                <span>&copy; <span data-current-year>2026</span> Michael Rossi · Dallas, Texas</span>
+                <span>rossi@pushrefresh.com</span>
+            </div>
+        </div>
+    </footer>
 
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', init);
-            } else {
-                init();
-            }
-        })();
-    </script>
+    <script src="/portfolio/site.js"></script>
+    <script src="/portfolio/home.js"></script>
 </body>
 </html>
-
