@@ -83,30 +83,73 @@ a:hover .arrowtrack--down .arrowtrack__set { transform: translateY(0); }
 .section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 2rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--line); margin-bottom: 0; }
 .section-head__intro { max-width: 42ch; font-size: 0.95rem; color: var(--muted); text-align: right; }
 
-.band { padding: clamp(2.25rem, 4.5vw, 3.5rem) 0; border-bottom: 1px solid var(--line); }
-.band__info { display: grid; grid-template-columns: 1fr 14rem; gap: 1.25rem 3.5rem; align-items: start; }
-.band__index { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.02em; margin-bottom: 1rem; display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
-.band__num { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); font-variant-numeric: tabular-nums; }
-.band__title { font-family: var(--serif); font-size: clamp(2.1rem, 4.2vw, 3.4rem); line-height: 1.02; letter-spacing: -0.015em; max-width: 20ch; color: var(--ink); }
-.band__title a { transition: opacity 0.2s ease; }
-.band:hover .band__title a { opacity: 0.62; }
-.band__lead { font-size: 1.12rem; line-height: 1.55; color: var(--text); max-width: 56ch; margin-top: 1rem; }
-.band__more { margin-top: 1.5rem; font-size: 1rem; font-family: var(--serif); }
-.band__more a { color: var(--ink); border-bottom: 1px solid var(--line); transition: border-color 0.2s ease; }
-.band__more a:hover { border-color: var(--ink); }
-.band__more a span { display: inline-block; transition: margin 0.2s ease; }
-.band:hover .band__more a span { margin-left: 0.3rem; }
+.band {
+    position: relative;
+    display: grid;
+    grid-template-columns: [folio] minmax(2.5rem, auto) [body] minmax(0, 1fr) [facts] 12rem;
+    column-gap: clamp(1.25rem, 3.5vw, 3rem);
+    align-items: start;
+    padding: clamp(2.5rem, 5vw, 4rem) 0;
+    border-bottom: 1px solid var(--line);
+}
+/* The whole row is the link (no CTA). Content sits above the cover; the one
+   external "Live" link pokes back through so it stays clickable. */
+.band__cover { position: absolute; inset: 0; z-index: 1; }
+.band__folio, .band__body, .band__facts { position: relative; }
+.band__facts a { position: relative; z-index: 2; }
 
-.band__facts { display: grid; gap: 0; align-self: start; }
-.band__facts > div { display: grid; gap: 0.15rem; padding: 0.65rem 0; border-top: 1px solid var(--line-soft); font-size: 0.95rem; }
+.band__folio {
+    grid-column: folio;
+    font-family: var(--serif); font-variant-numeric: tabular-nums;
+    color: var(--faint); line-height: 0.82;
+    font-size: clamp(2rem, 3.6vw, 3rem);
+    transition: color 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.band__body { grid-column: body; }
+.band__eyebrow {
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--muted); margin-bottom: clamp(0.5rem, 1.4vw, 0.9rem);
+    transition: color 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.band__title { font-family: var(--serif); font-size: clamp(2.1rem, 4.2vw, 3.4rem); line-height: 1.02; letter-spacing: -0.015em; max-width: 20ch; color: var(--ink); }
+.band__title a { color: inherit; }
+.band__lead { font-size: 1.1rem; line-height: 1.55; color: var(--text); max-width: 54ch; margin-top: clamp(0.8rem, 1.8vw, 1.15rem); }
+.band__caps {
+    margin-top: clamp(1rem, 2.4vw, 1.5rem); font-size: 0.9rem; line-height: 1.55;
+    color: var(--faint); max-width: 54ch;
+    transition: color 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.band__built { white-space: nowrap; margin-left: 0.45rem; }
+.band__built-k { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.68rem; color: var(--ink); }
+.band__built-v { color: var(--text); }
+
+.band__facts { grid-column: facts; display: grid; gap: 0; align-self: start; }
+.band__facts > div { display: grid; gap: 0.2rem; padding: 0.7rem 0; border-top: 1px solid var(--line-soft); font-size: 0.92rem; }
 .band__facts > div:first-child { border-top: none; padding-top: 0; }
-.band__facts dt { color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.68rem; }
+.band__facts dt { color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.66rem; }
 .band__facts dd { color: var(--ink); }
 .band__facts a { color: var(--text); border-bottom: 1px solid var(--line); transition: color 0.2s ease; }
 .band__facts a:hover { color: var(--ink); }
 
-.band--feature .band__title { font-size: clamp(2.5rem, 5.2vw, 4.2rem); }
-.band--feature .band__lead { font-size: 1.25rem; }
+/* Tiers — real rhythm: one big feature, two standard, two compact index rows */
+.band--feature .band__folio { font-size: clamp(2.6rem, 5.2vw, 4.4rem); }
+.band--feature .band__title { font-size: clamp(2.6rem, 5.4vw, 4.4rem); }
+.band--feature .band__lead { font-size: 1.2rem; max-width: 50ch; }
+.band--index { padding: clamp(2rem, 4vw, 3rem) 0; }
+.band--index .band__folio { font-size: clamp(1.6rem, 2.8vw, 2.3rem); }
+.band--index .band__title { font-size: clamp(1.7rem, 3.1vw, 2.4rem); }
+.band--index .band__lead { font-size: 1rem; color: var(--muted); }
+
+/* Brighten-and-settle: on hover/focus the row "develops into focus" — the folio,
+   eyebrow and capabilities resolve to full contrast and the numeral drifts toward
+   the title. No dim, no arrow, no underline. */
+.band:hover .band__folio, .band:focus-within .band__folio { color: var(--ink); }
+.band:hover .band__eyebrow, .band:focus-within .band__eyebrow { color: var(--text); }
+.band:hover .band__caps, .band:focus-within .band__caps { color: var(--text); }
+@media (prefers-reduced-motion: no-preference) {
+    .band__folio { transition: color 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .band:hover .band__folio, .band:focus-within .band__folio { transform: translateX(6px); }
+}
 
 /* ---- How I work ---- */
 .approach { max-width: var(--page); margin: clamp(5rem, 10vw, 8.5rem) auto 0; padding: 0 2.5rem; }
@@ -128,9 +171,23 @@ a:hover .arrowtrack--down .arrowtrack__set { transform: translateY(0); }
    Responsive
    ========================================================================== */
 @media (max-width: 900px) {
-    .band__info { grid-template-columns: 1fr; gap: 1.5rem; }
-    .band__facts { max-width: 34rem; }
+    .band {
+        grid-template-columns: [folio] auto [body] minmax(0, 1fr);
+        column-gap: clamp(1rem, 3vw, 1.75rem); row-gap: 1.5rem;
+    }
+    .band__folio { align-self: start; }
+    .band__facts { grid-column: folio / -1; display: flex; flex-wrap: wrap; gap: 1.25rem 2.5rem; max-width: 40rem; }
+    .band__facts > div { border-top: none; padding: 0; }
     .experience { grid-template-columns: 1fr; gap: 1.75rem; }
+}
+@media (max-width: 560px) {
+    .band { grid-template-columns: 1fr; row-gap: 0.85rem; }
+    /* single column: drop the named-line placement so children just stack */
+    .band__folio, .band__body, .band__facts { grid-column: auto; }
+    .band__folio { line-height: 1; }
+    .band--feature .band__folio, .band--standard .band__folio, .band--index .band__folio { font-size: clamp(1.9rem, 7vw, 2.5rem); }
+    .band__title, .band--feature .band__title, .band--index .band__title { max-width: none; }
+    .band__facts { max-width: none; }
 }
 @media (max-width: 760px) {
     .intro { grid-template-columns: 1fr; min-height: 0; }

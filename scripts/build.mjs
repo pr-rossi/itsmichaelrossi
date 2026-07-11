@@ -172,21 +172,27 @@ function footer(extraScripts) {
 // One project = one big visual band. The work is the hero: the full image
 // shown large at its natural aspect, with tight copy and facts beneath.
 function projectBand(p, num, tier) {
+  // "Designs AND builds" — only the projects he shipped to code light a BUILT
+  // node; keyed off the real Front-end capability, showing the stack where known.
+  const isFrontend = (p.capabilities || []).some((c) => /front-?end/i.test(c));
+  const caps = (p.capabilities || []).filter((c) => !/front-?end/i.test(c));
+  const built = isFrontend
+    ? ` <span class="band__built"><span class="band__built-k">Built</span> <span class="band__built-v">${esc(p.tech || 'Front-end')}</span></span>`
+    : '';
   const facts = [['Role', p.role], ['Timeline', p.timeframe]];
-  if (p.tech) facts.push(['Built with', p.tech]);
   if (p.url) facts.push(['Live', `<a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer" data-event="external_project_link" data-event-label="${esc(p.slug)}">${esc(p.url.replace(/^https?:\/\//, '').replace(/\/$/, ''))}</a>`]);
-  return `<article class="band band--${tier} reveal">
-                <div class="band__info">
-                    <div class="band__lede">
-                        <p class="band__index"><span class="band__num">${num}</span> ${esc(p.client)} &middot; ${esc(p.industry)}</p>
-                        <h3 class="band__title" style="view-transition-name: proj-${esc(p.slug)}"><a href="/portfolio/${esc(p.slug)}/" data-event="casestudy_open" data-event-label="${esc(p.slug)}">${esc(p.title)}</a></h3>
-                        <p class="band__lead">${esc(p.lead)}</p>
-                        <p class="band__more"><a href="/portfolio/${esc(p.slug)}/" data-event="casestudy_open" data-event-label="${esc(p.slug)}">Read the case study <span aria-hidden="true">&rarr;</span></a></p>
-                    </div>
-                    <dl class="band__facts">
-                        ${facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${k === 'Live' ? v : esc(v)}</dd></div>`).join('\n                        ')}
-                    </dl>
+  return `<article class="band band--${esc(tier)} reveal">
+                <a class="band__cover" href="/portfolio/${esc(p.slug)}/" tabindex="-1" aria-hidden="true" data-event="casestudy_open" data-event-label="${esc(p.slug)}"></a>
+                <p class="band__folio" aria-hidden="true">${num}</p>
+                <div class="band__body">
+                    <p class="band__eyebrow">${esc(p.client)} <span aria-hidden="true">&middot;</span> ${esc(p.industry)}</p>
+                    <h3 class="band__title" style="view-transition-name: proj-${esc(p.slug)}"><a href="/portfolio/${esc(p.slug)}/" data-event="casestudy_open" data-event-label="${esc(p.slug)}">${esc(p.title)}</a></h3>
+                    <p class="band__lead">${esc(p.lead)}</p>
+                    <p class="band__caps">${caps.map((c) => esc(c)).join(' <span aria-hidden="true">&middot;</span> ')}${built}</p>
                 </div>
+                <dl class="band__facts">
+                    ${facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${k === 'Live' ? v : esc(v)}</dd></div>`).join('\n                    ')}
+                </dl>
             </article>`;
 }
 
@@ -254,7 +260,7 @@ function homePage() {
                 <h2 class="section-head__title" id="work-title">${esc(site.work.label)}</h2>
                 <p class="section-head__intro">${esc(site.work.intro)}</p>
             </div>
-            ${projects.map((p, i) => projectBand(p, numOf(p), i === 0 ? 'feature' : 'standard')).join('\n            ')}
+            ${projects.map((p, i) => projectBand(p, numOf(p), p.tier || (i === 0 ? 'feature' : 'standard'))).join('\n            ')}
         </section>
 
         <section class="approach" aria-labelledby="approach-title">
