@@ -84,20 +84,25 @@
         return s;
     }
 
-    // Draw the word into a 2D canvas we can upload as a texture.
+    // Draw the word into a 2D canvas we can upload as a texture. Each letter is
+    // placed at its exact on-screen position (read from the real .ch spans), so
+    // the texture lines up pixel-for-pixel with the DOM text and the swap is
+    // invisible — no reposition, including the custom word spacing.
     function drawText() {
         var cs = getComputedStyle(you);
         var fontSize = parseFloat(cs.fontSize);
         var font = cs.fontStyle + ' ' + cs.fontWeight + ' ' + fontSize + 'px ' + cs.fontFamily;
-        var text = (you.textContent || '').trim().toLowerCase();
         var color = cs.color || '#fff';
 
         // padding so warped pixels near the edge aren't clipped
-        padX = Math.round(fontSize * 0.28);
-        padY = Math.round(fontSize * 0.28);
-        var rect = you.getBoundingClientRect();
-        W = Math.ceil(rect.width) + padX * 2;
-        H = Math.ceil(rect.height) + padY * 2;
+        padX = Math.round(fontSize * 0.30);
+        padY = Math.round(fontSize * 0.34);
+        var youRect = you.getBoundingClientRect();
+        W = Math.ceil(youRect.width) + padX * 2;
+        H = Math.ceil(youRect.height) + padY * 2;
+        // page coords of the canvas's top-left (matches layout())
+        var originX = youRect.left - padX;
+        var originY = youRect.top - padY;
 
         if (!texCanvas) texCanvas = document.createElement('canvas');
         texCanvas.width = Math.round(W * DPR);
@@ -109,15 +114,27 @@
         c.fillStyle = color;
         c.textBaseline = 'alphabetic';
         c.textAlign = 'left';
-        try { c.letterSpacing = cs.letterSpacing; } catch (e) {}
 
-        var m = c.measureText(text);
-        var asc = m.actualBoundingBoxAscent || fontSize * 0.72;
-        var desc = m.actualBoundingBoxDescent || fontSize * 0.1;
-        var glyphH = asc + desc;
-        var x = (W - m.width) / 2;
-        var y = padY + asc + ((H - padY * 2) - glyphH) / 2;
-        c.fillText(text, x, y);
+        var chars = you.querySelectorAll('.ch');
+        if (!chars.length) { // fallback: one centered draw
+            var text = (you.textContent || '').trim().toLowerCase();
+            var m0 = c.measureText(text);
+            c.fillText(text, (W - m0.width) / 2, H / 2 + (m0.actualBoundingBoxAscent || fontSize * 0.36));
+            return;
+        }
+        // Baseline within a .ch inline-block (line-height may be < 1):
+        //   baseline = boxTop + (boxHeight + fontAscent - fontDescent) / 2
+        var fm = c.measureText('mg');
+        var fAsc = fm.fontBoundingBoxAscent || fontSize * 0.8;
+        var fDesc = fm.fontBoundingBoxDescent || fontSize * 0.2;
+        for (var i = 0; i < chars.length; i++) {
+            var t = (chars[i].textContent || '').toLowerCase();
+            if (!t.trim()) continue; // spaces are implicit in the next glyph's x
+            var r = chars[i].getBoundingClientRect();
+            var x = r.left - originX;
+            var y = (r.top - originY) + (r.height + fAsc - fDesc) / 2;
+            c.fillText(t, x, y);
+        }
     }
 
     function build() {
@@ -228,7 +245,7 @@
         drawText();
         layout();
         upload();
-        render();          // resting word, so the crossfade has something to show
+        render();          // paint the resting word so the swap has content ready
         name.appendChild(canvas);
         built = true;
         return true;
@@ -238,8 +255,12 @@
         if (!ensureBuilt()) return;
         if (!started) {
             started = true;
-            name.classList.add('is-liquid');
-            canvas.classList.add('is-ready');
+            // Wait one frame so the GL canvas is painted before we hide the real
+            // text — the swap is instant and pixel-aligned, so it's invisible.
+            requestAnimationFrame(function () {
+                canvas.classList.add('is-ready');
+                name.classList.add('is-liquid');
+            });
         }
         activeTarget = 1;
         loop();
