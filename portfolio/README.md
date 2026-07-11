@@ -1,156 +1,103 @@
-# Portfolio — How it works & how to edit it
+# Portfolio — how it works & how to edit it
 
-This is the recruiter-facing portfolio at `/portfolio/`. It's a static site (no
-build step) served by GitHub Pages. It is **private by design**: every page
-carries `noindex, nofollow` and there are no links to it from the public
-homepage, so it's only reachable by direct link. You can still share the link
-and it will produce a clean preview card (Open Graph tags are set per page).
+The portfolio at `/portfolio/` is a **static site generated from data**. You edit
+JSON, run one build command, and commit the generated HTML. All content ships in
+the HTML — the pages work with JavaScript disabled and are fully crawlable.
 
-Positioning: **Michael Rossi — Principal Product Design Leader**. Everything is
-written to support Staff / Principal Product Design applications.
-
----
-
-## URLs
-
-| Page | URL |
-|------|-----|
-| Home (hero, work, about preview, contact) | `/portfolio/` |
-| About | `/portfolio/about/` |
-| Case study | `/portfolio/<slug>/` (e.g. `/portfolio/nutrient-website/`) |
-| Resume (PDF) | `/portfolio/Rossi-Resume-2026.pdf` |
-
-Current projects: `tiaa-design-system`, `unitedhealth-transportation`,
-`nutrient-website`, `lowes-pro-supply`, `synquery-product`.
+Positioning: **Michael Rossi — Principal Product Design Leader**, open to Staff
+and Principal Product Design roles (still an individual contributor, not only a
+manager). The pages are public and indexable.
 
 ---
 
-## File map
+## How it's built
 
 ```
-/portfolio/
-├── index.html            # Homepage. All homepage copy lives here, in
-│                         #   <!-- ===== EDIT: SECTION ===== --> blocks.
-├── about/index.html      # About page. Copy is in EDIT blocks too.
-├── projects.json         # SINGLE SOURCE OF TRUTH for all project content.
-│                         #   Powers both the homepage cards and case studies.
-├── site.css              # Shared: fonts, colors, nav, footer, buttons, focus.
-├── home.css              # Homepage-only styles.
-├── about.css             # About-only styles.
-├── case-study.css        # Case-study layout.
-├── site.js               # Shared: analytics hooks, footer year, reveal.
-├── home.js               # Renders homepage project cards from projects.json.
-├── case-study.js         # Renders a case study from projects.json.
-├── images/               # Project images (.jpg originals + .webp optimized).
-├── Rossi-Resume-2026.pdf # The resume the whole site links to.
-└── <slug>/index.html     # One thin shell per case study (title/OG meta only).
+data/
+  site.json          # homepage + about + footer + SEO copy  (edit me)
+  projects.json      # every project's content               (edit me)
+scripts/
+  build.mjs          # the generator — turns data into HTML
+portfolio/           # OUTPUT (generated) + assets
+  index.html         · about/index.html · <slug>/index.html   (generated)
+  site.css · home.css · about.css · case-study.css            (styles — edit by hand)
+  enhance.js         # progressive enhancement only (menu, lightbox, analytics)
+  images/            # project images (.jpg + optimized .webp)
+  Rossi-Resume-2026.pdf
+sitemap.xml · robots.txt   (generated, at repo root)
+```
+
+**The rule:** never hand-edit the generated `*.html` files. Edit the data or the
+CSS, then rebuild.
+
+### Build
+
+```bash
+npm run build        # or: node scripts/build.mjs
+```
+
+This regenerates every page, the sitemap, and robots.txt. Then commit and push —
+GitHub Pages serves the committed HTML.
+
+### Preview locally
+
+```bash
+python3 -m http.server 8000
+# open http://localhost:8000/portfolio/
 ```
 
 ---
 
 ## Common edits
 
-### Change homepage copy (hero, credibility numbers, how-I-work, etc.)
-Open `index.html` and find the block labeled `<!-- ===== EDIT: HERO ===== -->`
-(and CREDIBILITY BAR, HOW I WORK, EXPERIENCE, ABOUT PREVIEW, CLOSING CTA). Edit
-the text directly. Same idea for the About page in `about/index.html`.
+| Want to change… | Edit |
+|---|---|
+| Hero copy, career facts, availability | `data/site.json` → `hero` |
+| How-I-work statement & examples | `data/site.json` → `howIWork` |
+| Experience / client lists | `data/site.json` → `experience` |
+| About-page copy & expertise | `data/site.json` → `about` |
+| Closing statement | `data/site.json` → `closing` |
+| Email, résumé path, LinkedIn, base URL | `data/site.json` → `meta` |
+| Page titles / descriptions (SEO) | `data/site.json` → `seo` |
+| A project's title, lead, facts, case-study text, images | `data/projects.json` |
+| Which projects are featured / their order | `data/projects.json` → `tier` + `order` |
 
-### Change the resume
-Replace `Rossi-Resume-2026.pdf`. If you rename it, update the `href` everywhere
-it appears (search the repo for `Rossi-Resume-2026.pdf`).
+Then run `npm run build`.
 
-### Change contact email
-Search for `rossi@pushrefresh.com` and replace it (it's in `mailto:` links and
-the footer on every page).
+### Project tiers (controls the homepage rhythm)
 
-### Change page title / description / share image (SEO & link previews)
-Each page's `<title>`, `<meta name="description">`, and `og:` tags are in the
-`<head>` of that page's HTML. Case-study shells (`<slug>/index.html`) each have
-their own.
+Each project has a `tier`:
 
----
+- `feature` — the large project at the top (big image + full write-up).
+- `standard` — a medium project (two distinct layouts: split, then stacked).
+- `index` — a compact row in the "Also" archive at the bottom.
 
-## Add or edit a project
+`order` controls sequence everywhere (homepage + prev/next). To reorder or
+re-tier a project, change those two fields and rebuild.
 
-**1. Edit `projects.json`.** It's one object keyed by slug. Fields:
+### Add a project
 
-| Field | Type | Required | Notes |
-|-------|------|----------|-------|
-| `slug` | string | ✓ | Must match the folder name. |
-| `title` | string | ✓ | Strategic headline (not just the company name). |
-| `client` | string | ✓ | Company / client name. |
-| `industry` | string | ✓ | e.g. "Healthcare", "Financial Services". |
-| `role` | string | ✓ | Your role on the project. |
-| `timeframe` | string | ✓ | e.g. "2023 – 2024". |
-| `featured` | boolean | ✓ | `true` to show on the homepage. |
-| `order` | number | ✓ | Homepage + prev/next ordering (1 = first). |
-| `summary` | string | ✓ | One line for the homepage card + case-study intro. |
-| `capabilities` | string[] | ✓ | Up to 5 shown as tags on the card. |
-| `context` | string | ✓ | What the product is, who it served, why it mattered. |
-| `problem` | string | ✓ | What wasn't working and what made it hard. |
-| `responsibilities` | string[] | ✓ | "My role" bullets — what you personally owned. |
-| `approach` | string[] | ✓ | What you actually did (discovery, research, etc.). |
-| `decisions` | string[] | ✓ | Key decisions **with the reasoning**. |
-| `designSystem` | string[] | – | Optional. Systems/patterns work, if relevant. |
-| `outcome` | string | ✓ | Honest result. **No invented metrics.** |
-| `reflection` | string | ✓ | One or two sentences: what it took, what you learned. |
-| `tech` | string | – | Optional, e.g. "React, Astro". |
-| `url` | string | – | Optional live link. |
-| `images` | array | ✓ | `{ src, alt, caption }`. First image is the hero. |
-
-`images[].alt` describes what's shown (for screen readers). `images[].caption`
-explains *why it matters* (shown under the image). Sections only render if their
-field exists, so shorter projects still look clean.
-
-**2. Create the folder + shell.** Make `/portfolio/<slug>/index.html`. The
-easiest way is to copy an existing shell and change the `<title>`,
-`<meta name="description">`, and the three `og:`/`twitter:` image + url tags.
-The folder name **must** match the `slug`.
-
-**3. Add images (and their optimized WebP).** Put JPGs in `/portfolio/images/`,
-then generate WebP versions (the site serves WebP with a JPG fallback):
-
-```bash
-cd portfolio/images
-# resize to max 2000px wide and write an optimized .webp next to the .jpg
-cwebp -q 82 -resize 2000 0 your-image.jpg -o your-image.webp
-```
-
-Reference the `.jpg` in `projects.json`; the code finds the matching `.webp`
-automatically.
+1. Add an entry to `data/projects.json` (copy an existing one; keep the fields).
+2. Add its images to `portfolio/images/`, then make WebP versions:
+   ```bash
+   cd portfolio/images
+   cwebp -q 82 -resize 2000 0 your-image.jpg -o your-image.webp
+   ```
+   Reference the `.jpg` in the data; the build serves WebP with a JPG fallback.
+3. `npm run build`. The folder, case study, sitemap entry, and homepage card are
+   all generated for you.
 
 ---
 
-## Fonts
+## Notes
 
-Editor's Note (serif) and Graphik (sans) are self-hosted in `/font/`. The site
-loads the `.woff2` versions (smaller/faster) with `.ttf`/`.otf` fallback. If you
-add a new weight, convert it: `woff2_compress "font/YourFont.otf"`.
-
----
-
-## Analytics
-
-No analytics vendor is installed. Interactive elements are already tagged with
-`data-event` (resume downloads, contact clicks, case-study opens, external
-project links), and `site.js` pushes those to `window.dataLayer`. To turn on
-real analytics later, either read `window.dataLayer` or edit `window.trackEvent`
-in `site.js` to forward events to your tool. Nothing is sent anywhere today.
-
----
-
-## Run locally
-
-```bash
-python3 -m http.server 8000
-# then open http://localhost:8000/portfolio/
-```
-
-Use a server (not `file://`) so `fetch('/portfolio/projects.json')` works.
-
----
-
-## Deploy
-
-Commit and push. GitHub Pages redeploys automatically. All portfolio pages stay
-`noindex, nofollow`; the site is shared by direct link.
+- **Rendering:** content is static HTML. `enhance.js` only adds the mobile menu,
+  the image lightbox, and analytics `data-event` hooks. Nothing essential needs it.
+- **Analytics:** no vendor is wired up. Interactions carry `data-event`
+  attributes and push to `window.dataLayer`; connect a tool later by editing
+  `window.trackEvent` in `enhance.js`.
+- **Fonts:** Editor's Note (serif) and Graphik (sans) are self-hosted in `/font/`
+  as woff2 with fallbacks.
+- **`.nojekyll`** at the repo root tells GitHub Pages to serve files as-is.
+- **Do not fabricate.** Every claim in the data should be true. The Lowe's Pro
+  Supply project is not on the résumé; keep its framing honest or remove it.

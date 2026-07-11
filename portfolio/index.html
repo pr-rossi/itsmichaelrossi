@@ -1,239 +1,227 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Private by design: shared by direct link only, not indexed. -->
-    <meta name="robots" content="noindex, nofollow">
-
-    <!-- ===== EDIT: page metadata (used for browser tab + shared-link previews) ===== -->
     <title>Michael Rossi — Principal Product Design Leader</title>
-    <meta name="description" content="Principal Product Design Leader specializing in enterprise UX, product strategy, design systems, and front-end execution across healthcare, fintech, SaaS, and consumer products.">
+    <meta name="description" content="Principal Product Design Leader specializing in enterprise product strategy, design systems, complex workflows, and front-end execution across healthcare, fintech, SaaS, and consumer products.">
     <meta name="author" content="Michael Rossi">
+    <link rel="canonical" href="https://itsmichaelrossi.com/portfolio/">
 
-    <!-- Open Graph / Twitter (for when the link is shared in Slack, email, LinkedIn, etc.) -->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="Michael Rossi">
     <meta property="og:title" content="Michael Rossi — Principal Product Design Leader">
-    <meta property="og:description" content="Enterprise UX, product strategy, design systems, and front-end execution across healthcare, fintech, SaaS, and consumer products.">
-    <meta property="og:image" content="/images/open_graph_image.jpg">
+    <meta property="og:description" content="Principal Product Design Leader specializing in enterprise product strategy, design systems, complex workflows, and front-end execution across healthcare, fintech, SaaS, and consumer products.">
     <meta property="og:url" content="https://itsmichaelrossi.com/portfolio/">
+    <meta property="og:image" content="https://itsmichaelrossi.com/images/open_graph_image.jpg">
+    <meta property="og:image:alt" content="Michael Rossi — Principal Product Design Leader">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Michael Rossi — Principal Product Design Leader">
-    <meta name="twitter:description" content="Enterprise UX, product strategy, design systems, and front-end execution across healthcare, fintech, SaaS, and consumer products.">
-    <meta name="twitter:image" content="/images/open_graph_image.jpg">
+    <meta name="twitter:description" content="Principal Product Design Leader specializing in enterprise product strategy, design systems, complex workflows, and front-end execution across healthcare, fintech, SaaS, and consumer products.">
+    <meta name="twitter:image" content="https://itsmichaelrossi.com/images/open_graph_image.jpg">
 
     <link rel="icon" type="image/svg+xml" href="/images/favicon-light.svg" media="(prefers-color-scheme: light)">
     <link rel="icon" type="image/svg+xml" href="/images/favicon-dark.svg" media="(prefers-color-scheme: dark)">
     <link rel="icon" type="image/svg+xml" href="/images/favicon-light.svg">
 
-    <!-- Preload the fonts used above the fold to cut first-paint flash -->
-    <link rel="preload" href="/font/Editor'sNote-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/font/GraphikRegular.woff2" as="font" type="font/woff2" crossorigin>
+    <meta name="theme-color" content="#121212">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,wght@0,300;0,400;0,500;1,300&display=swap">
 
     <link rel="stylesheet" href="/portfolio/site.css">
     <link rel="stylesheet" href="/portfolio/home.css">
-
-    <!-- Swap the no-js flag as early as possible so reveal animations are safe -->
-    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Michael Rossi","jobTitle":"Principal Product Design Leader","url":"https://itsmichaelrossi.com/portfolio/","email":"mailto:itsmichaelrossi@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Dallas","addressRegion":"TX","addressCountry":"US"},"knowsAbout":["Product design","Design systems","UX strategy","Front-end development","Accessibility"]}</script>
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
-
-    <!-- ===== Navigation ===== -->
-    <header class="site-header">
-        <div class="site-header__inner">
-            <a href="/portfolio/" class="wordmark" aria-label="Michael Rossi — home">Michael Rossi</a>
+    <header class="masthead">
+        <div class="masthead__inner">
+            <a href="/portfolio/" class="wordmark">Michael Rossi</a>
             <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
                 <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
             </button>
             <nav id="primary-nav" class="site-nav" aria-label="Primary">
                 <ul class="nav-links">
-                    <li><a href="#work">Work</a></li>
+                    <li><a href="/portfolio/#work">Work</a></li>
                     <li><a href="/portfolio/about/">About</a></li>
-                    <li><a href="/portfolio/Rossi-Resume-2026.pdf" class="nav-cta" download data-event="resume_download" data-event-label="nav">Resume</a></li>
-                    <li><a href="mailto:rossi@pushrefresh.com?subject=Hello%20Michael" data-event="contact_click" data-event-label="nav">Contact</a></li>
+                    <li><a href="/portfolio/Rossi-Resume-2026.pdf" target="_blank" rel="noopener" data-event="resume_view" data-event-label="nav">Résumé</a></li>
+                    <li><a href="mailto:itsmichaelrossi@gmail.com?subject=Hello%20Michael" data-event="contact_click" data-event-label="nav">Email</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-
     <main id="main">
-        <!-- ===== EDIT: HERO ===== -->
-        <section class="hero" aria-labelledby="hero-headline">
-            <p class="eyebrow hero__eyebrow reveal">Principal Product Design Leader</p>
-            <h1 class="hero__headline reveal" id="hero-headline">I turn complex products into intuitive experiences.</h1>
-            <p class="hero__supporting reveal">I lead product strategy, UX, design systems, and front-end execution for enterprise software across healthcare, fintech, SaaS, and consumer products.</p>
-            <div class="hero__actions reveal">
-                <a href="#work" class="btn btn--primary">
-                    View selected work
-                    <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-                <a href="/portfolio/Rossi-Resume-2026.pdf" class="btn btn--secondary" download data-event="resume_download" data-event-label="hero">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Download resume
-                </a>
-                <a href="mailto:rossi@pushrefresh.com?subject=Hello%20Michael" class="hero__tertiary" data-event="contact_click" data-event-label="hero">Get in touch</a>
-            </div>
+        <section class="hero-intro">
+            <h1 class="hero-intro__name">
+                <span class="hero-intro__pre">who is</span>
+                <span class="hero-intro__you" aria-label="Michael Rossi?"><span class="ch" aria-hidden="true" style="--i:0">M</span><span class="ch" aria-hidden="true" style="--i:1">i</span><span class="ch" aria-hidden="true" style="--i:2">c</span><span class="ch" aria-hidden="true" style="--i:3">h</span><span class="ch" aria-hidden="true" style="--i:4">a</span><span class="ch" aria-hidden="true" style="--i:5">e</span><span class="ch" aria-hidden="true" style="--i:6">l</span><span class="ch ch--space" aria-hidden="true"> </span><span class="ch" aria-hidden="true" style="--i:8">R</span><span class="ch" aria-hidden="true" style="--i:9">o</span><span class="ch" aria-hidden="true" style="--i:10">s</span><span class="ch" aria-hidden="true" style="--i:11">s</span><span class="ch" aria-hidden="true" style="--i:12">i</span><span class="ch" aria-hidden="true" style="--i:13">?</span></span>
+            </h1>
+            <p class="hero-intro__links">
+                <a href="#about" class="hero-intro__link">let's find out <span class="arrowtrack arrowtrack--down" aria-hidden="true"><span class="arrowtrack__set"><span>&darr;</span><span>&darr;</span></span></span></a>
+                <a href="#work" class="hero-intro__link">see some work <span class="arrowtrack arrowtrack--right" aria-hidden="true"><span class="arrowtrack__set"><span>&rarr;</span><span>&rarr;</span></span></span></a>
+            </p>
         </section>
 
-        <!-- ===== EDIT: CREDIBILITY BAR ===== -->
-        <section class="credibility" aria-label="Career highlights">
-            <div class="credibility__grid">
-                <div class="credibility__item">
-                    <div class="credibility__num">12+</div>
-                    <div class="credibility__label">Years leading product design</div>
-                </div>
-                <div class="credibility__item">
-                    <div class="credibility__num">100+</div>
-                    <div class="credibility__label">Digital products delivered</div>
-                </div>
-                <div class="credibility__item">
-                    <div class="credibility__num">15+</div>
-                    <div class="credibility__label">Long-term clients</div>
-                </div>
-                <div class="credibility__item">
-                    <div class="credibility__num">Fortune 500</div>
-                    <div class="credibility__label">Enterprise experience</div>
-                </div>
+        <section class="intro" id="about" aria-labelledby="intro-headline">
+            <div class="intro__portrait develop">
+                <img src="/images/rossi.jpeg" width="1080" height="1080" alt="Michael Rossi" loading="eager" fetchpriority="high">
             </div>
-        </section>
-
-        <!-- ===== SELECTED WORK (cards render from projects.json — edit content there) ===== -->
-        <section class="section" id="work" aria-labelledby="work-title">
-            <div class="section__head">
-                <p class="eyebrow">Selected work</p>
-                <h2 class="section__title" id="work-title">Complex products, made clear.</h2>
-                <p class="section__intro">A few projects that show how I work across strategy, systems, and implementation. Each one links to a deeper case study.</p>
-            </div>
-            <ul class="work__grid" id="project-list">
-                <!-- Populated by home.js from projects.json. Falls back to a link below if scripts are off. -->
-            </ul>
-            <noscript>
-                <p style="max-width:1100px;margin:0 auto;padding:0 2rem;color:#3f3f3f;">
-                    Project case studies require JavaScript. You can still
-                    <a href="/portfolio/tiaa-design-system/" style="text-decoration:underline;">view them individually</a>
-                    or <a href="/portfolio/Rossi-Resume-2026.pdf" style="text-decoration:underline;">download my resume</a>.
+            <div class="intro__body">
+                <h2 class="intro__headline reveal" style="--d:0" id="intro-headline">I design software, then I build it.</h2>
+                <p class="intro__note reveal" style="--d:1">Howdy — I'm Rossi, a product designer in Dallas. Twelve years in, I've learned the interesting problems are never the pretty ones: the tangled workflow, the requirements that fight each other, the feature engineering swears can't ship by Friday. I've done that work inside big enterprises, at a high-growth company, and through my own studio. It's the work I want.</p>
+                <dl class="facts reveal" style="--d:2">
+                    <div class="facts__row"><dt>12+ years</dt> <dd>designing and building</dd></div>
+                    <div class="facts__row"><dt>100+</dt> <dd>products shipped</dd></div>
+                    <div class="facts__row"><dt>15+</dt> <dd>long-term clients</dd></div>
+                    <div class="facts__row"><dt>Fortune 500</dt> <dd>to my own studio</dd></div>
+                </dl>
+                <p class="intro__availability reveal" style="--d:3">Open to Staff and Principal roles — the kind where I stay on the tools, not just the org chart.</p>
+                <p class="intro__foot reveal" style="--d:4">
+                    <a href="/portfolio/about/">Learn more about Michael <span class="arrowtrack arrowtrack--right" aria-hidden="true"><span class="arrowtrack__set"><span>&rarr;</span><span>&rarr;</span></span></span></a>
+                    <a href="#work">See some work <span class="arrowtrack arrowtrack--down" aria-hidden="true"><span class="arrowtrack__set"><span>&darr;</span><span>&darr;</span></span></span></a>
                 </p>
-            </noscript>
-        </section>
-
-        <!-- ===== EDIT: HOW I WORK ===== -->
-        <section class="section" aria-labelledby="approach-title">
-            <div class="section__head">
-                <p class="eyebrow">How I work</p>
-                <h2 class="section__title" id="approach-title">Strategy through shipped product.</h2>
-                <p class="section__intro">I work across product strategy, research, interaction design, visual systems, and implementation. That range lets me help teams move from an unclear problem to a scalable product without losing intent between design and engineering.</p>
-            </div>
-            <div class="approach__grid">
-                <div class="approach__item">
-                    <span class="approach__num" aria-hidden="true">01</span>
-                    <h3>Simplify complexity</h3>
-                    <p>Turn complicated workflows, requirements, and business constraints into product experiences people can actually understand.</p>
-                </div>
-                <div class="approach__item">
-                    <span class="approach__num" aria-hidden="true">02</span>
-                    <h3>Build systems</h3>
-                    <p>Create reusable patterns, components, and standards that improve consistency and help teams move faster.</p>
-                </div>
-                <div class="approach__item">
-                    <span class="approach__num" aria-hidden="true">03</span>
-                    <h3>Bridge design and engineering</h3>
-                    <p>Design with implementation in mind, and contribute directly to production when it improves speed or quality.</p>
-                </div>
             </div>
         </section>
 
-        <!-- ===== EDIT: EXPERIENCE / CLIENTS ===== -->
-        <section class="section" aria-labelledby="experience-title">
-            <div class="section__head">
-                <p class="eyebrow">Experience</p>
-                <h2 class="section__title" id="experience-title">Across enterprise and high-growth teams.</h2>
+        <section class="work" id="work" aria-labelledby="work-title">
+            <div class="section-head reveal">
+                <h2 class="section-head__title" id="work-title">Selected work</h2>
+                <p class="section-head__intro">Five projects. The common thread: a complicated product that needed one person holding strategy, design, systems, and the front-end together.</p>
             </div>
-            <div class="experience__grid">
-                <div class="experience__group">
-                    <h3>Companies</h3>
-                    <ul>
-                        <li>TIAA</li>
-                        <li>UnitedHealth Group</li>
-                        <li>Hubilo</li>
-                        <li>Bottle Rocket</li>
-                    </ul>
-                </div>
-                <div class="experience__group">
-                    <h3>Consulting — Push Refresh</h3>
-                    <ul>
-                        <li>SmithRx</li>
-                        <li>Nutrient</li>
-                        <li>GLG</li>
-                        <li>Renew Home</li>
-                        <li>Smidt Foundation</li>
-                    </ul>
-                </div>
-                <div class="experience__group">
-                    <h3>Brands led at Bottle Rocket</h3>
-                    <ul>
-                        <li>Coca-Cola Freestyle</li>
-                        <li>Southwest Airlines</li>
-                        <li>7-Eleven</li>
-                        <li>Michaels</li>
-                        <li>Visible</li>
-                        <li>GoodLeap</li>
-                    </ul>
-                </div>
-            </div>
-            <p class="experience__note">Company names reflect direct employment. Consulting clients were engaged through Push Refresh, the product design consultancy I founded. Brand work was delivered as lead or senior designer at Bottle Rocket.</p>
-        </section>
-
-        <!-- ===== EDIT: ABOUT PREVIEW ===== -->
-        <section class="section" aria-labelledby="about-title">
-            <div class="section__head">
-                <p class="eyebrow">About</p>
-                <h2 class="section__title" id="about-title">Designer and front-end builder.</h2>
-            </div>
-            <div class="about-preview">
-                <img class="about-preview__portrait" src="/images/rossi.jpeg" width="1080" height="1080" alt="Michael Rossi" loading="lazy">
-                <div class="about-preview__body">
-                    <p>I'm a product designer and front-end builder based in <strong>Dallas, Texas</strong>. Over the past 12+ years, I've worked across enterprise organizations, product teams, and my own consultancy, leading complex products from early strategy through production.</p>
-                    <p>My work is strongest where product complexity, systems thinking, and execution overlap. I'm comfortable facilitating with executives, digging into workflows with users, building scalable design systems, and working directly with engineers to ship the final experience.</p>
-                    <div class="about-preview__cta">
-                        <a href="/portfolio/about/" class="btn--link">More about me</a>
+            <article class="band band--feature reveal">
+                <div class="band__info">
+                    <div class="band__lede">
+                        <p class="band__index"><span class="band__num">01</span> TIAA &middot; Financial services</p>
+                        <h3 class="band__title" style="view-transition-name: proj-tiaa-design-system"><a href="/portfolio/tiaa-design-system/" data-event="casestudy_open" data-event-label="tiaa-design-system">Scaling an enterprise financial design system</a></h3>
+                        <p class="band__lead">TIAA's product groups were each rebuilding the same components a little differently. As the Experience Design Lead, I set the standards, the states, and the governance, then made the system easy enough to adopt that teams stopped forking it.</p>
+                        <p class="band__more"><a href="/portfolio/tiaa-design-system/" data-event="casestudy_open" data-event-label="tiaa-design-system">Read the case study <span aria-hidden="true">&rarr;</span></a></p>
                     </div>
+                    <dl class="band__facts">
+                        <div><dt>Role</dt><dd>Experience Design Lead</dd></div>
+                        <div><dt>Timeline</dt><dd>2023 – 2024</dd></div>
+                    </dl>
+                </div>
+            </article>
+            <article class="band band--standard reveal">
+                <div class="band__info">
+                    <div class="band__lede">
+                        <p class="band__index"><span class="band__num">02</span> UnitedHealth Group &middot; Healthcare</p>
+                        <h3 class="band__title" style="view-transition-name: proj-unitedhealth-transportation"><a href="/portfolio/unitedhealth-transportation/" data-event="casestudy_open" data-event-label="unitedhealth-transportation">Accessible transportation benefits for health-plan members</a></h3>
+                        <p class="band__lead">People were booking rides to medical appointments through a slow, multi-step flow that left them unsure it had even worked. I rebuilt it around fewer steps and obvious confirmation, and tested it with real members.</p>
+                        <p class="band__more"><a href="/portfolio/unitedhealth-transportation/" data-event="casestudy_open" data-event-label="unitedhealth-transportation">Read the case study <span aria-hidden="true">&rarr;</span></a></p>
+                    </div>
+                    <dl class="band__facts">
+                        <div><dt>Role</dt><dd>Principal UI/UX Designer</dd></div>
+                        <div><dt>Timeline</dt><dd>2022 – 2023</dd></div>
+                    </dl>
+                </div>
+            </article>
+            <article class="band band--standard reveal">
+                <div class="band__info">
+                    <div class="band__lede">
+                        <p class="band__index"><span class="band__num">03</span> Nutrient &middot; Developer tools &amp; SaaS</p>
+                        <h3 class="band__title" style="view-transition-name: proj-nutrient-website"><a href="/portfolio/nutrient-website/" data-event="casestudy_open" data-event-label="nutrient-website">Bringing five products into one developer platform</a></h3>
+                        <p class="band__lead">Nutrient had sprawled into five separate product sites and brands. Through my studio, I designed one product-led platform and built it in React and Astro, so it read as a single company without flattening the products underneath.</p>
+                        <p class="band__more"><a href="/portfolio/nutrient-website/" data-event="casestudy_open" data-event-label="nutrient-website">Read the case study <span aria-hidden="true">&rarr;</span></a></p>
+                    </div>
+                    <dl class="band__facts">
+                        <div><dt>Role</dt><dd>Principal Product Designer</dd></div>
+                        <div><dt>Timeline</dt><dd>2024</dd></div>
+                        <div><dt>Built with</dt><dd>React, Astro</dd></div>
+                        <div><dt>Live</dt><dd><a href="https://nutrient.io/" target="_blank" rel="noopener noreferrer" data-event="external_project_link" data-event-label="nutrient-website">nutrient.io</a></dd></div>
+                    </dl>
+                </div>
+            </article>
+            <article class="band band--standard reveal">
+                <div class="band__info">
+                    <div class="band__lede">
+                        <p class="band__index"><span class="band__num">04</span> Lowe's Pro Supply &middot; B2B commerce</p>
+                        <h3 class="band__title" style="view-transition-name: proj-lowes-pro-supply"><a href="/portfolio/lowes-pro-supply/" data-event="casestudy_open" data-event-label="lowes-pro-supply">Streamlining ordering for professional contractors</a></h3>
+                        <p class="band__lead">Lowe's Pro Supply's contractors run the same ordering tasks all day. I cut the navigation depth and the context-switching so routine work stopped fighting them.</p>
+                        <p class="band__more"><a href="/portfolio/lowes-pro-supply/" data-event="casestudy_open" data-event-label="lowes-pro-supply">Read the case study <span aria-hidden="true">&rarr;</span></a></p>
+                    </div>
+                    <dl class="band__facts">
+                        <div><dt>Role</dt><dd>Product Designer</dd></div>
+                        <div><dt>Timeline</dt><dd>2022 – 2023</dd></div>
+                    </dl>
+                </div>
+            </article>
+            <article class="band band--standard reveal">
+                <div class="band__info">
+                    <div class="band__lede">
+                        <p class="band__index"><span class="band__num">05</span> Synquery &middot; Expert networks &amp; SaaS</p>
+                        <h3 class="band__title" style="view-transition-name: proj-synquery-product"><a href="/portfolio/synquery-product/" data-event="casestudy_open" data-event-label="synquery-product">Defining an early-stage expert-network product</a></h3>
+                        <p class="band__lead">Synquery is an early-stage expert-network platform. I worked straight with the founders to define the core product and ship the marketing site.</p>
+                        <p class="band__more"><a href="/portfolio/synquery-product/" data-event="casestudy_open" data-event-label="synquery-product">Read the case study <span aria-hidden="true">&rarr;</span></a></p>
+                    </div>
+                    <dl class="band__facts">
+                        <div><dt>Role</dt><dd>Principal Product Designer</dd></div>
+                        <div><dt>Timeline</dt><dd>2024</dd></div>
+                        <div><dt>Live</dt><dd><a href="https://synquery.ai/" target="_blank" rel="noopener noreferrer" data-event="external_project_link" data-event-label="synquery-product">synquery.ai</a></dd></div>
+                    </dl>
+                </div>
+            </article>
+        </section>
+
+        <section class="approach" aria-labelledby="approach-title">
+            <div class="approach__lead-wrap reveal">
+                <h2 class="section-label" id="approach-title">How I work</h2>
+                <p class="approach__lead">Here's what I actually think: most enterprise software is bad because nobody owns the whole thing. Strategy hands off to design, design hands off to engineering, and the intent leaks out at every seam. I don't work that way. I stay on it, from the first messy question to the code that ships. Give me a product with real complexity underneath and a team that needs someone to keep it coherent, and that's where I'm most useful.</p>
+            </div>
+            <ul class="approach__examples reveal">
+                <li><span class="approach__at">At TIAA</span><span class="approach__did">the product groups were each rebuilding the same components a little differently. I set the standards and the governance, then made the system easy enough to adopt that teams stopped forking it.</span></li>
+                <li><span class="approach__at">At UnitedHealth</span><span class="approach__did">members booking rides to medical appointments couldn't tell if it had worked. I cut the steps, made confirmation obvious, and put it in front of real members.</span></li>
+                <li><span class="approach__at">For Nutrient</span><span class="approach__did">I designed the platform and shipped it in React and Astro myself, so nothing got lost between the file and production.</span></li>
+            </ul>
+        </section>
+
+        <section class="experience reveal" aria-labelledby="experience-title">
+            <div class="experience__head">
+                <h2 class="section-label" id="experience-title">Experience</h2>
+                <p class="experience__note">Employment is direct. Consulting clients came through Push Refresh, my studio. Brand work was as lead or senior designer at Bottle Rocket.</p>
+            </div>
+            <div class="experience__groups">
+                <div class="experience__group">
+                    <h3>Employment</h3>
+                    <ul><li>TIAA</li><li>UnitedHealth Group</li><li>Hubilo</li><li>Bottle Rocket</li></ul>
+                </div>
+                <div class="experience__group">
+                    <h3>Selected consulting</h3>
+                    <ul><li>SmithRx</li><li>Nutrient</li><li>GLG</li><li>Renew Home</li><li>Smidt Foundation</li></ul>
+                </div>
+                <div class="experience__group">
+                    <h3>Selected brand work</h3>
+                    <ul><li>Coca-Cola Freestyle</li><li>Southwest Airlines</li><li>7-Eleven</li><li>Michaels</li><li>Visible</li><li>GoodLeap</li></ul>
                 </div>
             </div>
         </section>
 
-        <!-- ===== EDIT: CLOSING CTA ===== -->
-        <section class="closing" aria-labelledby="closing-title">
-        <div class="closing__inner">
-            <h2 class="closing__title" id="closing-title">Have a complex product problem?</h2>
-            <p class="closing__copy">I'm currently exploring Staff and Principal Product Design opportunities where I can help shape product direction, scale systems, and work closely with design, product, and engineering.</p>
-            <div class="closing__actions">
-                <a href="mailto:rossi@pushrefresh.com?subject=Hello%20Michael" class="btn btn--primary" data-event="contact_click" data-event-label="closing">Get in touch</a>
-                <a href="/portfolio/Rossi-Resume-2026.pdf" class="btn btn--secondary" download data-event="resume_download" data-event-label="closing">Download resume</a>
-            </div>
-        </div>
+        <section class="closing reveal" aria-label="Contact">
+            <p class="closing__statement">I'm looking for a Staff or Principal role where I get to stay on the tools. I'll lead the strategy and sit in the meetings, but I do my best work with my hands in the actual product — design and code both.</p>
+            <p class="closing__note">Still an IC at heart, not just a manager.</p>
+            <p class="closing__links">
+                <a href="mailto:itsmichaelrossi@gmail.com?subject=Hello%20Michael" data-event="contact_click" data-event-label="closing">itsmichaelrossi@gmail.com</a>
+                <a href="/portfolio/Rossi-Resume-2026.pdf" target="_blank" rel="noopener" data-event="resume_view" data-event-label="closing">Résumé</a>
+            </p>
         </section>
     </main>
-
-    <!-- ===== Footer ===== -->
-    <footer class="site-footer">
-        <div class="site-footer__inner">
-            <p class="site-footer__brand">Michael Rossi <span>— Principal Product Design Leader</span></p>
-            <nav class="site-footer__nav" aria-label="Footer">
-                <a href="#work">Work</a>
-                <a href="/portfolio/about/">About</a>
-                <a href="/portfolio/Rossi-Resume-2026.pdf" download data-event="resume_download" data-event-label="footer">Resume</a>
-                <a href="mailto:rossi@pushrefresh.com?subject=Hello%20Michael" data-event="contact_click" data-event-label="footer">Contact</a>
-            </nav>
-            <div class="site-footer__meta">
-                <span>&copy; <span data-current-year>2026</span> Michael Rossi · Dallas, Texas</span>
-                <span>rossi@pushrefresh.com</span>
+    <footer class="colophon">
+        <div class="colophon__inner">
+            <div class="colophon__id">
+                <p class="colophon__name">Michael Rossi</p>
+                <p class="colophon__role">Principal Product Design Leader · Dallas, Texas</p>
             </div>
+            <nav class="colophon__nav" aria-label="Footer">
+                <a href="/portfolio/#work">Work</a>
+                <a href="/portfolio/about/">About</a>
+                <a href="/portfolio/Rossi-Resume-2026.pdf" target="_blank" rel="noopener" data-event="resume_view" data-event-label="footer">Résumé</a>
+                <a href="mailto:itsmichaelrossi@gmail.com?subject=Hello%20Michael" data-event="contact_click" data-event-label="footer">itsmichaelrossi@gmail.com</a>
+            </nav>
+            <p class="colophon__note">Designed and built by Michael Rossi in Dallas. 2026.</p>
         </div>
     </footer>
-
-    <script src="/portfolio/site.js"></script>
-    <script src="/portfolio/home.js"></script>
+    <script src="/portfolio/enhance.js" defer></script>
+    <script src="/portfolio/liquid.js" defer></script>
 </body>
 </html>

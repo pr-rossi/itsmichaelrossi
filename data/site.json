@@ -1,0 +1,119 @@
+{
+  "meta": {
+    "name": "Michael Rossi",
+    "role": "Principal Product Design Leader",
+    "location": "Dallas, Texas",
+    "baseUrl": "https://itsmichaelrossi.com",
+    "email": "itsmichaelrossi@gmail.com",
+    "consultingEmail": "rossi@pushrefresh.com",
+    "resume": "/portfolio/Rossi-Resume-2026.pdf",
+    "ogImage": "/images/open_graph_image.jpg",
+    "linkedin": ""
+  },
+  "seo": {
+    "home": {
+      "title": "Michael Rossi — Principal Product Design Leader",
+      "description": "Principal Product Design Leader specializing in enterprise product strategy, design systems, complex workflows, and front-end execution across healthcare, fintech, SaaS, and consumer products."
+    },
+    "about": {
+      "title": "About — Michael Rossi",
+      "description": "Michael Rossi is a Principal Product Design Leader and front-end builder in Dallas, Texas, with 12+ years across enterprise, high-growth, and consulting work in healthcare, fintech, SaaS, and consumer products."
+    }
+  },
+  "hero": {
+    "headline": "I design software, then I build it.",
+    "note": "Howdy — I'm Rossi, a product designer in Dallas. Twelve years in, I've learned the interesting problems are never the pretty ones: the tangled workflow, the requirements that fight each other, the feature engineering swears can't ship by Friday. I've done that work inside big enterprises, at a high-growth company, and through my own studio. It's the work I want.",
+    "availability": "Open to Staff and Principal roles — the kind where I stay on the tools, not just the org chart.",
+    "facts": [
+      { "value": "12+ years", "label": "designing and building" },
+      { "value": "100+", "label": "products shipped" },
+      { "value": "15+", "label": "long-term clients" },
+      { "value": "Fortune 500", "label": "to my own studio" }
+    ]
+  },
+  "work": {
+    "label": "Selected work",
+    "intro": "Five projects. The common thread: a complicated product that needed one person holding strategy, design, systems, and the front-end together."
+  },
+  "howIWork": {
+    "label": "How I work",
+    "statement": "Here's what I actually think: most enterprise software is bad because nobody owns the whole thing. Strategy hands off to design, design hands off to engineering, and the intent leaks out at every seam. I don't work that way. I stay on it, from the first messy question to the code that ships. Give me a product with real complexity underneath and a team that needs someone to keep it coherent, and that's where I'm most useful.",
+    "examples": [
+      { "at": "At TIAA", "did": "the product groups were each rebuilding the same components a little differently. I set the standards and the governance, then made the system easy enough to adopt that teams stopped forking it." },
+      { "at": "At UnitedHealth", "did": "members booking rides to medical appointments couldn't tell if it had worked. I cut the steps, made confirmation obvious, and put it in front of real members." },
+      { "at": "For Nutrient", "did": "I designed the platform and shipped it in React and Astro myself, so nothing got lost between the file and production." }
+    ]
+  },
+  "experience": {
+    "label": "Experience",
+    "note": "Employment is direct. Consulting clients came through Push Refresh, my studio. Brand work was as lead or senior designer at Bottle Rocket.",
+    "groups": [
+      { "heading": "Employment", "items": ["TIAA", "UnitedHealth Group", "Hubilo", "Bottle Rocket"] },
+      { "heading": "Selected consulting", "items": ["SmithRx", "Nutrient", "GLG", "Renew Home", "Smidt Foundation"] },
+      { "heading": "Selected brand work", "items": ["Coca-Cola Freestyle", "Southwest Airlines", "7-Eleven", "Michaels", "Visible", "GoodLeap"] }
+    ]
+  },
+  "aboutPreview": {
+    "label": "About",
+    "paragraphs": [
+      "I run toward the messy part of a product: the complicated workflows, the requirements that don't agree with each other, the constraints, the handoff between design and engineering where good work usually goes to die.",
+      "Twelve years of that, across big enterprises, a high-growth company, and my own studio. I can lead the strategy and I can write the front-end code, and I'm usually most useful doing both."
+    ],
+    "link": "More about me"
+  },
+  "closing": {
+    "statement": "I'm looking for a Staff or Principal role where I get to stay on the tools. I'll lead the strategy and sit in the meetings, but I do my best work with my hands in the actual product — design and code both.",
+    "note": "Still an IC at heart, not just a manager."
+  },
+  "about": {
+    "title": "I go looking for the complicated stuff.",
+    "lede": "Howdy — I'm Michael Rossi, though most people just call me Rossi. Product designer and front-end builder in Dallas. My best work happens where product complexity, systems, and actual shipping code overlap.",
+    "sections": [
+      {
+        "label": "Background",
+        "style": "lead",
+        "heading": "From Fortune 500 floors to a studio of my own.",
+        "paragraphs": [
+          "Twelve-plus years designing and shipping enterprise software: healthcare, fintech, SaaS, consumer. I've done it inside Fortune 500 companies, led design at a high-growth company, been the lead designer on big consumer brands, and started Push Refresh to take on the complex product problems I find most interesting.",
+          "The range is the point. The same person who runs the strategy session with executives can sit with a user to untangle a workflow, define the design system under it, and write the front-end that ships it. Most people do one of those. I like doing the whole line."
+        ]
+      },
+      {
+        "label": "How I work",
+        "heading": "The handoff is where intent goes to die.",
+        "paragraphs": [
+          "Most product work leaks. Strategy hands off to design, design hands off to engineering, and by the time it ships it's a blurry copy of the original idea. I close that gap by doing more of it myself.",
+          "I design with the build in mind, because I'm often the one building it. When I hand something to an engineer, it's because they'll do it better than me, not because I've run out of road. That's usually why the thing on screen matches the thing in the file."
+        ]
+      },
+      {
+        "label": "Leadership",
+        "heading": "I've led people, and I've led the work.",
+        "list": [
+          "Ran the web and product design teams at Hubilo, with four designers reporting to me.",
+          "Led cross-functional teams of designers and developers at Push Refresh, discovery through launch.",
+          "Mentored designers and set the quality bar across projects at Bottle Rocket.",
+          "Sat across the table from founders, executives, compliance, clinical folks, PMs, and engineers, and kept them pointed the same direction."
+        ]
+      },
+      {
+        "label": "Current focus",
+        "heading": "What I want next.",
+        "paragraphs": [
+          "A Staff or Principal role where I stay close to the work. I'm happy to lead — strategy, direction, systems, mentoring — but I'm not looking to trade the craft for a calendar full of meetings. The best version of me still has hands on the product."
+        ]
+      }
+    ],
+    "expertise": {
+      "heading": "Where I go deep",
+      "groups": [
+        { "heading": "Strategy", "items": ["Product strategy", "UX strategy", "Product discovery", "End-to-end product design"] },
+        { "heading": "Research & systems", "items": ["User research", "Information architecture", "Interaction design", "Design systems architecture"] },
+        { "heading": "Leadership", "items": ["Executive stakeholder partnership", "Cross-functional leadership", "Workshop facilitation"] },
+        { "heading": "Craft", "items": ["Accessibility", "Rapid prototyping", "Front-end development"] }
+      ],
+      "tools": "Figma, Framer, Webflow, React, Next.js, HTML, CSS, and JavaScript, plus an AI-assisted stack (Cursor, Claude Code, v0) when it makes the work faster.",
+      "certifications": ["Webflow Certified Expert", "Framer Enterprise Certified Partner"]
+    }
+  }
+}
