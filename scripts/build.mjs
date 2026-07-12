@@ -186,7 +186,7 @@ function projectBand(p, num, tier) {
                 <p class="band__folio" aria-hidden="true">${num}</p>
                 <div class="band__body">
                     <p class="band__eyebrow">${esc(p.client)} <span aria-hidden="true">&middot;</span> ${esc(p.industry)}</p>
-                    <h3 class="band__title" style="view-transition-name: proj-${esc(p.slug)}"><a href="/portfolio/${esc(p.slug)}/" data-event="casestudy_open" data-event-label="${esc(p.slug)}">${esc(p.title)}</a></h3>
+                    <h3 class="band__title"><a href="/portfolio/${esc(p.slug)}/" data-event="casestudy_open" data-event-label="${esc(p.slug)}">${esc(p.title)}</a></h3>
                     <p class="band__lead">${esc(p.lead)}</p>
                     <p class="band__caps">${caps.map((c) => esc(c)).join(' <span aria-hidden="true">&middot;</span> ')}${built}</p>
                 </div>
@@ -489,7 +489,7 @@ function caseStudyPage(p) {
             <a class="back-link" href="/portfolio/#work"><span aria-hidden="true">&larr;</span> All work</a>
             <header class="cs-header">
                 <p class="cs-header__client">${esc(p.client)}</p>
-                <h1 class="cs-header__title" style="view-transition-name: proj-${esc(p.slug)}">${esc(p.title)}</h1>
+                <h1 class="cs-header__title">${esc(p.title)}</h1>
                 <p class="cs-header__lead">${esc(p.lead)}</p>
                 ${facts(p)}
             </header>

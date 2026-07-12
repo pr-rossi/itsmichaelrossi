@@ -227,14 +227,17 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
 .band { perspective: 1100px; }
 .band__media { transform-style: preserve-3d; }
 
-/* A heavier, blurred cross-dissolve on the cross-page morph */
+/* Subtle whole-page slide on cross-page navigation: the outgoing page lifts up
+   and fades away; the incoming page rises up from just below into place. Gentle
+   vertical drift, no morph — the page moves as one sheet. (Chromium; other
+   browsers just navigate normally.) */
 @media (prefers-reduced-motion: no-preference) {
-    ::view-transition-group(*) { animation-duration: 0.55s; animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
-    ::view-transition-old(root) { animation: vt-old 0.4s both cubic-bezier(0.5, 0, 1, 1); }
-    ::view-transition-new(root) { animation: vt-new 0.55s 0.04s both cubic-bezier(0, 0, 0.2, 1); }
+    ::view-transition-group(root) { animation-duration: 0.5s; }
+    ::view-transition-old(root) { animation: page-lift 0.32s both cubic-bezier(0.4, 0, 1, 1); }
+    ::view-transition-new(root) { animation: page-rise 0.5s 0.06s both cubic-bezier(0.16, 1, 0.3, 1); }
 }
-@keyframes vt-old { to { opacity: 0; filter: blur(8px); } }
-@keyframes vt-new { from { opacity: 0; filter: blur(8px); } }
+@keyframes page-lift { to { opacity: 0; transform: translateY(-2.25rem); } }
+@keyframes page-rise { from { opacity: 0; transform: translateY(2.25rem); } }
 
 /* Film grain — cinematic texture over the whole dark canvas */
 body::after {
