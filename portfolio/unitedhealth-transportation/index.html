@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accessible transportation benefits for health-plan members — Michael Rossi</title>
+    <title>Accessible transportation benefits for health-plan members · Michael Rossi</title>
     <meta name="description" content="People were booking rides to medical appointments through a slow, multi-step flow that left them unsure it had even worked. I rebuilt it around fewer steps and obvious confirmation, and tested it with real members.">
     <meta name="author" content="Michael Rossi">
     <link rel="canonical" href="https://itsmichaelrossi.com/portfolio/unitedhealth-transportation/">
 
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Michael Rossi">
-    <meta property="og:title" content="Accessible transportation benefits for health-plan members — Michael Rossi">
+    <meta property="og:title" content="Accessible transportation benefits for health-plan members · Michael Rossi">
     <meta property="og:description" content="People were booking rides to medical appointments through a slow, multi-step flow that left them unsure it had even worked. I rebuilt it around fewer steps and obvious confirmation, and tested it with real members.">
     <meta property="og:url" content="https://itsmichaelrossi.com/portfolio/unitedhealth-transportation/">
     <meta property="og:image" content="https://itsmichaelrossi.com/portfolio/images/uhc-scheduling-flow.jpg">
-    <meta property="og:image:alt" content="Michael Rossi — Principal Product Design Leader">
+    <meta property="og:image:alt" content="Michael Rossi · Principal Product Design Leader">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Accessible transportation benefits for health-plan members — Michael Rossi">
+    <meta name="twitter:title" content="Accessible transportation benefits for health-plan members · Michael Rossi">
     <meta name="twitter:description" content="People were booking rides to medical appointments through a slow, multi-step flow that left them unsure it had even worked. I rebuilt it around fewer steps and obvious confirmation, and tested it with real members.">
     <meta name="twitter:image" content="https://itsmichaelrossi.com/portfolio/images/uhc-scheduling-flow.jpg">
 
@@ -24,13 +24,13 @@
     <link rel="icon" type="image/svg+xml" href="/images/favicon-dark.svg" media="(prefers-color-scheme: dark)">
     <link rel="icon" type="image/svg+xml" href="/images/favicon-light.svg">
 
-    <meta name="theme-color" content="#121212">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,wght@0,300;0,400;0,500;1,300&display=swap">
+    <meta name="theme-color" content="#0a0a0a">
 
-    <link rel="stylesheet" href="/portfolio/site.css">
-    <link rel="stylesheet" href="/portfolio/case-study.css">
+    <link rel="preload" href="/font/GraphikRegular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/font/GraphikBlack.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="/portfolio/site.css?v=92e3252d">
+    <link rel="stylesheet" href="/portfolio/case-study.css?v=8b05614a">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"Accessible transportation benefits for health-plan members","headline":"Accessible transportation benefits for health-plan members","abstract":"People were booking rides to medical appointments through a slow, multi-step flow that left them unsure it had even worked. I rebuilt it around fewer steps and obvious confirmation, and tested it with real members.","about":"Healthcare","url":"https://itsmichaelrossi.com/portfolio/unitedhealth-transportation/","creator":{"@type":"Person","name":"Michael Rossi","jobTitle":"Principal Product Design Leader"},"image":"https://itsmichaelrossi.com/portfolio/images/uhc-scheduling-flow.jpg"}</script>
 </head>
 <body>
@@ -44,7 +44,6 @@
             <nav id="primary-nav" class="site-nav" aria-label="Primary">
                 <ul class="nav-links">
                     <li><a href="/portfolio/#work">Work</a></li>
-                    <li><a href="/portfolio/about/">About</a></li>
                     <li><a href="/portfolio/Rossi-Resume-2026.pdf" target="_blank" rel="noopener" data-event="resume_view" data-event-label="nav">Résumé</a></li>
                     <li><a href="mailto:itsmichaelrossi@gmail.com?subject=Hello%20Michael" data-event="contact_click" data-event-label="nav">Email</a></li>
                 </ul>
@@ -54,77 +53,89 @@
     <main id="main">
         <article class="case-study">
             <a class="back-link" href="/portfolio/#work"><span aria-hidden="true">&larr;</span> All work</a>
-            <header class="cs-header">
-                <p class="cs-header__client">UnitedHealth Group</p>
-                <h1 class="cs-header__title">Accessible transportation benefits for health-plan members</h1>
-                <p class="cs-header__lead">People were booking rides to medical appointments through a slow, multi-step flow that left them unsure it had even worked. I rebuilt it around fewer steps and obvious confirmation, and tested it with real members.</p>
-                <dl class="cs-facts"><div><dt>Company</dt><dd>UnitedHealth Group</dd></div><div><dt>Role</dt><dd>Principal UI/UX Designer</dd></div><div><dt>Industry</dt><dd>Healthcare</dd></div><div><dt>Timeline</dt><dd>2022 – 2023</dd></div></dl>
-            </header>
-            <div class="cs-hero"><figure class="cs-figure">
+            <div class="cs-layout">
+                <header class="cs-header">
+                    <p class="cs-header__client">UnitedHealth Group</p>
+                    <h1 class="cs-header__title">Accessible transportation benefits for health-plan members</h1>
+                    <p class="cs-header__lead">People were booking rides to medical appointments through a slow, multi-step flow that left them unsure it had even worked. I rebuilt it around fewer steps and obvious confirmation, and tested it with real members.</p>
+                </header>
+                <aside class="cs-rail">
+                    <div class="cs-rail__inner">
+                        <dl class="cs-facts"><div><dt>Company</dt><dd>UnitedHealth Group</dd></div><div><dt>Role</dt><dd>Principal UI/UX Designer</dd></div><div><dt>Industry</dt><dd>Healthcare</dd></div><div><dt>Timeline</dt><dd>2022 – 2023</dd></div></dl>
+                        <nav class="toc" aria-labelledby="cs-toc-label">
+                        <p class="toc__label" id="cs-toc-label">Contents</p>
+                        <ol><li><a href="#context">Context</a></li><li><a href="#the-problem">The problem</a></li><li><a href="#what-i-did">What I did</a></li><li><a href="#how-i-approached-it">How I approached it</a></li><li><a href="#key-decisions">Key decisions</a></li><li><a href="#systems-patterns">Systems &amp; patterns</a></li><li><a href="#what-shipped">What shipped</a></li><li><a href="#reflection">Reflection</a></li></ol>
+                    </nav>
+                    </div>
+                </aside>
+                <div class="cs-main">
+                    <div class="cs-hero"><figure class="cs-figure">
                 <button type="button" class="cs-zoom" aria-label="Enlarge image: End-to-end ride scheduling flow from selecting details through booking" data-full="/portfolio/images/uhc-scheduling-flow.jpg" data-caption="The scheduling flow was rebuilt around fewer, clearer steps, so members could book a ride without second-guessing each screen."><picture><source type="image/webp" srcset="/portfolio/images/uhc-scheduling-flow.webp"><img src="/portfolio/images/uhc-scheduling-flow.jpg" alt="End-to-end ride scheduling flow from selecting details through booking" width="4377" height="1795" loading="eager" decoding="async" fetchpriority="high"></picture></button>
                 <figcaption>The scheduling flow was rebuilt around fewer, clearer steps, so members could book a ride without second-guessing each screen.</figcaption>
             </figure></div>
-            <div class="cs-body">
-                <section class="cs-section ">
+                    <div class="cs-body">
+                        <section class="cs-section " id="context">
                 <div class="cs-section__body">
                     <h2>Context</h2>
                     <p>Eligible members of certain health plans can schedule transportation to and from medical appointments as a covered benefit. The people using it are often older, managing health conditions, or arranging a ride under time pressure. The experience had to be dependable and easy to trust, because a missed or confusing booking can mean a missed appointment.</p>
                 </div>
             </section>
-                <section class="cs-section ">
+                        <section class="cs-section " id="the-problem">
                 <div class="cs-section__body">
                     <h2>The problem</h2>
                     <p>Scheduling a ride took too many steps and left members unsure whether the booking had actually gone through. In a regulated healthcare product, edge cases and eligibility rules add real complexity, and every added step is another place to get stuck or lose confidence. The challenge was cutting effort and doubt without dropping the details the benefit legitimately requires.</p>
                 </div>
             </section>
-                <figure class="cs-figure">
-                <button type="button" class="cs-zoom" aria-label="Enlarge image: Ride confirmation screen summarizing appointment, pickup, and timing details" data-full="/portfolio/images/uhc-scheduling-confirmation.jpg" data-caption="Explicit confirmation at the end of the flow gave members certainty the ride was booked — which matters most when the trip is to a medical appointment."><picture><source type="image/webp" srcset="/portfolio/images/uhc-scheduling-confirmation.webp"><img src="/portfolio/images/uhc-scheduling-confirmation.jpg" alt="Ride confirmation screen summarizing appointment, pickup, and timing details" width="4377" height="2801" loading="lazy" decoding="async"></picture></button>
-                <figcaption>Explicit confirmation at the end of the flow gave members certainty the ride was booked — which matters most when the trip is to a medical appointment.</figcaption>
+                        <figure class="cs-figure">
+                <button type="button" class="cs-zoom" aria-label="Enlarge image: Ride confirmation screen summarizing appointment, pickup, and timing details" data-full="/portfolio/images/uhc-scheduling-confirmation.jpg" data-caption="Explicit confirmation at the end of the flow gave members certainty the ride was booked, which matters most when the trip is to a medical appointment."><picture><source type="image/webp" srcset="/portfolio/images/uhc-scheduling-confirmation.webp"><img src="/portfolio/images/uhc-scheduling-confirmation.jpg" alt="Ride confirmation screen summarizing appointment, pickup, and timing details" width="4377" height="2801" loading="lazy" decoding="async"></picture></button>
+                <figcaption>Explicit confirmation at the end of the flow gave members certainty the ride was booked, which matters most when the trip is to a medical appointment.</figcaption>
             </figure>
-                <section class="cs-section ">
+                        <section class="cs-section " id="what-i-did">
                 <div class="cs-section__body">
                     <h2>What I did</h2>
                     <ul class="cs-list"><li>Led product design for the transportation scheduling experience as Principal UI/UX Designer</li><li>Designed the end-to-end flow across eligibility, booking, confirmation, and ride status</li><li>Ran user research and usability testing to validate the flow with real members</li><li>Partnered with product, engineering, and clinical stakeholders inside a regulated environment</li></ul>
                 </div>
             </section>
-                <section class="cs-section ">
+                        <section class="cs-section " id="how-i-approached-it">
                 <div class="cs-section__body">
                     <h2>How I approached it</h2>
                     <ul class="cs-list"><li>Mapped the full scheduling journey to find where members hesitated or dropped off</li><li>Ran usability testing to check that each step held up under real conditions</li><li>Designed clear confirmation and status at every point, so members always knew where things stood</li><li>Worked through eligibility and edge cases with product and clinical partners so the happy path stayed simple</li><li>Held accessibility as a first-class requirement given the member population</li></ul>
                 </div>
             </section>
-                <figure class="cs-figure">
+                        <figure class="cs-figure">
                 <button type="button" class="cs-zoom" aria-label="Enlarge image: Ride history and status views showing upcoming and past ride states" data-full="/portfolio/images/uhc-ride-history.jpg" data-caption="Clear ride states and history let members see what was scheduled, in progress, or complete at a glance."><picture><source type="image/webp" srcset="/portfolio/images/uhc-ride-history.webp"><img src="/portfolio/images/uhc-ride-history.jpg" alt="Ride history and status views showing upcoming and past ride states" width="3580" height="3161" loading="lazy" decoding="async"></picture></button>
                 <figcaption>Clear ride states and history let members see what was scheduled, in progress, or complete at a glance.</figcaption>
             </figure>
-                <section class="cs-section ">
+                        <section class="cs-section " id="key-decisions">
                 <div class="cs-section__body">
                     <h2>Key decisions</h2>
                     <ul class="cs-list"><li>Cut the number of steps it took to book a ride</li><li>Made confirmation and status explicit at each step, because certainty matters most when someone is arranging medical care</li><li>Limited choices at the critical decision points to lower cognitive load without hiding what members needed</li><li>Designed for accessibility and edge cases up front rather than retrofitting them</li></ul>
                 </div>
             </section>
-                <figure class="cs-figure">
+                        <figure class="cs-figure">
                 <button type="button" class="cs-zoom" aria-label="Enlarge image: System notifications communicating ride status updates to members" data-full="/portfolio/images/uhc-notifications.jpg" data-caption="Status messages were written as one consistent voice, so proactive updates reduced uncertainty instead of adding noise."><picture><source type="image/webp" srcset="/portfolio/images/uhc-notifications.webp"><img src="/portfolio/images/uhc-notifications.jpg" alt="System notifications communicating ride status updates to members" width="2400" height="2366" loading="lazy" decoding="async"></picture></button>
                 <figcaption>Status messages were written as one consistent voice, so proactive updates reduced uncertainty instead of adding noise.</figcaption>
             </figure>
-                <section class="cs-section ">
+                        <section class="cs-section " id="systems-patterns">
                 <div class="cs-section__body">
                     <h2>Systems &amp; patterns</h2>
                     <ul class="cs-list"><li>Reusable, accessible patterns for scheduling, confirmation, and status that could carry across regulated healthcare flows</li><li>One consistent voice for system messages, so updates felt coherent instead of noisy</li></ul>
                 </div>
             </section>
-                <section class="cs-section cs-section--outcome">
+                        <section class="cs-section cs-section--outcome" id="what-shipped">
                 <div class="cs-section__body">
                     <h2>What shipped</h2>
                     <p>A clearer, more accessible scheduling experience: fewer steps to book, explicit confirmation at each stage, and a flow tested with real members.</p>
                 </div>
             </section>
-                <section class="cs-section cs-section--reflection">
+                        <section class="cs-section cs-section--reflection" id="reflection">
                 <div class="cs-section__body">
                     <h2>Reflection</h2>
                     <p>This was a reminder that in healthcare, clarity is the feature. People are not admiring the interface; they are trying to get to a doctor. The most valuable decisions were the quiet ones, like confirming a booking clearly and removing a step that added doubt. Designing for members under stress, inside real regulatory constraints, is the kind of high-stakes work I want to keep doing.</p>
                 </div>
             </section>
+                    </div>
+                </div>
             </div>
             <nav class="cs-pagination" aria-label="Case study navigation">
                 <a class="cs-page cs-page--prev" href="/portfolio/tiaa-design-system/"><span class="cs-page__label">Previous</span><span class="cs-page__title">Scaling an enterprise financial design system</span></a>
@@ -141,13 +152,12 @@
             </div>
             <nav class="colophon__nav" aria-label="Footer">
                 <a href="/portfolio/#work">Work</a>
-                <a href="/portfolio/about/">About</a>
                 <a href="/portfolio/Rossi-Resume-2026.pdf" target="_blank" rel="noopener" data-event="resume_view" data-event-label="footer">Résumé</a>
                 <a href="mailto:itsmichaelrossi@gmail.com?subject=Hello%20Michael" data-event="contact_click" data-event-label="footer">itsmichaelrossi@gmail.com</a>
             </nav>
             <p class="colophon__note">Designed and built by Michael Rossi in Dallas. 2026.</p>
         </div>
     </footer>
-    <script src="/portfolio/enhance.js" defer></script>
+    <script src="/portfolio/enhance.js?v=2015ffc9" defer></script>
 </body>
 </html>

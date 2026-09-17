@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michael Rossi — Principal Product Design Leader</title>
+    <title>Michael Rossi · Principal Product Design Leader</title>
     <meta name="description" content="Principal Product Design Leader specializing in enterprise product strategy, design systems, complex workflows, and front-end execution across healthcare, fintech, SaaS, and consumer products.">
     <meta name="author" content="Michael Rossi">
     <link rel="canonical" href="https://itsmichaelrossi.com/portfolio/">
 
     <meta property="og:type" content="profile">
     <meta property="og:site_name" content="Michael Rossi">
-    <meta property="og:title" content="Michael Rossi — Principal Product Design Leader">
+    <meta property="og:title" content="Michael Rossi · Principal Product Design Leader">
     <meta property="og:description" content="Principal Product Design Leader specializing in enterprise product strategy, design systems, complex workflows, and front-end execution across healthcare, fintech, SaaS, and consumer products.">
     <meta property="og:url" content="https://itsmichaelrossi.com/portfolio/">
     <meta property="og:image" content="https://itsmichaelrossi.com/images/open_graph_image.jpg">
-    <meta property="og:image:alt" content="Michael Rossi — Principal Product Design Leader">
+    <meta property="og:image:alt" content="Michael Rossi · Principal Product Design Leader">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Michael Rossi — Principal Product Design Leader">
+    <meta name="twitter:title" content="Michael Rossi · Principal Product Design Leader">
     <meta name="twitter:description" content="Principal Product Design Leader specializing in enterprise product strategy, design systems, complex workflows, and front-end execution across healthcare, fintech, SaaS, and consumer products.">
     <meta name="twitter:image" content="https://itsmichaelrossi.com/images/open_graph_image.jpg">
 
@@ -24,13 +24,13 @@
     <link rel="icon" type="image/svg+xml" href="/images/favicon-dark.svg" media="(prefers-color-scheme: dark)">
     <link rel="icon" type="image/svg+xml" href="/images/favicon-light.svg">
 
-    <meta name="theme-color" content="#121212">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,wght@0,300;0,400;0,500;1,300&display=swap">
+    <meta name="theme-color" content="#0a0a0a">
 
-    <link rel="stylesheet" href="/portfolio/site.css">
-    <link rel="stylesheet" href="/portfolio/home.css">
+    <link rel="preload" href="/font/GraphikRegular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/font/GraphikBlack.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="/portfolio/site.css?v=92e3252d">
+    <link rel="stylesheet" href="/portfolio/home.css?v=ba3e9312">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Michael Rossi","jobTitle":"Principal Product Design Leader","url":"https://itsmichaelrossi.com/portfolio/","email":"mailto:itsmichaelrossi@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Dallas","addressRegion":"TX","addressCountry":"US"},"knowsAbout":["Product design","Design systems","UX strategy","Front-end development","Accessibility"]}</script>
 </head>
 <body>
@@ -44,7 +44,6 @@
             <nav id="primary-nav" class="site-nav" aria-label="Primary">
                 <ul class="nav-links">
                     <li><a href="/portfolio/#work">Work</a></li>
-                    <li><a href="/portfolio/about/">About</a></li>
                     <li><a href="/portfolio/Rossi-Resume-2026.pdf" target="_blank" rel="noopener" data-event="resume_view" data-event-label="nav">Résumé</a></li>
                     <li><a href="mailto:itsmichaelrossi@gmail.com?subject=Hello%20Michael" data-event="contact_click" data-event-label="nav">Email</a></li>
                 </ul>
@@ -52,36 +51,39 @@
         </div>
     </header>
     <main id="main">
-        <section class="hero-intro">
-            <h1 class="hero-intro__name">
-                <span class="hero-intro__pre">who is</span>
-                <span class="hero-intro__you" aria-label="Michael Rossi?"><span class="ch" aria-hidden="true" style="--i:0">M</span><span class="ch" aria-hidden="true" style="--i:1">i</span><span class="ch" aria-hidden="true" style="--i:2">c</span><span class="ch" aria-hidden="true" style="--i:3">h</span><span class="ch" aria-hidden="true" style="--i:4">a</span><span class="ch" aria-hidden="true" style="--i:5">e</span><span class="ch" aria-hidden="true" style="--i:6">l</span><span class="ch ch--space" aria-hidden="true"> </span><span class="ch" aria-hidden="true" style="--i:8">R</span><span class="ch" aria-hidden="true" style="--i:9">o</span><span class="ch" aria-hidden="true" style="--i:10">s</span><span class="ch" aria-hidden="true" style="--i:11">s</span><span class="ch" aria-hidden="true" style="--i:12">i</span><span class="ch" aria-hidden="true" style="--i:13">?</span></span>
-            </h1>
-            <p class="hero-intro__links">
-                <a href="#about" class="hero-intro__link">let's find out <span class="arrowtrack arrowtrack--down" aria-hidden="true"><span class="arrowtrack__set"><span>&darr;</span><span>&darr;</span></span></span></a>
-                <a href="#work" class="hero-intro__link">see some work <span class="arrowtrack arrowtrack--right" aria-hidden="true"><span class="arrowtrack__set"><span>&rarr;</span><span>&rarr;</span></span></span></a>
-            </p>
+        <section class="hero">
+            <div class="hero__frame">
+                <img class="hero__portrait" src="/images/rossi.jpeg" width="1080" height="1080" alt="Michael Rossi" loading="eager" fetchpriority="high">
+            </div>
+            <div class="rail rail--left" aria-hidden="true"><p class="rail__text">Portfolio</p></div>
+            <div class="rail rail--right">
+                <ul class="rail__links">
+                    <li><a href="mailto:itsmichaelrossi@gmail.com?subject=Hello%20Michael" data-event="contact_click" data-event-label="rail">Email</a></li>
+                    <li><a href="/portfolio/Rossi-Resume-2026.pdf" target="_blank" rel="noopener" data-event="resume_view" data-event-label="rail">Résumé</a></li>
+                </ul>
+            </div>
+            <div class="hero__type">
+                <p class="hero__role">Principal Product Design Leader</p>
+                <h1 class="hero__name" aria-label="Michael Rossi"><span class="ch" aria-hidden="true" style="--i:0">M</span><span class="ch" aria-hidden="true" style="--i:1">i</span><span class="ch" aria-hidden="true" style="--i:2">c</span><span class="ch" aria-hidden="true" style="--i:3">h</span><span class="ch" aria-hidden="true" style="--i:4">a</span><span class="ch" aria-hidden="true" style="--i:5">e</span><span class="ch" aria-hidden="true" style="--i:6">l</span><span class="ch ch--space" aria-hidden="true"> </span><span class="ch" aria-hidden="true" style="--i:8">R</span><span class="ch" aria-hidden="true" style="--i:9">o</span><span class="ch" aria-hidden="true" style="--i:10">s</span><span class="ch" aria-hidden="true" style="--i:11">s</span><span class="ch" aria-hidden="true" style="--i:12">i</span></h1>
+            </div>
         </section>
 
         <section class="intro" id="about" aria-labelledby="intro-headline">
-            <div class="intro__portrait develop">
-                <img src="/images/rossi.jpeg" width="1080" height="1080" alt="Michael Rossi" loading="eager" fetchpriority="high">
-            </div>
+            <p class="section-label reveal">Introduction</p>
             <div class="intro__body">
-                <h2 class="intro__headline reveal" style="--d:0" id="intro-headline">I design software, then I build it.</h2>
-                <p class="intro__note reveal" style="--d:1">Howdy — I'm Rossi, a product designer in Dallas. Twelve years in, I've learned the interesting problems are never the pretty ones: the tangled workflow, the requirements that fight each other, the feature engineering swears can't ship by Friday. I've done that work inside big enterprises, at a high-growth company, and through my own studio. It's the work I want.</p>
-                <dl class="facts reveal" style="--d:2">
-                    <div class="facts__row"><dt>12+ years</dt> <dd>designing and building</dd></div>
-                    <div class="facts__row"><dt>100+</dt> <dd>products shipped</dd></div>
-                    <div class="facts__row"><dt>15+</dt> <dd>long-term clients</dd></div>
-                    <div class="facts__row"><dt>Fortune 500</dt> <dd>to my own studio</dd></div>
-                </dl>
-                <p class="intro__availability reveal" style="--d:3">Open to Staff and Principal roles — the kind where I stay on the tools, not just the org chart.</p>
-                <p class="intro__foot reveal" style="--d:4">
-                    <a href="/portfolio/about/">Learn more about Michael <span class="arrowtrack arrowtrack--right" aria-hidden="true"><span class="arrowtrack__set"><span>&rarr;</span><span>&rarr;</span></span></span></a>
-                    <a href="#work">See some work <span class="arrowtrack arrowtrack--down" aria-hidden="true"><span class="arrowtrack__set"><span>&darr;</span><span>&darr;</span></span></span></a>
+                <h2 class="intro__headline reveal" style="--d:0" id="intro-headline">I design software,<br>then I build it.</h2>
+                <p class="intro__note reveal" style="--d:1">Howdy. I'm Rossi, a product designer in Dallas. Twelve years in, I've learned the interesting problems are never the pretty ones: the tangled workflow, the requirements that fight each other, the feature engineering swears can't ship by Friday. I've done that work inside big enterprises, at a high-growth company, and through my own studio. It's the work I want.</p>
+                <p class="intro__availability reveal" style="--d:2">Open to Staff and Principal roles: the kind where I stay on the tools, not just the org chart.</p>
+                <p class="intro__foot reveal" style="--d:3">
+                    <a href="#work">See the work <span class="arrowtrack arrowtrack--down" aria-hidden="true"><span class="arrowtrack__set"><span>&darr;</span><span>&darr;</span></span></span></a>
                 </p>
             </div>
+            <dl class="facts reveal" style="--d:4">
+                <div class="facts__row"><dt>12+ years</dt> <dd>designing and building</dd></div>
+                <div class="facts__row"><dt>100+</dt> <dd>products shipped</dd></div>
+                <div class="facts__row"><dt>15+</dt> <dd>long-term clients</dd></div>
+                <div class="facts__row"><dt>Fortune 500</dt> <dd>to my own studio</dd></div>
+            </dl>
         </section>
 
         <section class="work" id="work" aria-labelledby="work-title">
@@ -197,7 +199,7 @@
         </section>
 
         <section class="closing reveal" aria-label="Contact">
-            <p class="closing__statement">I'm looking for a Staff or Principal role where I get to stay on the tools. I'll lead the strategy and sit in the meetings, but I do my best work with my hands in the actual product — design and code both.</p>
+            <p class="closing__statement">I'm looking for a Staff or Principal role where I get to stay on the tools. I'll lead the strategy and sit in the meetings, but I do my best work with my hands in the actual product: design and code both.</p>
             <p class="closing__note">Still an IC at heart, not just a manager.</p>
             <p class="closing__links">
                 <a href="mailto:itsmichaelrossi@gmail.com?subject=Hello%20Michael" data-event="contact_click" data-event-label="closing">itsmichaelrossi@gmail.com</a>
@@ -213,14 +215,12 @@
             </div>
             <nav class="colophon__nav" aria-label="Footer">
                 <a href="/portfolio/#work">Work</a>
-                <a href="/portfolio/about/">About</a>
                 <a href="/portfolio/Rossi-Resume-2026.pdf" target="_blank" rel="noopener" data-event="resume_view" data-event-label="footer">Résumé</a>
                 <a href="mailto:itsmichaelrossi@gmail.com?subject=Hello%20Michael" data-event="contact_click" data-event-label="footer">itsmichaelrossi@gmail.com</a>
             </nav>
             <p class="colophon__note">Designed and built by Michael Rossi in Dallas. 2026.</p>
         </div>
     </footer>
-    <script src="/portfolio/enhance.js" defer></script>
-    <script src="/portfolio/liquid.js" defer></script>
+    <script src="/portfolio/enhance.js?v=2015ffc9" defer></script>
 </body>
 </html>

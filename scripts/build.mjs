@@ -1,15 +1,16 @@
 /**
- * build.mjs — Static site generator for the portfolio.
+ * build.mjs: static site generator for the portfolio.
  *
  * Reads content from /data/*.json and writes fully-rendered static HTML into
  * /portfolio/ (plus /sitemap.xml and /robots.txt at the repo root). All
- * essential content ships in the initial HTML — no client JS required to read
+ * essential content ships in the initial HTML. No client JS is required to read
  * the work. JavaScript (portfolio/enhance.js) only adds the mobile menu,
  * image lightbox, and analytics hooks.
  *
  * Run: npm run build   (or: node scripts/build.mjs)
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -32,8 +33,31 @@ const esc = (s) =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 
+/**
+ * Escape, then honour a newline in the copy as a hard line break. Lets the
+ * author choose where a headline turns, from the data rather than the template.
+ */
+const escBreaks = (s) => esc(s).replace(/\r?\n/g, '<br>');
+
 const MAILTO = `mailto:${site.meta.email}?subject=${encodeURIComponent('Hello Michael')}`;
 const RESUME = site.meta.resume;
+
+/**
+ * Stamp a stylesheet/script URL with a hash of its own contents. GitHub Pages
+ * serves assets with a cache lifetime, so without this a CSS change can leave
+ * visitors (and you, testing locally) on a stale stylesheet. The hash only
+ * moves when the file does, so the build stays deterministic.
+ */
+const hashes = new Map();
+function asset(path) {
+  const rel = path.replace(/^\//, '');
+  if (!hashes.has(rel)) {
+    let h = '0';
+    try { h = createHash('sha1').update(readFileSync(join(ROOT, rel))).digest('hex').slice(0, 8); } catch { /* missing file: no stamp */ }
+    hashes.set(rel, h);
+  }
+  return `${path}?v=${hashes.get(rel)}`;
+}
 
 /** Minimal JPEG dimension reader (SOF markers) so images reserve space (no CLS). */
 function jpegSize(absPath) {
@@ -69,6 +93,9 @@ function picture(img, { eager = false, crop = null } = {}) {
   );
 }
 
+/** URL-safe id from a section title, for anchors and the contents index. */
+const slugify = (t) => String(t).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
 const yearOf = (t) => (String(t).match(/\d{4}(?!.*\d{4})/) || [String(t)])[0];
 
 // Split a string into per-letter spans for a staggered reveal (aria-hidden;
@@ -102,7 +129,7 @@ function head({ title, description, canonical, ogType = 'website', ogImage, styl
     <meta property="og:description" content="${esc(description)}">
     <meta property="og:url" content="${esc(url)}">
     <meta property="og:image" content="${esc(img)}">
-    <meta property="og:image:alt" content="Michael Rossi — Principal Product Design Leader">
+    <meta property="og:image:alt" content="Michael Rossi · Principal Product Design Leader">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${esc(title)}">
     <meta name="twitter:description" content="${esc(description)}">
@@ -112,21 +139,20 @@ function head({ title, description, canonical, ogType = 'website', ogImage, styl
     <link rel="icon" type="image/svg+xml" href="/images/favicon-dark.svg" media="(prefers-color-scheme: dark)">
     <link rel="icon" type="image/svg+xml" href="/images/favicon-light.svg">
 
-    <meta name="theme-color" content="#121212">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,wght@0,300;0,400;0,500;1,300&display=swap">
+    <meta name="theme-color" content="#0a0a0a">
 
-    <link rel="stylesheet" href="/portfolio/site.css">
-${styles.map((s) => `    <link rel="stylesheet" href="/portfolio/${s}">`).join('\n')}
+    <link rel="preload" href="/font/GraphikRegular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/font/GraphikBlack.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="${asset('/portfolio/site.css')}">
+${styles.map((s) => `    <link rel="stylesheet" href="${asset('/portfolio/' + s)}">`).join('\n')}
 ${jsonLd ? `    <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` : ''}
 </head>`;
 }
 
-function header(active) {
-  // Only emit aria-current on a nav item that truly points to the current page.
-  // "Work" is an in-page anchor (never a distinct page), so it is never current.
-  const cur = (page) => (active === page ? ' aria-current="page"' : '');
+function header() {
+  // No item can be "current": Work is an in-page anchor and the rest leave the
+  // page, so there is no aria-current to emit.
   return `<a class="skip-link" href="#main">Skip to content</a>
     <header class="masthead">
         <div class="masthead__inner">
@@ -137,7 +163,6 @@ function header(active) {
             <nav id="primary-nav" class="site-nav" aria-label="Primary">
                 <ul class="nav-links">
                     <li><a href="/portfolio/#work">Work</a></li>
-                    <li><a href="/portfolio/about/"${cur('about')}>About</a></li>
                     <li><a href="${esc(RESUME)}" target="_blank" rel="noopener" data-event="resume_view" data-event-label="nav">Résumé</a></li>
                     <li><a href="${esc(MAILTO)}" data-event="contact_click" data-event-label="nav">Email</a></li>
                 </ul>
@@ -155,14 +180,13 @@ function footer(extraScripts) {
             </div>
             <nav class="colophon__nav" aria-label="Footer">
                 <a href="/portfolio/#work">Work</a>
-                <a href="/portfolio/about/">About</a>
                 <a href="${esc(RESUME)}" target="_blank" rel="noopener" data-event="resume_view" data-event-label="footer">Résumé</a>
                 <a href="${esc(MAILTO)}" data-event="contact_click" data-event-label="footer">${esc(site.meta.email)}</a>
             </nav>
             <p class="colophon__note">Designed and built by Michael Rossi in Dallas. ${YEAR}.</p>
         </div>
     </footer>
-    <script src="/portfolio/enhance.js" defer></script>${(extraScripts || []).map((s) => `\n    <script src="${esc(s)}" defer></script>`).join('')}
+    <script src="${asset('/portfolio/enhance.js')}" defer></script>${(extraScripts || []).map((s) => `\n    <script src="${esc(s)}" defer></script>`).join('')}
 </body>
 </html>`;
 }
@@ -172,7 +196,7 @@ function footer(extraScripts) {
 // One project = one big visual band. The work is the hero: the full image
 // shown large at its natural aspect, with tight copy and facts beneath.
 function projectBand(p, num, tier) {
-  // "Designs AND builds" — only the projects he shipped to code light a BUILT
+  // "Designs AND builds": only the projects he shipped to code light a BUILT
   // node; keyed off the real Front-end capability, showing the stack where known.
   const isFrontend = (p.capabilities || []).some((c) => /front-?end/i.test(c));
   const caps = (p.capabilities || []).filter((c) => !/front-?end/i.test(c));
@@ -181,6 +205,7 @@ function projectBand(p, num, tier) {
     : '';
   const facts = [['Role', p.role], ['Timeline', p.timeframe]];
   if (p.url) facts.push(['Live', `<a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer" data-event="external_project_link" data-event-label="${esc(p.slug)}">${esc(p.url.replace(/^https?:\/\//, '').replace(/\/$/, ''))}</a>`]);
+
   return `<article class="band band--${esc(tier)} reveal">
                 <a class="band__cover" href="/portfolio/${esc(p.slug)}/" tabindex="-1" aria-hidden="true" data-event="casestudy_open" data-event-label="${esc(p.slug)}"></a>
                 <p class="band__folio" aria-hidden="true">${num}</p>
@@ -224,35 +249,39 @@ function homePage() {
     }) +
     `
 <body>
-    ${header('home')}
+    ${header()}
     <main id="main">
-        <section class="hero-intro">
-            <h1 class="hero-intro__name">
-                <span class="hero-intro__pre">who is</span>
-                <span class="hero-intro__you" aria-label="Michael Rossi?">${letters('Michael Rossi?')}</span>
-            </h1>
-            <p class="hero-intro__links">
-                <a href="#about" class="hero-intro__link">let's find out <span class="arrowtrack arrowtrack--down" aria-hidden="true"><span class="arrowtrack__set"><span>&darr;</span><span>&darr;</span></span></span></a>
-                <a href="#work" class="hero-intro__link">see some work <span class="arrowtrack arrowtrack--right" aria-hidden="true"><span class="arrowtrack__set"><span>&rarr;</span><span>&rarr;</span></span></span></a>
-            </p>
+        <section class="hero">
+            <div class="hero__frame">
+                <img class="hero__portrait" src="/images/rossi.jpeg" width="1080" height="1080" alt="Michael Rossi" loading="eager" fetchpriority="high">
+            </div>
+            <div class="rail rail--left" aria-hidden="true"><p class="rail__text">Portfolio</p></div>
+            <div class="rail rail--right">
+                <ul class="rail__links">
+                    <li><a href="${esc(MAILTO)}" data-event="contact_click" data-event-label="rail">Email</a></li>
+                    <li><a href="${esc(RESUME)}" target="_blank" rel="noopener" data-event="resume_view" data-event-label="rail">Résumé</a></li>${site.meta.linkedin ? `
+                    <li><a href="${esc(site.meta.linkedin)}" target="_blank" rel="noopener">LinkedIn</a></li>` : ''}
+                </ul>
+            </div>
+            <div class="hero__type">
+                <p class="hero__role">${esc(site.meta.role)}</p>
+                <h1 class="hero__name" aria-label="${esc(site.meta.name)}">${letters(site.meta.name)}</h1>
+            </div>
         </section>
 
         <section class="intro" id="about" aria-labelledby="intro-headline">
-            <div class="intro__portrait develop">
-                <img src="/images/rossi.jpeg" width="1080" height="1080" alt="Michael Rossi" loading="eager" fetchpriority="high">
-            </div>
+            <p class="section-label reveal">Introduction</p>
             <div class="intro__body">
-                <h2 class="intro__headline reveal" style="--d:0" id="intro-headline">${esc(h.headline)}</h2>
+                <h2 class="intro__headline reveal" style="--d:0" id="intro-headline">${escBreaks(h.headline)}</h2>
                 <p class="intro__note reveal" style="--d:1">${esc(h.note)}</p>
-                <dl class="facts reveal" style="--d:2">
-                    ${h.facts.map((f) => `<div class="facts__row"><dt>${esc(f.value)}</dt> <dd>${esc(f.label)}</dd></div>`).join('\n                    ')}
-                </dl>
-                <p class="intro__availability reveal" style="--d:3">${esc(h.availability)}</p>
-                <p class="intro__foot reveal" style="--d:4">
-                    <a href="/portfolio/about/">Learn more about Michael <span class="arrowtrack arrowtrack--right" aria-hidden="true"><span class="arrowtrack__set"><span>&rarr;</span><span>&rarr;</span></span></span></a>
-                    <a href="#work">See some work <span class="arrowtrack arrowtrack--down" aria-hidden="true"><span class="arrowtrack__set"><span>&darr;</span><span>&darr;</span></span></span></a>
+                <p class="intro__availability reveal" style="--d:2">${esc(h.availability)}</p>
+                <p class="intro__foot reveal" style="--d:3">
+                    <a href="#work">See the work <span class="arrowtrack arrowtrack--down" aria-hidden="true"><span class="arrowtrack__set"><span>&darr;</span><span>&darr;</span></span></span></a>
                 </p>
             </div>
+            <dl class="facts reveal" style="--d:4">
+                ${h.facts.map((f) => `<div class="facts__row"><dt>${esc(f.value)}</dt> <dd>${esc(f.label)}</dd></div>`).join('\n                ')}
+            </dl>
         </section>
 
         <section class="work" id="work" aria-labelledby="work-title">
@@ -296,101 +325,11 @@ function homePage() {
         </section>
     </main>
     ` +
-    footer(['/portfolio/liquid.js'])
+    footer()
   );
 }
 
 /* ----------------------------- about ----------------------------- */
-
-function aboutPage() {
-  const a = site.about;
-  const sections = a.sections
-    .map((s) => {
-      // A "lead" block reads as a full-width opening narrative (no side label),
-      // so the page isn't five identical label -> heading -> prose slabs.
-      if (s.style === 'lead') {
-        return `<section class="about-lead">
-                <h2>${esc(s.heading)}</h2>
-                <div class="about-lead__body">
-                    ${(s.paragraphs || []).map((p) => `<p>${esc(p)}</p>`).join('\n                    ')}
-                </div>
-            </section>`;
-      }
-      return `<section class="about-block">
-                <p class="about-block__label">${esc(s.label)}</p>
-                <div class="about-block__body">
-                    <h2>${esc(s.heading)}</h2>
-                    ${(s.paragraphs || []).map((p) => `<p>${esc(p)}</p>`).join('\n                    ')}
-                    ${s.list ? `<ul class="about-list">${s.list.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>` : ''}
-                </div>
-            </section>`;
-    })
-    .join('\n            ');
-
-  const exp = a.expertise;
-  const expertise = `<section class="about-block">
-                <p class="about-block__label">Expertise</p>
-                <div class="about-block__body">
-                    <h2>${esc(exp.heading)}.</h2>
-                    <dl class="expertise-list">
-                        ${exp.groups.map((g) => `<div class="expertise-row"><dt>${esc(g.heading)}</dt><dd>${g.items.map(esc).join(', ')}</dd></div>`).join('\n                        ')}
-                    </dl>
-                    <div class="about-tools">
-                        <h3>Tools &amp; technical</h3>
-                        <p>${esc(exp.tools)}</p>
-                        <p class="about-certs">${exp.certifications.map((c) => esc(c)).join(' &middot; ')}</p>
-                    </div>
-                </div>
-            </section>`;
-
-  const jsonLd = {
-    '@context': 'https://schema.org', '@type': 'Person',
-    name: site.meta.name, jobTitle: site.meta.role,
-    url: site.meta.baseUrl + '/portfolio/about/',
-    email: 'mailto:' + site.meta.email,
-    address: { '@type': 'PostalAddress', addressLocality: 'Dallas', addressRegion: 'TX', addressCountry: 'US' },
-  };
-  if (site.meta.linkedin) jsonLd.sameAs = [site.meta.linkedin];
-
-  return (
-    head({
-      title: site.seo.about.title,
-      description: site.seo.about.description,
-      canonical: '/portfolio/about/',
-      ogType: 'profile',
-      styles: ['about.css'],
-      jsonLd,
-    }) +
-    `
-<body>
-    ${header('about')}
-    <main id="main">
-        <section class="about-hero">
-            <div class="about-hero__text">
-                <p class="about-hero__eyebrow">About</p>
-                <h1 class="about-hero__title">${esc(a.title)}</h1>
-                <p class="about-hero__lede">${esc(a.lede)}</p>
-            </div>
-            <img class="about-hero__portrait" src="/images/rossi.jpeg" width="1080" height="1080" alt="Michael Rossi" loading="eager" fetchpriority="high">
-        </section>
-
-        <div class="about-body">
-            ${sections}
-            ${expertise}
-        </div>
-
-        <section class="closing" aria-label="Contact">
-            <p class="closing__statement">If you're hiring for a Staff or Principal Product Design role, or you have a knotty product problem, I'd like to hear about it.</p>
-            <p class="closing__links">
-                <a href="${esc(MAILTO)}" data-event="contact_click" data-event-label="about-closing">${esc(site.meta.email)}</a>
-                <a href="${esc(RESUME)}" target="_blank" rel="noopener" data-event="resume_view" data-event-label="about-closing">Résumé</a>
-            </p>
-        </section>
-    </main>
-    ` +
-    footer()
-  );
-}
 
 /* ----------------------------- case study ----------------------------- */
 
@@ -416,15 +355,6 @@ function csFigure(img, eager = false) {
             </figure>`;
 }
 
-function section(title, bodyHtml, cls = '') {
-  return `<section class="cs-section ${cls}">
-                <div class="cs-section__body">
-                    <h2>${esc(title)}</h2>
-                    ${bodyHtml}
-                </div>
-            </section>`;
-}
-
 const paras = (t) => String(t).split(/\n\n+/).map((x) => `<p>${esc(x)}</p>`).join('');
 const bullets = (items) => `<ul class="cs-list">${items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`;
 
@@ -434,6 +364,20 @@ function caseStudyPage(p) {
   const inline = images.slice(1);
   let fi = 0;
   const nextFig = () => (inline[fi] ? csFigure(inline[fi++]) : '');
+
+  // Every section registers itself in the contents list as it is written, so the
+  // rail index can never drift out of sync with what the page actually contains.
+  const toc = [];
+  const section = (title, bodyHtml, cls = '') => {
+    const id = slugify(title);
+    toc.push({ id, title });
+    return `<section class="cs-section ${cls}" id="${esc(id)}">
+                <div class="cs-section__body">
+                    <h2>${esc(title)}</h2>
+                    ${bodyHtml}
+                </div>
+            </section>`;
+  };
 
   const parts = [];
   if (p.context) parts.push(section('Context', paras(p.context)));
@@ -448,6 +392,15 @@ function caseStudyPage(p) {
   while (inline[fi]) parts.push(nextFig());
   if (p.outcome) parts.push(section('What shipped', paras(p.outcome), 'cs-section--outcome'));
   if (p.reflection) parts.push(section('Reflection', paras(p.reflection), 'cs-section--reflection'));
+
+  // Plain anchor list: it navigates with no JS at all; enhance.js only adds the
+  // "you are here" highlight on scroll.
+  const index = toc.length
+    ? `<nav class="toc" aria-labelledby="cs-toc-label">
+                        <p class="toc__label" id="cs-toc-label">Contents</p>
+                        <ol>${toc.map((s) => `<li><a href="#${esc(s.id)}">${esc(s.title)}</a></li>`).join('')}</ol>
+                    </nav>`
+    : '';
 
   const ordered = projects;
   const idx = ordered.findIndex((x) => x.slug === p.slug);
@@ -473,7 +426,7 @@ function caseStudyPage(p) {
 
   return (
     head({
-      title: `${p.title} — Michael Rossi`,
+      title: `${p.title} · Michael Rossi`,
       description: p.lead,
       canonical: `/portfolio/${p.slug}/`,
       ogType: 'article',
@@ -483,19 +436,28 @@ function caseStudyPage(p) {
     }) +
     `
 <body>
-    ${header('work')}
+    ${header()}
     <main id="main">
         <article class="case-study">
             <a class="back-link" href="/portfolio/#work"><span aria-hidden="true">&larr;</span> All work</a>
-            <header class="cs-header">
-                <p class="cs-header__client">${esc(p.client)}</p>
-                <h1 class="cs-header__title">${esc(p.title)}</h1>
-                <p class="cs-header__lead">${esc(p.lead)}</p>
-                ${facts(p)}
-            </header>
-            ${hero ? `<div class="cs-hero">${csFigure(hero, true)}</div>` : ''}
-            <div class="cs-body">
-                ${parts.filter(Boolean).join('\n                ')}
+            <div class="cs-layout">
+                <header class="cs-header">
+                    <p class="cs-header__client">${esc(p.client)}</p>
+                    <h1 class="cs-header__title">${esc(p.title)}</h1>
+                    <p class="cs-header__lead">${esc(p.lead)}</p>
+                </header>
+                <aside class="cs-rail">
+                    <div class="cs-rail__inner">
+                        ${facts(p)}
+                        ${index}
+                    </div>
+                </aside>
+                <div class="cs-main">
+                    ${hero ? `<div class="cs-hero">${csFigure(hero, true)}</div>` : ''}
+                    <div class="cs-body">
+                        ${parts.filter(Boolean).join('\n                        ')}
+                    </div>
+                </div>
             </div>
             ${pag}
         </article>
@@ -510,7 +472,6 @@ function caseStudyPage(p) {
 function sitemap() {
   const urls = [
     { loc: '/portfolio/', priority: '1.0' },
-    { loc: '/portfolio/about/', priority: '0.7' },
     ...projects.map((p) => ({ loc: `/portfolio/${p.slug}/`, priority: '0.8' })),
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -541,8 +502,7 @@ function writeFile(rel, content) {
 
 console.log('Building portfolio…');
 writeFile('portfolio/index.html', homePage());
-writeFile('portfolio/about/index.html', aboutPage());
 for (const p of projects) writeFile(`portfolio/${p.slug}/index.html`, caseStudyPage(p));
 writeFile('sitemap.xml', sitemap());
 writeFile('robots.txt', robots());
-console.log(`Done. ${projects.length} case studies + home + about + sitemap + robots.`);
+console.log(`Done. ${projects.length} case studies + home + sitemap + robots.`);

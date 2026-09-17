@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bringing five products into one developer platform — Michael Rossi</title>
+    <title>Bringing five products into one developer platform · Michael Rossi</title>
     <meta name="description" content="Nutrient had sprawled into five separate product sites and brands. Through my studio, I designed one product-led platform and built it in React and Astro, so it read as a single company without flattening the products underneath.">
     <meta name="author" content="Michael Rossi">
     <link rel="canonical" href="https://itsmichaelrossi.com/portfolio/nutrient-website/">
 
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Michael Rossi">
-    <meta property="og:title" content="Bringing five products into one developer platform — Michael Rossi">
+    <meta property="og:title" content="Bringing five products into one developer platform · Michael Rossi">
     <meta property="og:description" content="Nutrient had sprawled into five separate product sites and brands. Through my studio, I designed one product-led platform and built it in React and Astro, so it read as a single company without flattening the products underneath.">
     <meta property="og:url" content="https://itsmichaelrossi.com/portfolio/nutrient-website/">
     <meta property="og:image" content="https://itsmichaelrossi.com/portfolio/images/NutrientHomePage.jpg">
-    <meta property="og:image:alt" content="Michael Rossi — Principal Product Design Leader">
+    <meta property="og:image:alt" content="Michael Rossi · Principal Product Design Leader">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Bringing five products into one developer platform — Michael Rossi">
+    <meta name="twitter:title" content="Bringing five products into one developer platform · Michael Rossi">
     <meta name="twitter:description" content="Nutrient had sprawled into five separate product sites and brands. Through my studio, I designed one product-led platform and built it in React and Astro, so it read as a single company without flattening the products underneath.">
     <meta name="twitter:image" content="https://itsmichaelrossi.com/portfolio/images/NutrientHomePage.jpg">
 
@@ -24,13 +24,13 @@
     <link rel="icon" type="image/svg+xml" href="/images/favicon-dark.svg" media="(prefers-color-scheme: dark)">
     <link rel="icon" type="image/svg+xml" href="/images/favicon-light.svg">
 
-    <meta name="theme-color" content="#121212">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,wght@0,300;0,400;0,500;1,300&display=swap">
+    <meta name="theme-color" content="#0a0a0a">
 
-    <link rel="stylesheet" href="/portfolio/site.css">
-    <link rel="stylesheet" href="/portfolio/case-study.css">
+    <link rel="preload" href="/font/GraphikRegular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/font/GraphikBlack.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="/portfolio/site.css?v=92e3252d">
+    <link rel="stylesheet" href="/portfolio/case-study.css?v=8b05614a">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"Bringing five products into one developer platform","headline":"Bringing five products into one developer platform","abstract":"Nutrient had sprawled into five separate product sites and brands. Through my studio, I designed one product-led platform and built it in React and Astro, so it read as a single company without flattening the products underneath.","about":"Developer tools & SaaS","url":"https://itsmichaelrossi.com/portfolio/nutrient-website/","creator":{"@type":"Person","name":"Michael Rossi","jobTitle":"Principal Product Design Leader"},"image":"https://itsmichaelrossi.com/portfolio/images/NutrientHomePage.jpg"}</script>
 </head>
 <body>
@@ -44,7 +44,6 @@
             <nav id="primary-nav" class="site-nav" aria-label="Primary">
                 <ul class="nav-links">
                     <li><a href="/portfolio/#work">Work</a></li>
-                    <li><a href="/portfolio/about/">About</a></li>
                     <li><a href="/portfolio/Rossi-Resume-2026.pdf" target="_blank" rel="noopener" data-event="resume_view" data-event-label="nav">Résumé</a></li>
                     <li><a href="mailto:itsmichaelrossi@gmail.com?subject=Hello%20Michael" data-event="contact_click" data-event-label="nav">Email</a></li>
                 </ul>
@@ -54,73 +53,85 @@
     <main id="main">
         <article class="case-study">
             <a class="back-link" href="/portfolio/#work"><span aria-hidden="true">&larr;</span> All work</a>
-            <header class="cs-header">
-                <p class="cs-header__client">Nutrient</p>
-                <h1 class="cs-header__title">Bringing five products into one developer platform</h1>
-                <p class="cs-header__lead">Nutrient had sprawled into five separate product sites and brands. Through my studio, I designed one product-led platform and built it in React and Astro, so it read as a single company without flattening the products underneath.</p>
-                <dl class="cs-facts"><div><dt>Company</dt><dd>Nutrient</dd></div><div><dt>Role</dt><dd>Principal Product Designer</dd></div><div><dt>Industry</dt><dd>Developer tools &amp; SaaS</dd></div><div><dt>Timeline</dt><dd>2024</dd></div><div><dt>Built with</dt><dd>React, Astro</dd></div><div><dt>Live</dt><dd><a href="https://nutrient.io/" target="_blank" rel="noopener noreferrer" data-event="external_project_link" data-event-label="nutrient-website">nutrient.io</a></dd></div></dl>
-            </header>
-            <div class="cs-hero"><figure class="cs-figure">
+            <div class="cs-layout">
+                <header class="cs-header">
+                    <p class="cs-header__client">Nutrient</p>
+                    <h1 class="cs-header__title">Bringing five products into one developer platform</h1>
+                    <p class="cs-header__lead">Nutrient had sprawled into five separate product sites and brands. Through my studio, I designed one product-led platform and built it in React and Astro, so it read as a single company without flattening the products underneath.</p>
+                </header>
+                <aside class="cs-rail">
+                    <div class="cs-rail__inner">
+                        <dl class="cs-facts"><div><dt>Company</dt><dd>Nutrient</dd></div><div><dt>Role</dt><dd>Principal Product Designer</dd></div><div><dt>Industry</dt><dd>Developer tools &amp; SaaS</dd></div><div><dt>Timeline</dt><dd>2024</dd></div><div><dt>Built with</dt><dd>React, Astro</dd></div><div><dt>Live</dt><dd><a href="https://nutrient.io/" target="_blank" rel="noopener noreferrer" data-event="external_project_link" data-event-label="nutrient-website">nutrient.io</a></dd></div></dl>
+                        <nav class="toc" aria-labelledby="cs-toc-label">
+                        <p class="toc__label" id="cs-toc-label">Contents</p>
+                        <ol><li><a href="#context">Context</a></li><li><a href="#the-problem">The problem</a></li><li><a href="#what-i-did">What I did</a></li><li><a href="#how-i-approached-it">How I approached it</a></li><li><a href="#key-decisions">Key decisions</a></li><li><a href="#systems-patterns">Systems &amp; patterns</a></li><li><a href="#what-shipped">What shipped</a></li><li><a href="#reflection">Reflection</a></li></ol>
+                    </nav>
+                    </div>
+                </aside>
+                <div class="cs-main">
+                    <div class="cs-hero"><figure class="cs-figure">
                 <button type="button" class="cs-zoom" aria-label="Enlarge image: Nutrient home page with clear product positioning and a document workflow preview" data-full="/portfolio/images/NutrientHomePage.jpg" data-caption="A product-led home page leads with what the platform does, then lets people go deeper by product or by role."><picture><source type="image/webp" srcset="/portfolio/images/NutrientHomePage.webp"><img src="/portfolio/images/NutrientHomePage.jpg" alt="Nutrient home page with clear product positioning and a document workflow preview" width="2400" height="1600" loading="eager" decoding="async" fetchpriority="high"></picture></button>
                 <figcaption>A product-led home page leads with what the platform does, then lets people go deeper by product or by role.</figcaption>
             </figure></div>
-            <div class="cs-body">
-                <section class="cs-section ">
+                    <div class="cs-body">
+                        <section class="cs-section " id="context">
                 <div class="cs-section__body">
                     <h2>Context</h2>
                     <p>Nutrient is a document-processing and SDK platform used by developers and enterprise teams. The company had grown into five separate product sites and brands, which made the offering hard to read as one platform. Delivered through my studio, Push Refresh, the work brought those products together into a single product-led site that had to explain genuinely technical capabilities without burying the reader.</p>
                 </div>
             </section>
-                <section class="cs-section ">
+                        <section class="cs-section " id="the-problem">
                 <div class="cs-section__body">
                     <h2>The problem</h2>
                     <p>The site had to speak to developers evaluating an SDK and to buyers who needed to understand the platform quickly, without watering down the technical depth either one relied on. Content scattered across five brands made it hard to differentiate offerings or point people to the right place. The structure also had to keep working as the product line grew.</p>
                 </div>
             </section>
-                <figure class="cs-figure">
+                        <figure class="cs-figure">
                 <button type="button" class="cs-zoom" aria-label="Enlarge image: Product-level navigation spanning SDK, cloud, workflow, and integrations" data-full="/portfolio/images/product-navigation.jpg" data-caption="Navigation was structured around the product line, so it could absorb new offerings without a redesign."><picture><source type="image/webp" srcset="/portfolio/images/product-navigation.webp"><img src="/portfolio/images/product-navigation.jpg" alt="Product-level navigation spanning SDK, cloud, workflow, and integrations" width="2400" height="513" loading="lazy" decoding="async"></picture></button>
                 <figcaption>Navigation was structured around the product line, so it could absorb new offerings without a redesign.</figcaption>
             </figure>
-                <section class="cs-section ">
+                        <section class="cs-section " id="what-i-did">
                 <div class="cs-section__body">
                     <h2>What I did</h2>
                     <ul class="cs-list"><li>Led UX and UI for the entire website as Principal Product Designer</li><li>Designed and built the site in React and Astro, taking the work from design through production</li><li>Partnered with product and marketing to line the messaging up with what the platform actually does</li><li>Owned performance, accessibility, and maintainability as part of the build, not a handoff</li></ul>
                 </div>
             </section>
-                <section class="cs-section ">
+                        <section class="cs-section " id="how-i-approached-it">
                 <div class="cs-section__body">
                     <h2>How I approached it</h2>
                     <ul class="cs-list"><li>Started from a product-first information architecture instead of a marketing-first one</li><li>Built reusable layout and content patterns so the team could keep iterating without a redesign</li><li>Chose Astro for speed and pulled in React only where interactivity earned it</li><li>Designed with implementation in mind and built it myself, which removed most of the usual handoff loss</li><li>Treated accessibility and page performance as constraints the design had to satisfy</li></ul>
                 </div>
             </section>
-                <figure class="cs-figure">
+                        <figure class="cs-figure">
                 <button type="button" class="cs-zoom" aria-label="Enlarge image: SDK product page presenting technical capabilities to a developer audience" data-full="/portfolio/images/SDKProductShowcase.jpg" data-caption="Technical pages were designed to respect a developer audience, keeping depth accessible instead of hiding it behind marketing."><picture><source type="image/webp" srcset="/portfolio/images/SDKProductShowcase.webp"><img src="/portfolio/images/SDKProductShowcase.jpg" alt="SDK product page presenting technical capabilities to a developer audience" width="2440" height="1600" loading="lazy" decoding="async"></picture></button>
                 <figcaption>Technical pages were designed to respect a developer audience, keeping depth accessible instead of hiding it behind marketing.</figcaption>
             </figure>
-                <section class="cs-section ">
+                        <section class="cs-section " id="key-decisions">
                 <div class="cs-section__body">
                     <h2>Key decisions</h2>
                     <ul class="cs-list"><li>Led with a product-first structure so the site explained the platform, not just marketed it</li><li>Made clarity the primary constraint and surfaced technical depth only where it earned its place</li><li>Built reusable patterns so ongoing changes did not mean rebuilding pages</li><li>Split the stack between Astro and React to keep the site fast while supporting the pieces that needed interactivity</li></ul>
                 </div>
             </section>
-                <section class="cs-section ">
+                        <section class="cs-section " id="systems-patterns">
                 <div class="cs-section__body">
                     <h2>Systems &amp; patterns</h2>
                     <ul class="cs-list"><li>Reusable layout and content blocks that let non-designers extend the site safely</li><li>A component set shared between design and the production React and Astro build, so what was designed is what shipped</li></ul>
                 </div>
             </section>
-                <section class="cs-section cs-section--outcome">
+                        <section class="cs-section cs-section--outcome" id="what-shipped">
                 <div class="cs-section__body">
                     <h2>What shipped</h2>
                     <p>A fast, product-led website that pulls five products into one coherent story and gives the team a base to keep building on. Because I designed and built it, the work went from concept to production without losing intent in handoff.</p>
                 </div>
             </section>
-                <section class="cs-section cs-section--reflection">
+                        <section class="cs-section cs-section--reflection" id="reflection">
                 <div class="cs-section__body">
                     <h2>Reflection</h2>
-                    <p>This is the kind of project I do best: real product complexity, a systems problem underneath, and design that runs all the way into code. Pulling five brands into one story took as much editing as designing — deciding what to say plainly and what to leave out. Owning both the design and the front end meant the fast, accessible result on screen was the same thing I had in the file.</p>
+                    <p>This is the kind of project I do best: real product complexity, a systems problem underneath, and design that runs all the way into code. Pulling five brands into one story took as much editing as designing: deciding what to say plainly and what to leave out. Owning both the design and the front end meant the fast, accessible result on screen was the same thing I had in the file.</p>
                 </div>
             </section>
+                    </div>
+                </div>
             </div>
             <nav class="cs-pagination" aria-label="Case study navigation">
                 <a class="cs-page cs-page--prev" href="/portfolio/unitedhealth-transportation/"><span class="cs-page__label">Previous</span><span class="cs-page__title">Accessible transportation benefits for health-plan members</span></a>
@@ -137,13 +148,12 @@
             </div>
             <nav class="colophon__nav" aria-label="Footer">
                 <a href="/portfolio/#work">Work</a>
-                <a href="/portfolio/about/">About</a>
                 <a href="/portfolio/Rossi-Resume-2026.pdf" target="_blank" rel="noopener" data-event="resume_view" data-event-label="footer">Résumé</a>
                 <a href="mailto:itsmichaelrossi@gmail.com?subject=Hello%20Michael" data-event="contact_click" data-event-label="footer">itsmichaelrossi@gmail.com</a>
             </nav>
             <p class="colophon__note">Designed and built by Michael Rossi in Dallas. 2026.</p>
         </div>
     </footer>
-    <script src="/portfolio/enhance.js" defer></script>
+    <script src="/portfolio/enhance.js?v=2015ffc9" defer></script>
 </body>
 </html>

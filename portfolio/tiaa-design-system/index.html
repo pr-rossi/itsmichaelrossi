@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scaling an enterprise financial design system — Michael Rossi</title>
+    <title>Scaling an enterprise financial design system · Michael Rossi</title>
     <meta name="description" content="TIAA's product groups were each rebuilding the same components a little differently. As the Experience Design Lead, I set the standards, the states, and the governance, then made the system easy enough to adopt that teams stopped forking it.">
     <meta name="author" content="Michael Rossi">
     <link rel="canonical" href="https://itsmichaelrossi.com/portfolio/tiaa-design-system/">
 
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Michael Rossi">
-    <meta property="og:title" content="Scaling an enterprise financial design system — Michael Rossi">
+    <meta property="og:title" content="Scaling an enterprise financial design system · Michael Rossi">
     <meta property="og:description" content="TIAA's product groups were each rebuilding the same components a little differently. As the Experience Design Lead, I set the standards, the states, and the governance, then made the system easy enough to adopt that teams stopped forking it.">
     <meta property="og:url" content="https://itsmichaelrossi.com/portfolio/tiaa-design-system/">
     <meta property="og:image" content="https://itsmichaelrossi.com/portfolio/images/tiaa-design-system-1.jpg">
-    <meta property="og:image:alt" content="Michael Rossi — Principal Product Design Leader">
+    <meta property="og:image:alt" content="Michael Rossi · Principal Product Design Leader">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Scaling an enterprise financial design system — Michael Rossi">
+    <meta name="twitter:title" content="Scaling an enterprise financial design system · Michael Rossi">
     <meta name="twitter:description" content="TIAA's product groups were each rebuilding the same components a little differently. As the Experience Design Lead, I set the standards, the states, and the governance, then made the system easy enough to adopt that teams stopped forking it.">
     <meta name="twitter:image" content="https://itsmichaelrossi.com/portfolio/images/tiaa-design-system-1.jpg">
 
@@ -24,13 +24,13 @@
     <link rel="icon" type="image/svg+xml" href="/images/favicon-dark.svg" media="(prefers-color-scheme: dark)">
     <link rel="icon" type="image/svg+xml" href="/images/favicon-light.svg">
 
-    <meta name="theme-color" content="#121212">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,wght@0,300;0,400;0,500;1,300&display=swap">
+    <meta name="theme-color" content="#0a0a0a">
 
-    <link rel="stylesheet" href="/portfolio/site.css">
-    <link rel="stylesheet" href="/portfolio/case-study.css">
+    <link rel="preload" href="/font/GraphikRegular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/font/GraphikBlack.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="/portfolio/site.css?v=92e3252d">
+    <link rel="stylesheet" href="/portfolio/case-study.css?v=8b05614a">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"Scaling an enterprise financial design system","headline":"Scaling an enterprise financial design system","abstract":"TIAA's product groups were each rebuilding the same components a little differently. As the Experience Design Lead, I set the standards, the states, and the governance, then made the system easy enough to adopt that teams stopped forking it.","about":"Financial services","url":"https://itsmichaelrossi.com/portfolio/tiaa-design-system/","creator":{"@type":"Person","name":"Michael Rossi","jobTitle":"Principal Product Design Leader"},"image":"https://itsmichaelrossi.com/portfolio/images/tiaa-design-system-1.jpg"}</script>
 </head>
 <body>
@@ -44,7 +44,6 @@
             <nav id="primary-nav" class="site-nav" aria-label="Primary">
                 <ul class="nav-links">
                     <li><a href="/portfolio/#work">Work</a></li>
-                    <li><a href="/portfolio/about/">About</a></li>
                     <li><a href="/portfolio/Rossi-Resume-2026.pdf" target="_blank" rel="noopener" data-event="resume_view" data-event-label="nav">Résumé</a></li>
                     <li><a href="mailto:itsmichaelrossi@gmail.com?subject=Hello%20Michael" data-event="contact_click" data-event-label="nav">Email</a></li>
                 </ul>
@@ -54,73 +53,85 @@
     <main id="main">
         <article class="case-study">
             <a class="back-link" href="/portfolio/#work"><span aria-hidden="true">&larr;</span> All work</a>
-            <header class="cs-header">
-                <p class="cs-header__client">TIAA</p>
-                <h1 class="cs-header__title">Scaling an enterprise financial design system</h1>
-                <p class="cs-header__lead">TIAA's product groups were each rebuilding the same components a little differently. As the Experience Design Lead, I set the standards, the states, and the governance, then made the system easy enough to adopt that teams stopped forking it.</p>
-                <dl class="cs-facts"><div><dt>Company</dt><dd>TIAA</dd></div><div><dt>Role</dt><dd>Experience Design Lead</dd></div><div><dt>Industry</dt><dd>Financial services</dd></div><div><dt>Timeline</dt><dd>2023 – 2024</dd></div></dl>
-            </header>
-            <div class="cs-hero"><figure class="cs-figure">
+            <div class="cs-layout">
+                <header class="cs-header">
+                    <p class="cs-header__client">TIAA</p>
+                    <h1 class="cs-header__title">Scaling an enterprise financial design system</h1>
+                    <p class="cs-header__lead">TIAA's product groups were each rebuilding the same components a little differently. As the Experience Design Lead, I set the standards, the states, and the governance, then made the system easy enough to adopt that teams stopped forking it.</p>
+                </header>
+                <aside class="cs-rail">
+                    <div class="cs-rail__inner">
+                        <dl class="cs-facts"><div><dt>Company</dt><dd>TIAA</dd></div><div><dt>Role</dt><dd>Experience Design Lead</dd></div><div><dt>Industry</dt><dd>Financial services</dd></div><div><dt>Timeline</dt><dd>2023 – 2024</dd></div></dl>
+                        <nav class="toc" aria-labelledby="cs-toc-label">
+                        <p class="toc__label" id="cs-toc-label">Contents</p>
+                        <ol><li><a href="#context">Context</a></li><li><a href="#the-problem">The problem</a></li><li><a href="#what-i-did">What I did</a></li><li><a href="#how-i-approached-it">How I approached it</a></li><li><a href="#key-decisions">Key decisions</a></li><li><a href="#systems-patterns">Systems &amp; patterns</a></li><li><a href="#what-shipped">What shipped</a></li><li><a href="#reflection">Reflection</a></li></ol>
+                    </nav>
+                    </div>
+                </aside>
+                <div class="cs-main">
+                    <div class="cs-hero"><figure class="cs-figure">
                 <button type="button" class="cs-zoom" aria-label="Enlarge image: Component sheet showing button and toggle states across default, hover, focus, pressed, and disabled" data-full="/portfolio/images/tiaa-design-system-1.jpg" data-caption="Every interactive component was specified across its full range of states, so behavior stayed consistent no matter which team built the screen."><picture><source type="image/webp" srcset="/portfolio/images/tiaa-design-system-1.webp"><img src="/portfolio/images/tiaa-design-system-1.jpg" alt="Component sheet showing button and toggle states across default, hover, focus, pressed, and disabled" width="2400" height="1588" loading="eager" decoding="async" fetchpriority="high"></picture></button>
                 <figcaption>Every interactive component was specified across its full range of states, so behavior stayed consistent no matter which team built the screen.</figcaption>
             </figure></div>
-            <div class="cs-body">
-                <section class="cs-section ">
+                    <div class="cs-body">
+                        <section class="cs-section " id="context">
                 <div class="cs-section__body">
                     <h2>Context</h2>
                     <p>TIAA runs a large set of web and mobile products serving customers, advisors, and internal teams across retirement, banking, and investing. Multiple product groups were designing the same patterns in slightly different ways, which slowed delivery and made the experience feel inconsistent from one product to the next. The work set out to give every team a shared, dependable foundation to build on.</p>
                 </div>
             </section>
-                <section class="cs-section ">
+                        <section class="cs-section " id="the-problem">
                 <div class="cs-section__body">
                     <h2>The problem</h2>
                     <p>Duplicated components and one-off patterns meant teams rebuilt the same buttons, forms, and interaction models over and over. Quality varied, accessibility was uneven, and no one owned the shared patterns. The hard part was not drawing components. It was building a system flexible enough for very different products while keeping enough governance that it did not fragment the moment teams started using it.</p>
                 </div>
             </section>
-                <figure class="cs-figure">
+                        <figure class="cs-figure">
                 <button type="button" class="cs-zoom" aria-label="Enlarge image: Component variants shown across different themes and product contexts" data-full="/portfolio/images/tiaa-design-system-2.jpg" data-caption="Components were built as themeable primitives, so one foundation could flex to different products without being rebuilt."><picture><source type="image/webp" srcset="/portfolio/images/tiaa-design-system-2.webp"><img src="/portfolio/images/tiaa-design-system-2.jpg" alt="Component variants shown across different themes and product contexts" width="2400" height="1426" loading="lazy" decoding="async"></picture></button>
                 <figcaption>Components were built as themeable primitives, so one foundation could flex to different products without being rebuilt.</figcaption>
             </figure>
-                <section class="cs-section ">
+                        <section class="cs-section " id="what-i-did">
                 <div class="cs-section__body">
                     <h2>What I did</h2>
                     <ul class="cs-list"><li>Led the design system across web and mobile products as Experience Design Lead</li><li>Set the component standards, states, and interaction patterns other designers built from</li><li>Partnered with designers across product teams to bring their components into one governed system</li><li>Worked with engineering and product leadership on governance, adoption, and roadmap</li></ul>
                 </div>
             </section>
-                <section class="cs-section ">
+                        <section class="cs-section " id="how-i-approached-it">
                 <div class="cs-section__body">
                     <h2>How I approached it</h2>
                     <ul class="cs-list"><li>Audited the existing patterns across products to find the real overlaps and the true one-offs</li><li>Defined a contribution and ownership model so teams could extend the system without forking it</li><li>Documented usage, states, and accessibility expectations so adoption did not depend on a hallway conversation</li><li>Built components as reusable, themeable primitives rather than fixed screens</li><li>Held accessibility and responsive behavior as requirements, not enhancements</li></ul>
                 </div>
             </section>
-                <figure class="cs-figure">
+                        <figure class="cs-figure">
                 <button type="button" class="cs-zoom" aria-label="Enlarge image: Design system documentation covering usage guidance and governance" data-full="/portfolio/images/tiaa-design-system-3.jpg" data-caption="Documentation and a clear contribution model made the system something teams could adopt and extend on their own."><picture><source type="image/webp" srcset="/portfolio/images/tiaa-design-system-3.webp"><img src="/portfolio/images/tiaa-design-system-3.jpg" alt="Design system documentation covering usage guidance and governance" width="2400" height="1316" loading="lazy" decoding="async"></picture></button>
                 <figcaption>Documentation and a clear contribution model made the system something teams could adopt and extend on their own.</figcaption>
             </figure>
-                <section class="cs-section ">
+                        <section class="cs-section " id="key-decisions">
                 <div class="cs-section__body">
                     <h2>Key decisions</h2>
                     <ul class="cs-list"><li>Gave every shared pattern a clear owner and contribution path, so it had a home and stopped drifting</li><li>Invested in documentation early, because a system only helps if people can adopt it without you in the room</li><li>Designed components to flex across very different products without fragmenting ownership</li><li>Chose long-term maintainability over short-term convenience, even when it slowed a single release</li></ul>
                 </div>
             </section>
-                <section class="cs-section ">
+                        <section class="cs-section " id="systems-patterns">
                 <div class="cs-section__body">
                     <h2>Systems &amp; patterns</h2>
                     <ul class="cs-list"><li>A component library with defined default, hover, focus, pressed, and disabled states</li><li>Interaction patterns and selection models teams could reuse across regulated products</li><li>Accessibility written into the component specs so it carried forward automatically</li><li>Documentation and a governance structure the internal team could maintain and extend</li></ul>
                 </div>
             </section>
-                <section class="cs-section cs-section--outcome">
+                        <section class="cs-section cs-section--outcome" id="what-shipped">
                 <div class="cs-section__body">
                     <h2>What shipped</h2>
                     <p>A governed, reusable component and interaction-pattern system, with documentation and a contribution model designed for the internal team to maintain and extend after the initial work.</p>
                 </div>
             </section>
-                <section class="cs-section cs-section--reflection">
+                        <section class="cs-section cs-section--reflection" id="reflection">
                 <div class="cs-section__body">
                     <h2>Reflection</h2>
                     <p>The interesting challenge here was governance, not visuals. A system that is too rigid gets ignored; one that is too loose fragments within a quarter. Most of the work was finding that balance and making adoption easy enough that teams chose the system on its merits. It is a good example of how I think about design at scale: fewer, better decisions that hold up as more people build on them.</p>
                 </div>
             </section>
+                    </div>
+                </div>
             </div>
             <nav class="cs-pagination" aria-label="Case study navigation">
                 <span class="cs-page"></span>
@@ -137,13 +148,12 @@
             </div>
             <nav class="colophon__nav" aria-label="Footer">
                 <a href="/portfolio/#work">Work</a>
-                <a href="/portfolio/about/">About</a>
                 <a href="/portfolio/Rossi-Resume-2026.pdf" target="_blank" rel="noopener" data-event="resume_view" data-event-label="footer">Résumé</a>
                 <a href="mailto:itsmichaelrossi@gmail.com?subject=Hello%20Michael" data-event="contact_click" data-event-label="footer">itsmichaelrossi@gmail.com</a>
             </nav>
             <p class="colophon__note">Designed and built by Michael Rossi in Dallas. 2026.</p>
         </div>
     </footer>
-    <script src="/portfolio/enhance.js" defer></script>
+    <script src="/portfolio/enhance.js?v=2015ffc9" defer></script>
 </body>
 </html>

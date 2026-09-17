@@ -104,7 +104,7 @@
       {
         "src": "/portfolio/images/uhc-scheduling-confirmation.jpg",
         "alt": "Ride confirmation screen summarizing appointment, pickup, and timing details",
-        "caption": "Explicit confirmation at the end of the flow gave members certainty the ride was booked — which matters most when the trip is to a medical appointment."
+        "caption": "Explicit confirmation at the end of the flow gave members certainty the ride was booked, which matters most when the trip is to a medical appointment."
       },
       {
         "src": "/portfolio/images/uhc-ride-history.jpg",
@@ -157,7 +157,7 @@
       "A component set shared between design and the production React and Astro build, so what was designed is what shipped"
     ],
     "outcome": "A fast, product-led website that pulls five products into one coherent story and gives the team a base to keep building on. Because I designed and built it, the work went from concept to production without losing intent in handoff.",
-    "reflection": "This is the kind of project I do best: real product complexity, a systems problem underneath, and design that runs all the way into code. Pulling five brands into one story took as much editing as designing — deciding what to say plainly and what to leave out. Owning both the design and the front end meant the fast, accessible result on screen was the same thing I had in the file.",
+    "reflection": "This is the kind of project I do best: real product complexity, a systems problem underneath, and design that runs all the way into code. Pulling five brands into one story took as much editing as designing: deciding what to say plainly and what to leave out. Owning both the design and the front end meant the fast, accessible result on screen was the same thing I had in the file.",
     "images": [
       {
         "src": "/portfolio/images/NutrientHomePage.jpg",
